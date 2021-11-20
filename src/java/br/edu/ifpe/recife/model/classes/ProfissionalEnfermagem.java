@@ -28,7 +28,7 @@ public class ProfissionalEnfermagem {
     @Column(length = 4)
     private int anoFormacao;
     @Column(length = 11)
-    private int telefone;
+    private String telefone;
 
     public int getId() {
         return id;
@@ -62,11 +62,11 @@ public class ProfissionalEnfermagem {
         this.anoFormacao = anoFormacao;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     

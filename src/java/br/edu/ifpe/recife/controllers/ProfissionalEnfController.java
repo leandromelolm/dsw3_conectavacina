@@ -5,7 +5,7 @@
  */
 package br.edu.ifpe.recife.controllers;
 
-import br.edu.ifpe.recife.model.classes.Vacina;
+import br.edu.ifpe.recife.model.classes.ProfissionalEnfermagem;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -20,30 +20,29 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class VacinaController {
+public class ProfissionalEnfController {
     
-    private Vacina cadastro;
+    private ProfissionalEnfermagem cadastro;
     
     @PostConstruct
     public void init(){
-        this.cadastro = new Vacina();
+        this.cadastro = new ProfissionalEnfermagem();
+        
     }
     
-    public String insert() {
-    
+    public String insert(){
         ManagerDao.getCurrentInstance().insert(this.cadastro);
-        this.cadastro = new Vacina();    
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "OK","Vacina "+this.cadastro.getNome()+" cadastrada com sucesso!"));         
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "OK","Profissional de saúde "+this.cadastro.getNome()+" cadastrado com sucesso!"));         
         return "index.xhtml";
-    }   
+    }
 
-    public Vacina getCadastro() {
+    public ProfissionalEnfermagem getCadastro() {
         return cadastro;
     }
 
-    public void setCadastro(Vacina cadastro) {
+    public void setCadastro(ProfissionalEnfermagem cadastro) {
         this.cadastro = cadastro;
-    }   
+    }    
     
 }
