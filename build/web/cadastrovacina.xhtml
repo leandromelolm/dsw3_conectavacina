@@ -7,26 +7,43 @@
         <title>Cadastro Vacina</title>
     </h:head>
     <h:body>
-        <h:form>
-            <p:panelGrid columns="2">
+        
+        <h:form id="formCadastro">     
+            
+            <p:panelGrid columns="3">
                 <h:outputText value="Nome"/>
-                <p:inputText value="#{vacinaController.cadastro.nome}"/>
+                <p:inputText id="txtNome"  value="#{vacinaController.cadastro.nome}"
+                             required="true" requiredMessage="O campo nome é obrigatorio"/>
+                <p:message for="txtNome"/>
                 
                 <h:outputText value="Fabricante"/>
-                <p:inputText value="#{vacinaController.cadastro.fabricante}"/>
+                <p:inputText id="txtFabricante" value="#{vacinaController.cadastro.fabricante}"
+                             required="true" requiredMessage="O campo fabricante é obrigatorio"/>
+                <p:message for="txtFabricante"/>
                 
                 <h:outputText value="Tempo entre aplicações (em dias)"/>
-                <p:inputText value="#{vacinaController.cadastro.tempoEntreAplicacoes}"/>
+                <p:inputText id="txtTempoEntreAplicacao" value="#{vacinaController.cadastro.tempoEntreAplicacoes}"
+                             required="true" requiredMessage="O campo é obrigatorio"/>
+                <p:message for="txtTempoEntreAplicacao"/>
                 
-                <h:outputText value="Quantidade de aplicações"/>
-                <p:inputText value="#{vacinaController.cadastro.tempoEntreAplicacoes}"/>
+                <h:outputText  value="Quantidade de aplicações"/>
+                <p:inputText id="txtQuantAplicacao" value="#{vacinaController.cadastro.quantidadeAplicacoes}"
+                             required="true" requiredMessage="O campo é obrigatorio"/>
+                <p:message for="txtQuantAplicacao"/>
                 
-                
-            </p:panelGrid>
+            </p:panelGrid>            
             
-            <p:commandButton value="Cadastrar Vacina" action="#{vacinaController.insert()}"/>
+            <p:commandButton value="Cadastrar Vacina" action="#{vacinaController.insert()}" update="@form">
+                <p:confirm message="Deseja cadastrar a vacina?"/>            
+            </p:commandButton>
             
         </h:form>
+        
+        <p:confirmDialog global="true">
+            <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
+            <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
+        </p:confirmDialog>
+        
     </h:body>
 </html>
 
