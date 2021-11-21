@@ -8,11 +8,14 @@
         <title>Apresenta vacinas</title>
     </h:head>
     <h:body>
+        
         <h:form id="formApresentaVacina">
-            <p:dataTable id="tableVacina" var="item" value="#{vacinaController.readAll()}" paginator="true" rows="10">
+            
+            <p:dataTable id="tableVacina" var="item" value="#{vacinaController.readAll()}" paginator="true" rows="10"
+                         selectionMode="single" selection="#{vacinaController.selecao}" rowKey="#{item.id}">
                 <f:facet name="header">
                     Vacinas cadastradas
-                 </f:facet>
+                </f:facet>
                 <p:column headerText="Id">
                     #{item.id}
                 </p:column>
@@ -28,8 +31,47 @@
 <!--                <p:column>
                     #{item.quantidadeAplicacoes}
                 </p:column>                -->
-            </p:dataTable>            
+            </p:dataTable>
+            
+            <p:commandButton value="visualiza" oncomplete="PF('widDialVisualizaVacina').show()"
+                             update=":dialVisualizaVacina"/>
+            
         </h:form>
+        
+        <p:dialog id="dialVisualizaVacina" visible="false" resizable="false" closable="false" modal="true"
+                  closeOnEscape="true"  widgetVar="widDialVisualizaVacina">
+            <p:panelGrid columns="2">
+                
+                <f:facet name="header">
+                    Vacina cadastrada
+                </f:facet>
+                
+                <h:outputText value="Id"/>
+                <h:outputText value="#{vacinaController.selecao.id}"/>
+                
+                <h:outputText value="Nome"/>
+                <h:outputText value="#{vacinaController.selecao.nome}"/>
+                
+                <h:outputText value="Fabricante"/>
+                <h:outputText value="#{vacinaController.selecao.fabricante}"/>
+                
+                <h:outputText value="Tempo entre aplicações"/>
+                <h:outputText value="#{vacinaController.selecao.tempoEntreAplicacoes}"/>
+                
+                <h:outputText value="Quantidade de Aplicações"/>
+                <h:outputText value="#{vacinaController.selecao.quantidadeAplicacoes}"/>
+                
+            </p:panelGrid>
+            
+            <f:facet name="footer">
+                <h:form>
+                    <p:commandButton value="close" oncomplete="PF('widDialVisualizaVacina').hide()"/>
+                </h:form>
+            </f:facet>
+            
+        </p:dialog>        
+        
     </h:body>
+    
 </html>
 

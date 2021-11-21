@@ -24,6 +24,7 @@ import javax.faces.context.FacesContext;
 public class VacinaController {
     
     private Vacina cadastro;
+    private Vacina selecao;
     
     @PostConstruct
     public void init(){
@@ -56,7 +57,15 @@ public class VacinaController {
 
     public void setCadastro(Vacina cadastro) {
         this.cadastro = cadastro;
-    }   
+    }
+    
+        public Vacina getSelecao() {
+        return selecao;
+    }
+
+    public void setSelecao(Vacina selecao) {
+        this.selecao = selecao;
+    }
     
     public void messageInfo() {
         FacesContext.getCurrentInstance().addMessage(null,
