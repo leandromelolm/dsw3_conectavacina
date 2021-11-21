@@ -14,6 +14,9 @@
         
         <h2>Apresentação de vacinas cadastradas</h2>  
         
+        <p:messages id="messages" showDetail="true" closable="true">            
+        </p:messages>
+        
         <h:form id="formApresentaVacina">
             
             <p:dataTable id="tableVacina" var="item" value="#{vacinaController.readAll()}" paginator="true" rows="10"

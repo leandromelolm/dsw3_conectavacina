@@ -28,7 +28,7 @@ public class Vacina {
     @Column(length = 3, nullable = false)
     private String tempoEntreAplicacoes;
     @Column(length = 2, nullable = false)
-    private int quantidadeAplicacoes;
+    private Integer quantidadeAplicacoes;
 
     public int getId() {
         return id;
@@ -62,11 +62,11 @@ public class Vacina {
         this.tempoEntreAplicacoes = tempoEntreAplicacoes;
     }
 
-    public int getQuantidadeAplicacoes() {
+    public Integer getQuantidadeAplicacoes() {
         return quantidadeAplicacoes;
     }
 
-    public void setQuantidadeAplicacoes(int quantidadeAplicacoes) {
+    public void setQuantidadeAplicacoes(Integer quantidadeAplicacoes) {
         this.quantidadeAplicacoes = quantidadeAplicacoes;
     }
     

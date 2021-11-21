@@ -35,24 +35,19 @@ public class GrupoController {
     
     public String insert(){
         ManagerDao.getCurrentInstance().insert(this.cadastro);
+        
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.
-                        SEVERITY_INFO, "OK","Grupo"+
+                        SEVERITY_INFO, "OK ","Grupo "+
                                 this.cadastro.getDenominacao()+
-                                " foi cadastrado com sucesso!"));         
-        return "index.xhtml";
+                                " foi cadastrado com sucesso!"));
+        this.cadastro = new Grupo();
+        return "apresentagrupos.xhtml";
     }
-    
-//    public List<Grupo> readAll(){
-//        
-//        String query = "select g from Grupo g";
-//        
-//        return ManagerDao.getCurrentInstance().read(query, Grupo.class);
-//    }
     
         public List<Grupo> readAll(){
         
-        String query = "select p from Grupo p";
+        String query = "select g from Grupo g";
         
         return ManagerDao.getCurrentInstance().read(query, Grupo.class);    
     }

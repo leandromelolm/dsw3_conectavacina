@@ -23,10 +23,10 @@ public class ProfissionalEnfermagem {
     private int id;
     @Column (length = 50, nullable = false)
     private String nome;
-    @Column(length = 10)
+    @Column(length = 15)
     private String coren;
     @Column(length = 4)
-    private int anoFormacao;
+    private Integer anoFormacao;
     @Column(length = 11)
     private String telefone;
 
@@ -54,11 +54,11 @@ public class ProfissionalEnfermagem {
         this.coren = coren;
     }
 
-    public int getAnoFormacao() {
+    public Integer getAnoFormacao() {
         return anoFormacao;
     }
 
-    public void setAnoFormacao(int anoFormacao) {
+    public void setAnoFormacao(Integer anoFormacao) {
         this.anoFormacao = anoFormacao;
     }
 

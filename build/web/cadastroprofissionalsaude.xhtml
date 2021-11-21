@@ -15,7 +15,7 @@
   
     <h:form id="formCadastro">     
             
-        <p:panelGrid columns="3">
+        <p:panelGrid columns="3" styleClass="ui-panelgrid-blank ui-fluid" >
                 <h:outputText value="Nome"/>
                 <p:inputText id="txtNome"  value="#{profissionalEnfController.cadastro.nome}"
                              required="true" requiredMessage="O campo nome é obrigatorio"/>
@@ -28,12 +28,12 @@
                 
                 <h:outputText value="Ano de Formação"/>
                 <p:inputText id="txtAnoDeFormacao" value="#{profissionalEnfController.cadastro.anoFormacao}"
-                             required="true" requiredMessage="O campo é obrigatorio"/>
+                             required="true" type="number"  size="4" maxlength="4" placeholder="2021" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtAnoDeFormacao"/>
                 
                 <h:outputText  value="Telefone com DDD"/>
                 <p:inputText id="txtTelefone" value="#{profissionalEnfController.cadastro.telefone}"
-                             required="true" requiredMessage="O campo é obrigatorio"/>
+                             required="true" type="number" placeholder="81900009999" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtTelefone"/>
                 
             </p:panelGrid>            
@@ -44,10 +44,12 @@
             
         </h:form>
         
-        <p:confirmDialog global="true">
-            <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
-            <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
-        </p:confirmDialog>
+        <h:form>
+            <p:confirmDialog global="true">
+                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
+            </p:confirmDialog>
+        </h:form>
         
       </h:body>
 </html>

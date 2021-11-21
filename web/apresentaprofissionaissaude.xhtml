@@ -14,6 +14,9 @@
         
         <h2>Apresentação de profissionais de saúde cadastrados</h2> 
         
+        <p:messages id="messages" showDetail="true" closable="true">            
+        </p:messages>
+        
         <h:form id="formApresentaProfisionalSaude">
             
         <p:dataTable id="tableProfissionalSaude" var="item" value="#{profissionalEnfController.readAll()}" paginator="true" rows="10"

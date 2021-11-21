@@ -13,6 +13,9 @@
         
         <h2>Cadastro de Grupo</h2>   
         
+        <p:messages id="messages" showDetail="true" closable="true">            
+        </p:messages>    
+        
                <h:form id="formCadastro">
                    <p:panelGrid columns="3">
                 
@@ -31,8 +34,6 @@
                              required="true" requiredMessage="O campo é requerido"/>
                 <p:message for="txtIdadeMaxima"/>
                 
-   
-                
             </p:panelGrid>
             
             <p:commandButton value="Cadastrar" action="#{grupoController.insert()}" update="formCadastro">
@@ -41,10 +42,12 @@
             
         </h:form>
         
-        <p:confirmDialog global="true">
-            <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
-            <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
-        </p:confirmDialog>
+        <h:form>
+            <p:confirmDialog global="true">
+                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
+            </p:confirmDialog>
+        </h:form>
         
     </h:body>
 </html>

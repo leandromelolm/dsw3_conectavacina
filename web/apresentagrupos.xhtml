@@ -12,8 +12,10 @@
         
         <ui:include src="menu.xhtml"/>
         
-        <h2>Apresentação de grupos cadastrados</h2>   
+        <h2>Apresentação de grupos cadastrados</h2> 
         
+        <p:messages id="messages" showDetail="true" closable="true"/>            
+                
         <h:form id="formApresentaGrupo">
             
             <p:dataTable id="tableGrupo" var="item" value="#{grupoController.readAll()}" paginator="true" rows="10"

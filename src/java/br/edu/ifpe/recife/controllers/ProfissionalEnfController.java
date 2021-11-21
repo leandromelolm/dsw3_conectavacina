@@ -24,7 +24,7 @@ import javax.faces.context.FacesContext;
 public class ProfissionalEnfController {
     
     private ProfissionalEnfermagem cadastro;
-    private ProfissionalEnfermagem selecao;
+    private ProfissionalEnfermagem selecao;   
     
     @PostConstruct
     public void init(){
@@ -34,9 +34,13 @@ public class ProfissionalEnfController {
     
     public String insert(){
         ManagerDao.getCurrentInstance().insert(this.cadastro);
+        
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "OK","Profissional de saúde "+this.cadastro.getNome()+" cadastrado com sucesso!"));         
-        return "index.xhtml";
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ","Profissional de saúde "+this.cadastro.getNome()+" cadastrado com sucesso!"));         
+        
+        this.cadastro = new ProfissionalEnfermagem();
+        
+        return "apresentaprofissionaissaude.xhtml";
     }
     
     public List<ProfissionalEnfermagem> readAll(){
@@ -60,6 +64,6 @@ public class ProfissionalEnfController {
 
     public void setSelecao(ProfissionalEnfermagem selecao) {
         this.selecao = selecao;
-    }   
-    
+    }
+ 
 }

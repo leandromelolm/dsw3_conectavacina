@@ -31,17 +31,12 @@ public class VacinaController {
         this.cadastro = new Vacina();
     }
     
-    public String insert()  {
+    public void insert(){
     
         ManagerDao.getCurrentInstance().insert(this.cadastro);
-        this.cadastro = new Vacina();    
-//        FacesContext.getCurrentInstance().addMessage(null,
-//                new FacesMessage(FacesMessage.SEVERITY_INFO,
-//                        "OK","Vacina "+this.cadastro.getNome()+
-//                                " cadastrada com sucesso!")); 
-//        messageInfo();
+        this.cadastro = new Vacina(); 
         
-        return "index.xhtml";
+//        return "apresentavacinas.xhtml";
     }
     
     public List<Vacina> readAll(){
@@ -67,13 +62,19 @@ public class VacinaController {
         this.selecao = selecao;
     }
     
-    public void messageInfo() {
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO,
-                        "Vacina", "Cadastrada com sucesso!"));
-//        insert();
-//        ManagerDao.getCurrentInstance().insert(this.cadastro);
-//        this.cadastro = new Vacina(); 
+    public String messageInfo() {
+           
+         FacesContext.getCurrentInstance().addMessage
+        (null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacina " +this.cadastro.getNome() ,
+                "Cadastrada com sucesso!"));
+
+        insert();
+        return "apresentavacinas.xhtml";
     }
     
 }
+
+
+
+
+//        new Thread().sleep(1000);
