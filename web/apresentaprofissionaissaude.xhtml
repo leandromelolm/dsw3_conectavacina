@@ -44,6 +44,14 @@
             <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaProfissionalSaude').show()"
                              update=":dialVisualizaProfissionalSaude"/>
             <p:commandButton value="alterar cadastro" action="alterarcadastroprofissionalsaude.xhtml"/>
+            <p:commandButton value="excluir cadastro" action="#{profissionalEnfController.delete()}" update=":formApresentaProfisionalSaude:tableProfissionalSaude  :grow  :messages">
+                <p:confirm message="Deseja realmente excluir o cadastro selecionado?" />
+            </p:commandButton>
+            
+            <p:confirmDialog global="true">
+                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
+            </p:confirmDialog>            
             
         </h:form>
         

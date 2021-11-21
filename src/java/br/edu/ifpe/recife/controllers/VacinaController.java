@@ -54,6 +54,15 @@ public class VacinaController {
                         "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
         return "apresentavacinas.xhtml";
     }
+    
+    public void delete(){
+    
+        ManagerDao.getCurrentInstance().delete(this.selecao);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("registro excluido! ",
+                        "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));        
+    }
 
     public Vacina getCadastro() {
         return cadastro;

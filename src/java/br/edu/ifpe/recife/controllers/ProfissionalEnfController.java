@@ -60,7 +60,16 @@ public class ProfissionalEnfController {
                 new FacesMessage("alteração salva! ",
                         "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
         
-        return "apresentaprofissionaissaude.xhtml";
+        return "apresentaprofissionaissaude.xhtml";        
+    }
+    
+    public void delete(){
+    
+        ManagerDao.getCurrentInstance().delete(this.selecao);
+      
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("registro excluido! ",
+                        "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));        
     }
 
     public ProfissionalEnfermagem getCadastro() {

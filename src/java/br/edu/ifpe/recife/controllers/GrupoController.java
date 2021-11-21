@@ -61,6 +61,14 @@ public class GrupoController {
                         "Registro de Id número " +this.getSelecao().getId() + " alterado com sucesso!"));
         return "apresentagrupos.xhtml";    
     }
+    
+    public void delete(){
+    
+        ManagerDao.getCurrentInstance().delete(this.selecao);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("registro excluido! ",
+                        "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));
+    }
 
     public Grupo getCadastro() {
         return cadastro;
