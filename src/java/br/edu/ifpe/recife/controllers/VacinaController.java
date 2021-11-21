@@ -7,6 +7,7 @@ package br.edu.ifpe.recife.controllers;
 
 import br.edu.ifpe.recife.model.classes.Vacina;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -29,14 +30,25 @@ public class VacinaController {
         this.cadastro = new Vacina();
     }
     
-    public String insert() {
+    public String insert()  {
     
         ManagerDao.getCurrentInstance().insert(this.cadastro);
         this.cadastro = new Vacina();    
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "OK","Vacina "+this.cadastro.getNome()+" cadastrada com sucesso!"));         
+//        FacesContext.getCurrentInstance().addMessage(null,
+//                new FacesMessage(FacesMessage.SEVERITY_INFO,
+//                        "OK","Vacina "+this.cadastro.getNome()+
+//                                " cadastrada com sucesso!")); 
+//        messageInfo();
+        
         return "index.xhtml";
-    }   
+    }
+    
+    public List<Vacina> readAll(){
+    
+        String query = "select v from Vacina v";
+        
+        return ManagerDao.getCurrentInstance().read(query, Vacina.class);
+    }
 
     public Vacina getCadastro() {
         return cadastro;
@@ -45,5 +57,14 @@ public class VacinaController {
     public void setCadastro(Vacina cadastro) {
         this.cadastro = cadastro;
     }   
+    
+    public void messageInfo() {
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO,
+                        "Vacina", "Cadastrada com sucesso!"));
+//        insert();
+//        ManagerDao.getCurrentInstance().insert(this.cadastro);
+//        this.cadastro = new Vacina(); 
+    }
     
 }
