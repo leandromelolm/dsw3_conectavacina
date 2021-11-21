@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Apresentação de Grupos</title>
+    </h:head>
+    <h:body>
+        
+        <h:form id="formApresentaGrupo">
+            
+            <p:dataTable id="tableGrupo" var="item" value="#{grupoController.readAll()}" paginator="true" rows="10"
+                         selectionMode="single" selection="#{grupoController.selecao}" rowKey="#{item.id}">
+                <f:facet name="header">
+                    Grupos cadastrados
+                </f:facet>
+                <p:column headerText="Id">
+                    #{item.id}
+                </p:column>
+                <p:column headerText="Denominação do grupo">              
+                    #{item.denominacao}
+                </p:column>
+ <!--               <p:column headerText="">
+                    #{item.idadeMinima}
+                </p:column>
+                <p:column>
+                    #{item.idadeMaxima}
+                </p:column>-->
+  
+            </p:dataTable>
+            
+            <p:commandButton value="visualiza mais detalhes" oncomplete="PF('widDialVisualizaGrupo').show()"
+                             update=":dialVisualizaGrupo"/>
+            
+        </h:form>
+        
+        <p:dialog id="dialVisualizaGrupo" visible="false" resizable="false" closable="false" modal="true"
+                  closeOnEscape="true"  widgetVar="widDialVisualizaGrupo">
+            <p:panelGrid columns="2">
+                
+                <f:facet name="header">
+                   Grupo cadastrada
+                </f:facet>
+                
+                <h:outputText value="Id"/>
+                <h:outputText value="#{grupoController.selecao.id}"/>
+                
+                <h:outputText value="Denominação"/>
+                <h:outputText value="#{grupoController.selecao.denominacao}"/>
+                
+                <h:outputText value="Idade Mímima"/>
+                <h:outputText value="#{grupoController.selecao.idadeMinima}"/>
+                
+                <h:outputText value="Idade Máxima"/>
+                <h:outputText value="#{grupoController.selecao.idadeMaxima}"/>
+                
+            </p:panelGrid>
+            
+            <f:facet name="footer">
+                <h:form>
+                    <p:commandButton value="close" oncomplete="PF('widDialVisualizaGrupo').hide()"/>
+                </h:form>
+            </f:facet>
+            
+        </p:dialog>        
+        
+    </h:body>
+</html>
+
