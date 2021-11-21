@@ -5,13 +5,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Conecta Vacina</title>
+        <title>ConectaVacina|AlterarCadastroVacina</title>
     </h:head>
     <h:body>
         
         <ui:include src="menu.xhtml"/>
         
-        <h2>Cadastro de Vacina</h2> 
+        <h2>Alterar Cadastro de Vacina</h2> 
         
         <p:messages id="messages" showDetail="true" closable="true"/>
         
@@ -53,9 +53,9 @@
         </h:form>  
         
         <h:form>
-            <p:confirmDialog global="true">
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                 <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
-                <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
+                <p:commandButton value="não" styleClass="ui-confirmdialog-no ui-button-flat"/>
             </p:confirmDialog>
         </h:form>
     </h:body>

@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Apresenta vacinas</title>
+        <title>ConectaVacina|Apresenta vacinas</title>
     </h:head>
     <h:body>
         
@@ -48,10 +48,10 @@
                 <p:confirm message="Deseja realmente excluir definitivamente o cadastro da vacina selecionada"/>
             </p:commandButton>
             
-            <p:confirmDialog global="true">
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                 <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
-                <p:commandButton value="não" styleClass="ui-confirmdialog -no"/>
-            </p:confirmDialog>            
+                <p:commandButton value="não" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            </p:confirmDialog>           
             
         </h:form>
         
