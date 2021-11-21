@@ -49,6 +49,16 @@ public class ProfissionalEnfController {
         
         return ManagerDao.getCurrentInstance().read(query, ProfissionalEnfermagem.class);    
     }
+    
+    public String update(){
+    
+        ManagerDao.getCurrentInstance().update(this.selecao);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("OK!", "alteração feita no Id "+this.selecao.getId() + " com sucesso."));
+        
+        return "apresentaprofissionaissaude.xhtml";
+    }
 
     public ProfissionalEnfermagem getCadastro() {
         return cadastro;
