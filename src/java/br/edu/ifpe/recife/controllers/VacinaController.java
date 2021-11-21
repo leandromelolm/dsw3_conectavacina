@@ -45,6 +45,14 @@ public class VacinaController {
         
         return ManagerDao.getCurrentInstance().read(query, Vacina.class);
     }
+    
+    public String update(){
+        ManagerDao.getCurrentInstance().update(this.selecao);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("OK", "Id "+this.selecao.getId()+ " alterada com sucesso"));
+        return "apresentavacinas.xhtml";
+    }
 
     public Vacina getCadastro() {
         return cadastro;
@@ -66,7 +74,7 @@ public class VacinaController {
            
          FacesContext.getCurrentInstance().addMessage
         (null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacina " +this.cadastro.getNome() ,
-                "Cadastrada com sucesso!"));
+                " cadastrada com sucesso!"));
 
         insert();
         return "apresentavacinas.xhtml";
