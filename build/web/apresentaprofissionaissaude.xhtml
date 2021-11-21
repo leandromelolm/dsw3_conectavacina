@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Profissionais de saúde cadastrados</title>
+    </h:head>
+    <h:body>
+        
+        <h1>Profissionais de saúde cadastrados</h1> 
+        
+        <h:form id="formApresentaProfisionalSaude">
+            
+        <p:dataTable id="tableProfissionalSaude" var="item" value="#{profissionalEnfController.readAll()}" paginator="true" rows="10"
+                     selectionMode="single" selection="#{profissionalEnfController.selecao}" rowKey="#{item.id}">
+            <f:facet name="header">
+                    Profissionais cadastradas
+                </f:facet>
+                <p:column headerText="Id">
+                    #{item.id}
+                </p:column>
+                <p:column headerText="Nome">              
+                    #{item.nome}
+                </p:column>
+                <p:column headerText="Coren">
+                    #{item.coren}
+                </p:column>
+<!--                <p:column>
+                    #{item.anoFormacao}
+                </p:column>-->
+<!--                <p:column>
+                    #{item.telefone}
+                </p:column>                -->
+            </p:dataTable>
+            
+            <p:commandButton value="visualiza" oncomplete="PF('widDialVisualizaProfissionalSaude').show()"
+                             update=":dialVisualizaProfissionalSaude"/>
+            
+        </h:form>
+        
+        <p:dialog id="dialVisualizaProfissionalSaude" visible="false" resizable="false" closable="false" modal="true"
+                  closeOnEscape="true"  widgetVar="widDialVisualizaProfissionalSaude">
+            <p:panelGrid columns="2">
+                
+                <f:facet name="header">
+                    Profissional cadastrado
+                </f:facet>
+                
+                <h:outputText value="Id"/>
+                <h:outputText value="#{profissionalEnfController.selecao.id}"/>
+                
+                <h:outputText value="Nome"/>
+                <h:outputText value="#{profissionalEnfController.selecao.nome}"/>
+                
+                <h:outputText value="Coren"/>
+                <h:outputText value="#{profissionalEnfController.selecao.coren}"/>
+                
+                <h:outputText value="Ano Formação"/>
+                <h:outputText value="#{profissionalEnfController.selecao.anoFormacao}"/>
+                
+                <h:outputText value="Telefone"/>
+                <h:outputText value="#{profissionalEnfController.selecao.telefone}"/>
+                
+            </p:panelGrid>
+            
+            <f:facet name="footer">
+                <h:form>
+                    <p:commandButton value="close" oncomplete="PF('widDialVisualizaProfissionalSaude').hide()"/>
+                </h:form>
+            </f:facet>
+            
+        </p:dialog>        
+        
+    </h:body>
+    
+</html>
+

@@ -21,7 +21,7 @@ public class ProfissionalEnfermagem {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    @Column (name = "nome_Vacinador", length = 50, nullable = false)
+    @Column (length = 50, nullable = false)
     private String nome;
     @Column(length = 10)
     private String coren;

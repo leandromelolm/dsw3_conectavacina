@@ -7,6 +7,7 @@ package br.edu.ifpe.recife.controllers;
 
 import br.edu.ifpe.recife.model.classes.ProfissionalEnfermagem;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -23,6 +24,7 @@ import javax.faces.context.FacesContext;
 public class ProfissionalEnfController {
     
     private ProfissionalEnfermagem cadastro;
+    private ProfissionalEnfermagem selecao;
     
     @PostConstruct
     public void init(){
@@ -36,6 +38,13 @@ public class ProfissionalEnfController {
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "OK","Profissional de saúde "+this.cadastro.getNome()+" cadastrado com sucesso!"));         
         return "index.xhtml";
     }
+    
+    public List<ProfissionalEnfermagem> readAll(){
+        
+        String query = "select p from ProfissionalEnfermagem p";
+        
+        return ManagerDao.getCurrentInstance().read(query, ProfissionalEnfermagem.class);    
+    }
 
     public ProfissionalEnfermagem getCadastro() {
         return cadastro;
@@ -43,6 +52,14 @@ public class ProfissionalEnfController {
 
     public void setCadastro(ProfissionalEnfermagem cadastro) {
         this.cadastro = cadastro;
-    }    
+    }
+
+    public ProfissionalEnfermagem getSelecao() {
+        return selecao;
+    }
+
+    public void setSelecao(ProfissionalEnfermagem selecao) {
+        this.selecao = selecao;
+    }   
     
 }
