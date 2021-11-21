@@ -36,7 +36,9 @@ public class ProfissionalEnfController {
         ManagerDao.getCurrentInstance().insert(this.cadastro);
         
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ","Profissional de saúde "+this.cadastro.getNome()+" cadastrado com sucesso!"));         
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+                        "Profissional de saúde "+this.cadastro.getNome()+
+                                " cadastrado com sucesso!"));         
         
         this.cadastro = new ProfissionalEnfermagem();
         
@@ -55,7 +57,8 @@ public class ProfissionalEnfController {
         ManagerDao.getCurrentInstance().update(this.selecao);
         
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("OK!", "alteração feita no Id "+this.selecao.getId() + " com sucesso."));
+                new FacesMessage("alteração salva! ",
+                        "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
         
         return "apresentaprofissionaissaude.xhtml";
     }

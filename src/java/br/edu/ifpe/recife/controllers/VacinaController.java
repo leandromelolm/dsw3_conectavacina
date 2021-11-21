@@ -50,7 +50,8 @@ public class VacinaController {
         ManagerDao.getCurrentInstance().update(this.selecao);
         
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("OK", "Id "+this.selecao.getId()+ " alterada com sucesso"));
+                 new FacesMessage("alteração salva! ",
+                        "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
         return "apresentavacinas.xhtml";
     }
 
@@ -73,8 +74,9 @@ public class VacinaController {
     public String messageInfo() {
            
          FacesContext.getCurrentInstance().addMessage
-        (null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacina " +this.cadastro.getNome() ,
-                " cadastrada com sucesso!"));
+        (null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+               "Vacina " +this.cadastro.getNome()+
+                       " cadastrada com sucesso!"));
 
         insert();
         return "apresentavacinas.xhtml";

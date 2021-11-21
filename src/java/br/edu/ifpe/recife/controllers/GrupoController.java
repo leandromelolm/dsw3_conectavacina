@@ -38,8 +38,8 @@ public class GrupoController {
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.
-                        SEVERITY_INFO, "OK ","Grupo "+
-                                this.cadastro.getDenominacao()+
+                        SEVERITY_INFO, "Cadastro salvo!",
+                        "O "+this.cadastro.getDenominacao()+
                                 " foi cadastrado com sucesso!"));
         this.cadastro = new Grupo();
         return "apresentagrupos.xhtml";
@@ -50,6 +50,16 @@ public class GrupoController {
         String query = "select g from Grupo g";
         
         return ManagerDao.getCurrentInstance().read(query, Grupo.class);    
+    }
+        
+    public String update(){
+    
+        ManagerDao.getCurrentInstance().update(this.selecao);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("alteração salva! ",
+                        "Registro de Id número " +this.getSelecao().getId() + " alterado com sucesso!"));
+        return "apresentagrupos.xhtml";    
     }
 
     public Grupo getCadastro() {
