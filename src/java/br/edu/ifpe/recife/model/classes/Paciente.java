@@ -28,6 +28,7 @@ import javax.persistence.TemporalType;
 public class Paciente{
     
     @Id
+    @Column(name="id")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     @Column (name = "nome_paciente", length = 50, nullable = false)
@@ -39,10 +40,11 @@ public class Paciente{
     private String caracteristicasIndividuais;    
     @ManyToOne
     @JoinColumn (name = "grupo", nullable = false)
-    private Grupo grupo;       
-    @OneToMany
-    @JoinColumn (name = "aplicacao", nullable = false)
-    private List<Aplicacoes> aplicacao;
+    private Grupo grupo;
+    
+    @OneToMany    
+    private List<Aplicacoes> dosesrecebidas;
+    
     
     public int getId() {
         return id;
@@ -85,11 +87,11 @@ public class Paciente{
     }
 
     public List<Aplicacoes> getAplicacao() {
-        return aplicacao;
+        return dosesrecebidas;
     }
 
-    public void setAplicacao(List<Aplicacoes> aplicacao) {
-        this.aplicacao = aplicacao;
+    public void setAplicacao(List<Aplicacoes> dosesrecebidas) {
+        this.dosesrecebidas = dosesrecebidas;
     }
     
     

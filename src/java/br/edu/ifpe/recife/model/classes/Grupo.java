@@ -5,7 +5,6 @@
  */
 package br.edu.ifpe.recife.model.classes;
 
-import com.sun.istack.internal.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -21,16 +20,18 @@ import javax.persistence.Id;
 public class Grupo {
     
     @Id
+    @Column(name="id_grupo")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+    
     @Column ( length = 150, nullable = false)
-    @NotNull
+    
     private String denominacao;  
     @Column ( length = 3, nullable = false)
-    @NotNull
+    
     private String idadeMinima;        
     @Column ( length = 3, nullable = false)
-    @NotNull    
+        
     private String idadeMaxima;
 
     public int getId() {

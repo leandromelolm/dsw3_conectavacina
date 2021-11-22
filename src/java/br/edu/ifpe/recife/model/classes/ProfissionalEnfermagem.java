@@ -5,7 +5,6 @@
  */
 package br.edu.ifpe.recife.model.classes;
 
-import com.sun.istack.internal.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,16 +19,18 @@ import javax.persistence.Id;
 public class ProfissionalEnfermagem {
     
     @Id
+    @Column(name="id_profissionalEnfermagem")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+    
     @Column (name="nome", length = 50, nullable = false)
-    @NotNull
+    
     private String nome;
     @Column(length = 15, nullable = false)
-    @NotNull
+    
     private String coren;
     @Column(length = 4, nullable = false)
-    @NotNull
+    
     private Integer anoFormacao;
     @Column(length = 11, nullable = false)    
     private String telefone;

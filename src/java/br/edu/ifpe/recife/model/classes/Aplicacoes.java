@@ -25,9 +25,10 @@ import javax.persistence.TemporalType;
 public class Aplicacoes {
     
     @Id
+    @Column(name="id_aplicacao")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
+    @Column(name="data_aplicacao")
     @Temporal(TemporalType.DATE)
     private Date data;
     @Column    
@@ -39,7 +40,13 @@ public class Aplicacoes {
     private ProfissionalEnfermagem profissional;
     @JoinColumn
     @ManyToOne
-    private Vacina vacina;
+    private Vacina vacina;    
+    @ManyToOne
+    private Paciente paciente;
+    
+    public Aplicacoes(){    
+        this.data = new Date();        
+    }
 
     public int getId() {
         return id;
@@ -87,6 +94,14 @@ public class Aplicacoes {
 
     public void setVacina(Vacina vacina) {
         this.vacina = vacina;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
     
     
