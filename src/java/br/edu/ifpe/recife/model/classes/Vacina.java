@@ -5,6 +5,7 @@
  */
 package br.edu.ifpe.recife.model.classes;
 
+import com.sun.istack.internal.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,12 +23,16 @@ public class Vacina {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name="nome_vacina", length = 20, nullable = false)
+    @NotNull
     private String nome;
     @Column(length = 20, nullable = false)
+    @NotNull
     private String fabricante;
     @Column(length = 3, nullable = false)
+    @NotNull
     private String tempoEntreAplicacoes;
     @Column(length = 2, nullable = false)
+    @NotNull
     private Integer quantidadeAplicacoes;
 
     public int getId() {

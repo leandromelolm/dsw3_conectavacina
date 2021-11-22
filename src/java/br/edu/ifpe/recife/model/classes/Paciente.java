@@ -32,16 +32,16 @@ public class Paciente{
     private int id;
     @Column (name = "nome_paciente", length = 50, nullable = false)
     private String nome;
-    @Column
+    @Column (name = "data_nascimento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date nascimento;
-    @Column
+    @Column (name = "caracteristica_individual", nullable = false)
     private String caracteristicasIndividuais;    
     @ManyToOne
-    @JoinColumn 
+    @JoinColumn (name = "grupo", nullable = false)
     private Grupo grupo;       
     @OneToMany
-    @JoinColumn 
+    @JoinColumn (name = "aplicacao", nullable = false)
     private List<Aplicacoes> aplicacao;
     
     public int getId() {
