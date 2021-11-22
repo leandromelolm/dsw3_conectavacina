@@ -26,14 +26,14 @@
                              required="true" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtCoren"/>
                 
-                <h:outputText value="Ano de Formação"/>
+                <h:outputText value="Ano de Formação (4 digitos)"/>
                 <p:inputText id="txtAnoDeFormacao" value="#{profissionalEnfController.cadastro.anoFormacao}"
-                             required="true" type="number"  size="4" maxlength="4" placeholder="2021" requiredMessage="O campo é obrigatorio"/>
+                             required="true" type="number"  size="4" maxlength="4" placeholder="exemplo '2021'" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtAnoDeFormacao"/>
                 
-                <h:outputText  value="Telefone com DDD"/>
+                <h:outputText  value="Telefone com DDD (11 digitos)"/>
                 <p:inputText id="txtTelefone" value="#{profissionalEnfController.cadastro.telefone}"
-                             required="true" type="number" placeholder="81900009999" requiredMessage="O campo é obrigatorio"/>
+                             required="true" type="number" placeholder="12345678901" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtTelefone"/>
                 
             </p:panelGrid>            

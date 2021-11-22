@@ -31,7 +31,7 @@ public class Vacina {
     @Column(length = 3, nullable = false)
     @NotNull
     private String tempoEntreAplicacoes;
-    @Column(length = 2, nullable = false)
+    @Column(length = 3, nullable = false)
     @NotNull
     private Integer quantidadeAplicacoes;
 
