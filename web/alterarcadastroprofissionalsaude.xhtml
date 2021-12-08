@@ -18,33 +18,33 @@
             <p:panelGrid columns="3" styleClass="ui-panelgrid-blank ui-fluid" >
                 
                 <h:outputText value="Id"/>
-                <p:inputText id="txtId"  value="#{profissionalEnfController.selecao.id}"
+                <p:inputText id="txtId"  value="#{pController.selecao.id}"
                              required="true" disabled="true"/>
                 <h:outputText/>
                 
                 <h:outputText value="Nome"/>
-                <p:inputText id="txtNome"  value="#{profissionalEnfController.selecao.nome}"
+                <p:inputText id="txtNome"  value="#{pController.selecao.nome}"
                              required="true" requiredMessage="O campo nome é obrigatorio"/>
                 <p:message for="txtNome"/>
 
                 <h:outputText value="Número do Coren"/>
-                <p:inputText id="txtCoren" value="#{profissionalEnfController.selecao.coren}"
+                <p:inputText id="txtCoren" value="#{pController.selecao.coren}"
                              required="true" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtCoren"/>
 
                 <h:outputText value="Ano de Formação"/>
-                <p:inputText id="txtAnoDeFormacao" value="#{profissionalEnfController.selecao.anoFormacao}"
+                <p:inputText id="txtAnoDeFormacao" value="#{pController.selecao.anoFormacao}"
                              required="true" type="number"  requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtAnoDeFormacao"/>
 
                 <h:outputText  value="Telefone com DDD"/>
-                <p:inputText id="txtTelefone" value="#{profissionalEnfController.selecao.telefone}"
+                <p:inputText id="txtTelefone" value="#{pController.selecao.telefone}"
                              required="true" type="number" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtTelefone"/>
 
             </p:panelGrid>            
 
-            <p:commandButton value="Alterar Cadastro" action="#{profissionalEnfController.update()}" update="formCadastro">
+            <p:commandButton value="Alterar Cadastro" action="#{pController.update()}" update="formCadastro">
                 <p:confirm message="Deseja alterar o cadastro do Profissional?"/>            
             </p:commandButton>
 

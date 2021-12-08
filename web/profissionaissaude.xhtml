@@ -18,7 +18,7 @@
         
         <b:form id="formProfissionalSaude">
             <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
-            <b:dataTable id="tableProfissionalSaude" value="#{profissionalEnfController.readAll()}" var="item">
+            <b:dataTable id="tableProfissionalSaude" value="#{pController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
                 <b:dataTableColumn label="Nome" value="#{item.nome}"/> 
                 <b:dataTableColumn label="Número do Coren" value="#{item.coren}"/>               
@@ -28,17 +28,17 @@
             <b:form>
                 <b:panelGrid columns="2">
                     <h:outputText value ='Nome'/>
-                    <b:inputText value='#{profissionalEnfController.cadastro.nome}'/>
+                    <b:inputText value='#{pController.cadastro.nome}'/>
                     <h:outputText value ='Coren'/>
-                    <b:inputText value='#{profissionalEnfController.cadastro.coren}'/>
+                    <b:inputText value='#{pController.cadastro.coren}'/>
                     <h:outputText value ='Telefone'/>
-                    <b:inputText value='#{profissionalEnfController.cadastro.telefone}'/>
+                    <b:inputText value='#{pController.cadastro.telefone}'/>
                     <h:outputText value ='Ano Formação'/>
-                    <b:inputText value='#{profissionalEnfController.cadastro.anoFormacao}'/>
+                    <b:inputText value='#{pController.cadastro.anoFormacao}'/>
                     <h:outputText value ='Senha'/>
-                    <b:inputSecret value='#{profissionalEnfController.cadastro.senha}'/>
+                    <b:inputSecret value='#{pController.cadastro.senha}'/>
                 </b:panelGrid>
-                <b:commandButton value='cadastrar' action="#{profissionalEnfController.insert()}" ajax="true"
+                <b:commandButton value='cadastrar' action="#{pController.insert()}" ajax="true"
                                  update=":formProfissionalSaude :modalCadastro" onclick="$('.modalcadastro').modal('hide')"/>
             </b:form>
         </b:modal>

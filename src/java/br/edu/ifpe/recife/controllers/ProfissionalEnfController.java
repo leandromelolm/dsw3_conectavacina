@@ -19,8 +19,9 @@ import javax.faces.context.FacesContext;
  * @author melo
  */
 
-@ManagedBean
+@ManagedBean(name="pController")
 @SessionScoped
+//@ViewScoped
 public class ProfissionalEnfController {
     
     private ProfissionalEnfermagem cadastro;

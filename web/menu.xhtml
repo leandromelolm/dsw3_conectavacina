@@ -8,11 +8,14 @@
     </h:head>
     <h:body>
         
-        <p:growl id="grow" showDetail="true" showSummary="true" redisplay="false" life="5000"/>
+        <p:growl id="grow" showDetail="true" showSummary="true" redisplay="false" life="4000"/>
         
         <h:form id="forMenu">
             <p:menubar>
                 <p:menuitem value="home" url="index.xhtml"/>
+                <p:submenu label="Páginas com bootsfaces">
+                    <p:menuitem title="Profissionais de Saúde" value="Profissionais de Saúde" url="profissionaissaude.xhtml"/>
+                </p:submenu>
                 <p:submenu label="Grupos de vacina">
                     <p:menuitem title="Apresentação de grupos cadastrados" value="Grupos cadastrados" url="apresentagrupos.xhtml"/>                    
                     <p:menuitem title="Cadastrar grupo" value="Cadastrar Novo Grupo" url="cadastrogrupo.xhtml"/>                    
