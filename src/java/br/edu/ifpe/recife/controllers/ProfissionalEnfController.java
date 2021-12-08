@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
@@ -20,8 +21,8 @@ import javax.faces.context.FacesContext;
  */
 
 @ManagedBean(name="pController")
-@SessionScoped
-//@ViewScoped
+//@SessionScoped
+@ViewScoped
 public class ProfissionalEnfController {
     
     private ProfissionalEnfermagem cadastro;
@@ -30,21 +31,23 @@ public class ProfissionalEnfController {
     @PostConstruct
     public void init(){
         this.cadastro = new ProfissionalEnfermagem();
-        
+        this.selecao = new ProfissionalEnfermagem();
     }
     
-    public String insert(){
-        ManagerDao.getCurrentInstance().insert(this.cadastro);
+    public void insert(String confirma){
         
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
-                        "Profissional de saúde "+this.cadastro.getNome()+
-                                " cadastrado com sucesso!"));         
+        if(!confirma.equals(this.cadastro.getSenha())){
+        FacesContext.getCurrentInstance().addMessage("formModal:txtPassword", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de validação", "A senha não confere"));
+        return;
+        }
+        
+        ManagerDao.getCurrentInstance().insert(this.cadastro);
         
         this.cadastro = new ProfissionalEnfermagem();
         
-//        return "apresentaprofissionaissaude.xhtml";
-        return "profissionaissaude.xhtml";
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+                        "Profissional de saúde cadastrado com sucesso!"));         
     }
     
     public List<ProfissionalEnfermagem> readAll(){
@@ -54,15 +57,13 @@ public class ProfissionalEnfController {
         return ManagerDao.getCurrentInstance().read(query, ProfissionalEnfermagem.class);    
     }
     
-    public String update(){
+    public void update(){
     
         ManagerDao.getCurrentInstance().update(this.selecao);
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("alteração salva! ",
-                        "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
-        
-        return "apresentaprofissionaissaude.xhtml";        
+                        "Registro alterado com sucesso."));    
     }
     
     public void delete(){
@@ -88,6 +89,43 @@ public class ProfissionalEnfController {
 
     public void setSelecao(ProfissionalEnfermagem selecao) {
         this.selecao = selecao;
+    }
+    
+    
+    
+    public String insertPrimeface(){
+        
+     
+        ManagerDao.getCurrentInstance().insert(this.cadastro);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+                        "Profissional de saúde "+this.cadastro.getNome()+
+                                " cadastrado com sucesso!"));         
+        
+        this.cadastro = new ProfissionalEnfermagem();
+        
+        return "apresentaprofissionaissaude.xhtml";
+    }
+    
+    public String updatePrimeface(){
+    
+        ManagerDao.getCurrentInstance().update(this.selecao);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("alteração salva! ",
+                        "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
+        
+        return "apresentaprofissionaissaude.xhtml";        
+    }
+    
+    public void deletePrimeface(){
+    
+        ManagerDao.getCurrentInstance().delete(this.selecao);
+      
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("registro excluido! ",
+                        "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));        
     }
  
 }
