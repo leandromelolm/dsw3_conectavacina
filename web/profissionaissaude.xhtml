@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Profissionais Saúde</title>
     </h:head>
@@ -12,13 +13,35 @@
         <ui:include src="menu.xhtml"/>
         <h2>Profissionais Saúde Usando Bootsfaces</h2> 
         
+        <p:messages id="messages" showDetail="true" closable="true">            
+        </p:messages>
+        
         <b:form id="formProfissionalSaude">
+            <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
             <b:dataTable id="tableProfissionalSaude" value="#{profissionalEnfController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
                 <b:dataTableColumn label="Nome" value="#{item.nome}"/> 
                 <b:dataTableColumn label="Número do Coren" value="#{item.coren}"/>               
             </b:dataTable>
         </b:form>
+        <b:modal id='modalCadastro' title="Cadastro de Usuário" class="modalcadastro">
+            <b:form>
+                <b:panelGrid columns="2">
+                    <h:outputText value ='Nome'/>
+                    <b:inputText value='#{profissionalEnfController.cadastro.nome}'/>
+                    <h:outputText value ='Coren'/>
+                    <b:inputText value='#{profissionalEnfController.cadastro.coren}'/>
+                    <h:outputText value ='Telefone'/>
+                    <b:inputText value='#{profissionalEnfController.cadastro.telefone}'/>
+                    <h:outputText value ='Ano Formação'/>
+                    <b:inputText value='#{profissionalEnfController.cadastro.anoFormacao}'/>
+                    <h:outputText value ='Senha'/>
+                    <b:inputSecret value='#{profissionalEnfController.cadastro.senha}'/>
+                </b:panelGrid>
+                <b:commandButton value='cadastrar' action="#{profissionalEnfController.insert()}" ajax="true"
+                                 update=":formProfissionalSaude :modalCadastro" onclick="$('.modalcadastro').modal('hide')"/>
+            </b:form>
+        </b:modal>
     </h:body>
 
 </html>

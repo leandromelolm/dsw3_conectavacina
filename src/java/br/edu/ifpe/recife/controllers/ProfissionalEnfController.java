@@ -42,7 +42,8 @@ public class ProfissionalEnfController {
         
         this.cadastro = new ProfissionalEnfermagem();
         
-        return "apresentaprofissionaissaude.xhtml";
+//        return "apresentaprofissionaissaude.xhtml";
+        return "profissionaissaude.xhtml";
     }
     
     public List<ProfissionalEnfermagem> readAll(){

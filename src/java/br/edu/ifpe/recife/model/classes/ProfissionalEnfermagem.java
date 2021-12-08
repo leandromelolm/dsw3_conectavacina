@@ -23,18 +23,22 @@ public class ProfissionalEnfermagem {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     
-    @Column (name="nome", length = 50, nullable = false)
-    
+    @Column (name="nome", length = 50, nullable = false)    
     private String nome;
-    @Column(length = 15, nullable = false)
     
+    @Column(length = 15, nullable = false)    
     private String coren;
-    @Column(length = 4, nullable = false)
     
+    @Column(length = 4, nullable = false)    
     private Integer anoFormacao;
+    
     @Column(length = 11, nullable = false)    
     private String telefone;
+    
+    @Column (length = 20)
+    private String senha;
 
+ 
     public int getId() {
         return id;
     }
@@ -75,6 +79,12 @@ public class ProfissionalEnfermagem {
         this.telefone = telefone;
     }
     
-    
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    } 
     
 }
