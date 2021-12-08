@@ -31,7 +31,7 @@ public class ProfissionalEnfController {
     @PostConstruct
     public void init(){
         this.cadastro = new ProfissionalEnfermagem();
-        this.selecao = new ProfissionalEnfermagem();
+        this.selecao = new ProfissionalEnfermagem(); //necessário para funcionar corretamente com o bootfaces. contudo não permiti atualização no primefaces
     }
     
     public void insert(String confirma){
@@ -63,7 +63,7 @@ public class ProfissionalEnfController {
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("alteração salva! ",
-                        "Registro alterado com sucesso."));    
+                        "Registro "+this.selecao.getId() + " alterado com sucesso."));    
     }
     
     public void delete(){

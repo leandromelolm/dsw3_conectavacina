@@ -12,14 +12,14 @@
     <h:body>
         <ui:include src="menu.xhtml"/>
         <h2>Profissionais Saúde Usando Bootsfaces</h2>
-        
+
         <b:growl id='gro' delay="4000"/>
-        
+
         <p:messages id="messages" showDetail="true" closable="true">            
         </p:messages>
-        
+
         <b:form id="formProfissionalSaude">
-            
+
             <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
             <b:dataTable id="tableProfissionalSaude" value="#{pController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
@@ -37,32 +37,31 @@
                     </b:commandButton>
                 </b:dataTableColumn>
             </b:dataTable>
-            
+
             <b:modal id="modalDeleta" title="Operação" class="modaldeleta">
-                <h:outputText value="Deseja realmente deletar usuário"/><br/>
+                <h:outputText value="Deseja realmente deletar usuário #{pController.selecao.nome}, código #{pController.selecao.id}"/><br/>
                 <b:commandButton value="sim" action="#{pController.delete()}" ajax="false"/>
                 <b:button value="não" dismiss="modal"/>
             </b:modal>
-            
+
             <b:modal id="modalAltera" title="Alterar cadastro" class="modalaltera">
-                
-                    <b:panelGrid columns="2">
-                        <h:outputText value ='Nome'/>
-                        <b:inputText value="#{pController.selecao.nome}"/>
-                        <h:outputText value ='Coren'/>
-                        <b:inputText value='#{pController.selecao.coren}'/>
-                        <h:outputText value ='Telefone'/>
-                        <b:inputText value='#{pController.selecao.telefone}'/>
-                        <h:outputText value ='Ano Formação'/>
-                        <b:inputText value='#{pController.selecao.anoFormacao}'/>
-                    </b:panelGrid>
-                    <b:commandButton value="alterar" action="#{pController.update()}" ajax="false"
-                                     />
-                    <!--update=":formProfissionalSaude :formModal :gro :messages"/>-->
+
+                <b:panelGrid columns="2">
+                    <h:outputText value ='Nome'/>
+                    <b:inputText value="#{pController.selecao.nome}"/>
+                    <h:outputText value ='Coren'/>
+                    <b:inputText value='#{pController.selecao.coren}'/>
+                    <h:outputText value ='Telefone'/>
+                    <b:inputText value='#{pController.selecao.telefone}'/>
+                    <h:outputText value ='Ano Formação'/>
+                    <b:inputText value='#{pController.selecao.anoFormacao}'/>
+                </b:panelGrid>
+                <b:commandButton value="alterar" action="#{pController.update()}" ajax="false"/>
+                <!--update=":formProfissionalSaude :formModal :gro :messages"/>-->
             </b:modal>
-           
+
         </b:form>
-        
+
         <b:modal id='modalCadastro' title="Cadastro de Profissional" class="modalcadastro">
 
             <b:form id="formModal">
@@ -84,7 +83,7 @@
                                  update=":formProfissionalSaude :formModal :gro :messages"/>
             </b:form>
         </b:modal>
-        
+
         <b:modal id="modalVisualiza" title="Informações" class="modalvisualiza">
 
             <b:form id="formModalVisualiza">
@@ -99,15 +98,15 @@
                     <h:outputText value="#{pController.selecao.telefone}"/>
                     <h:outputText value ="Ano Formação"/>
                     <h:outputText value="#{pController.selecao.anoFormacao}"/>
-<!--                    <h:outputText value ="Senha"/>
-                    <h:outputText id="txtPassword" value="#{pController.selecao.senha}"/>
-                    <h:outputText value ="Confirmar Senha"/>
-                    <h:outputText value="#{confirma}"/>-->
+                    <!--<h:outputText value ="Senha"/>
+                        <h:outputText id="txtPassword" value="#{pController.selecao.senha}"/>
+                        <h:outputText value ="Confirmar Senha"/>
+                        <h:outputText value="#{confirma}"/>-->
                 </b:panelGrid>
                 <b:button value="close" dismiss="modal"/>
             </b:form>
         </b:modal>
-        
+
     </h:body>
 
 </html>

@@ -29,7 +29,7 @@ public class ProfissionalEnfermagem {
     @Column(length = 15, nullable = false)    
     private String coren;
     
-    @Column(length = 4, nullable = false)    
+    @Column(length = 4, nullable = true)    
     private Integer anoFormacao;
     
     @Column(length = 11, nullable = false)    
