@@ -79,8 +79,8 @@
                     <h:outputText value ='Confirmar Senha'/>
                     <b:inputSecret value='#{confirma}'/>
                 </b:panelGrid>
-                <b:commandButton value="cadastrar" action="#{pController.insert(confirma)}" ajax="false"
-                                 update=":formProfissionalSaude :formModal :gro :messages"/>
+                <b:commandButton value="cadastrar" action="#{pController.insert(confirma)}" ajax="false"/>
+                                 <!-- update=":formProfissionalSaude :formModal :gro :messages"/> -->
             </b:form>
         </b:modal>
 
