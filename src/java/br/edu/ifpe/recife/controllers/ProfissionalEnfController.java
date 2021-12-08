@@ -47,7 +47,7 @@ public class ProfissionalEnfController {
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
-                        "Profissional de saúde cadastrado com sucesso!"));         
+                        "Profissional de saúde cadastrado com sucesso!")); 
     }
     
     public List<ProfissionalEnfermagem> readAll(){

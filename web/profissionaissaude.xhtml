@@ -32,7 +32,7 @@
                     <b:commandButton icon="pencil" ajax="true" oncomplete="$('.modalaltera').modal()" update="formProfissionalSaude:modalAltera">
                         <f:setPropertyActionListener value="#{item}" target="#{pController.selecao}"/>
                     </b:commandButton>
-                    <b:commandButton icon="trash" ajax="true" oncomplete="$('.modaldeleta').modal()" update="formProfissionalSaude:modalDeleta">
+                    <b:commandButton icon="trash" ajax="true" oncomplete="$('.modaldeleta').modal()" update="@form">
                         <f:setPropertyActionListener value="#{item}" target="#{pController.selecao}"/>
                     </b:commandButton>
                 </b:dataTableColumn>
@@ -80,7 +80,7 @@
                     <b:inputSecret value='#{confirma}'/>
                 </b:panelGrid>
                 <b:commandButton value="cadastrar" action="#{pController.insert(confirma)}" ajax="false"/>
-                                 <!-- update=":formProfissionalSaude :formModal :gro :messages"/> -->
+                                  <!--update=":formProfissionalSaude :formModal :gro :messages"/>--> 
             </b:form>
         </b:modal>
 

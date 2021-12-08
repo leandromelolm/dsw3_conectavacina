@@ -5,6 +5,7 @@
  */
 package br.edu.ifpe.recife.model.classes;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import javax.persistence.Id;
  * @author melo
  */
 @Entity
-public class ProfissionalEnfermagem {
+public class ProfissionalEnfermagem implements Serializable {
     
     @Id
     @Column(name="id_profissionalEnfermagem")
@@ -29,7 +30,7 @@ public class ProfissionalEnfermagem {
     @Column(length = 15, nullable = false)    
     private String coren;
     
-    @Column(length = 4, nullable = true)    
+    @Column(length = 8)    
     private Integer anoFormacao;
     
     @Column(length = 11, nullable = false)    
