@@ -21,7 +21,7 @@ import javax.faces.context.FacesContext;
  */
 
 @ManagedBean(name="pController")
-//@SessionScoped
+@SessionScoped
 @ViewScoped
 public class ProfissionalEnfController {
     
@@ -31,7 +31,7 @@ public class ProfissionalEnfController {
     @PostConstruct
     public void init(){
         this.cadastro = new ProfissionalEnfermagem();
-        this.selecao = new ProfissionalEnfermagem(); //necessário para funcionar corretamente com o bootfaces. contudo não permiti atualização no primefaces
+        this.selecao = new ProfissionalEnfermagem(); 
     }
     
     public void insert(String confirma){
