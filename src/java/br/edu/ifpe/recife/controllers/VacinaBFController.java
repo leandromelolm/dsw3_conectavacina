@@ -21,7 +21,7 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean(name="vController")
 @ViewScoped
-public class VacinabfController {
+public class VacinaBFController {
     
     private Vacina cadastro;
     private Vacina selecao;

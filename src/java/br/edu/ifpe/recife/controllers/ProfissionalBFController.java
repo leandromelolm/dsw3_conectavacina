@@ -23,7 +23,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="pController")
 @SessionScoped
 @ViewScoped
-public class ProfissionalfbController {
+public class ProfissionalBFController {
     
     private ProfissionalEnfermagem cadastro;
     private ProfissionalEnfermagem selecao;   
