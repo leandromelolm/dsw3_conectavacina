@@ -19,8 +19,8 @@
         
         <h:form id="formApresentaProfisionalSaude">
             
-        <p:dataTable id="tableProfissionalSaude" var="item" value="#{pController.readAll()}" paginator="true" rows="10"
-                     selectionMode="single" selection="#{pController.selecao}" rowKey="#{item.id}">
+        <p:dataTable id="tableProfissionalSaude" var="item" value="#{profissionalController.readAll()}" paginator="true" rows="10"
+                     selectionMode="single" selection="#{profissionalController.selecao}" rowKey="#{item.id}">
             <f:facet name="header">
                     Profissionais cadastradas
                 </f:facet>
@@ -44,7 +44,7 @@
             <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaProfissionalSaude').show()"
                              update=":dialVisualizaProfissionalSaude"/>
             <p:commandButton value="alterar cadastro" action="alterarcadastroprofissionalsaude.xhtml"/>
-            <p:commandButton value="excluir cadastro" action="#{pController.deletePrimeface()}" update=":formApresentaProfisionalSaude:tableProfissionalSaude  :messages">
+            <p:commandButton value="excluir cadastro" action="#{profissionalController.deletePrimeface()}" update=":formApresentaProfisionalSaude:tableProfissionalSaude  :messages">
                 <p:confirm message="Deseja realmente excluir o cadastro selecionado?" />
             </p:commandButton>
             
@@ -64,19 +64,19 @@
                 </f:facet>
                 
                 <h:outputText value="Id"/>
-                <h:outputText value="#{pController.selecao.id}"/>
+                <h:outputText value="#{profissionalController.selecao.id}"/>
                 
                 <h:outputText value="Nome"/>
-                <h:outputText value="#{pController.selecao.nome}"/>
+                <h:outputText value="#{profissionalController.selecao.nome}"/>
                 
                 <h:outputText value="Coren"/>
-                <h:outputText value="#{pController.selecao.coren}"/>
+                <h:outputText value="#{profissionalController.selecao.coren}"/>
                 
                 <h:outputText value="Ano Formação"/>
-                <h:outputText value="#{pController.selecao.anoFormacao}"/>
+                <h:outputText value="#{profissionalController.selecao.anoFormacao}"/>
                 
                 <h:outputText value="Telefone"/>
-                <h:outputText value="#{pController.selecao.telefone}"/>
+                <h:outputText value="#{profissionalController.selecao.telefone}"/>
                 
             </p:panelGrid>
             

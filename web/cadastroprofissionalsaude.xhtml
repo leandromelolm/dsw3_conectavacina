@@ -17,28 +17,28 @@
             
         <p:panelGrid columns="3" styleClass="ui-panelgrid-blank ui-fluid" >
                 <h:outputText value="Nome"/>
-                <p:inputText id="txtNome"  value="#{pController.cadastro.nome}"
+                <p:inputText id="txtNome"  value="#{profissionalController.cadastro.nome}"
                              required="true" requiredMessage="O campo nome é obrigatorio"/>
                 <p:message for="txtNome"/>
                 
                 <h:outputText value="Número do Coren"/>
-                <p:inputText id="txtCoren" value="#{pController.cadastro.coren}"
+                <p:inputText id="txtCoren" value="#{profissionalController.cadastro.coren}"
                              required="true" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtCoren"/>
                 
                 <h:outputText value="Ano de Formação (4 digitos)"/>
-                <p:inputText id="txtAnoDeFormacao" value="#{pController.cadastro.anoFormacao}"
+                <p:inputText id="txtAnoDeFormacao" value="#{profissionalController.cadastro.anoFormacao}"
                              required="true" type="number"  size="4" maxlength="4" placeholder="exemplo '2021'" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtAnoDeFormacao"/>
                 
                 <h:outputText  value="Telefone com DDD (11 digitos)"/>
-                <p:inputText id="txtTelefone" value="#{pController.cadastro.telefone}"
+                <p:inputText id="txtTelefone" value="#{profissionalController.cadastro.telefone}"
                              required="true" type="number" placeholder="12345678901" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtTelefone"/>
                 
             </p:panelGrid>            
             
-        <p:commandButton value="Cadastrar Profissional de Saúde" action="#{pController.insertPrimeface()}" update="formCadastro">
+        <p:commandButton value="Cadastrar Profissional de Saúde" action="#{profissionalController.insertPrimeface()}" update="formCadastro">
                 <p:confirm message="Deseja cadastrar o Profissional?"/>            
             </p:commandButton>
             
