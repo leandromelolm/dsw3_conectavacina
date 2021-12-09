@@ -35,8 +35,8 @@ public class VacinaBFController {
     public void insert(){
     
         ManagerDao.getCurrentInstance().insert(this.cadastro);
-        this.cadastro = new Vacina(); 
-//        messageInfo();
+        
+        this.cadastro = new Vacina();
     }
     
     public List<Vacina> readAll(){
