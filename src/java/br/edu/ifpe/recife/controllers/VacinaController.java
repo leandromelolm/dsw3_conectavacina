@@ -52,7 +52,7 @@ public class VacinaController {
         FacesContext.getCurrentInstance().addMessage(null,
                  new FacesMessage("alteração salva! ",
                         "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
-        return "apresentavacinas.xhtml";
+        return "vacinasapresenta.xhtml";
     }
     
     public void delete(){
@@ -88,7 +88,7 @@ public class VacinaController {
                        " cadastrada com sucesso!"));
 
         insert();
-        return "apresentavacinas.xhtml";
+        return "vacinasapresenta.xhtml";
     }
     
 }

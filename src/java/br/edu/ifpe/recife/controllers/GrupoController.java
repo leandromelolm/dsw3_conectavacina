@@ -6,7 +6,6 @@
 package br.edu.ifpe.recife.controllers;
 
 import br.edu.ifpe.recife.model.classes.Grupo;
-import br.edu.ifpe.recife.model.classes.ProfissionalEnfermagem;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -42,7 +41,7 @@ public class GrupoController {
                         "O "+this.cadastro.getDenominacao()+
                                 " foi cadastrado com sucesso!"));
         this.cadastro = new Grupo();
-        return "apresentagrupos.xhtml";
+        return "gruposapresenta.xhtml";
     }
     
         public List<Grupo> readAll(){
@@ -59,7 +58,7 @@ public class GrupoController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("alteração salva! ",
                         "Registro de Id número " +this.getSelecao().getId() + " alterado com sucesso!"));
-        return "apresentagrupos.xhtml";    
+        return "gruposapresenta.xhtml";    
     }
     
     public void delete(){

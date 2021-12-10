@@ -33,7 +33,7 @@ public class ProfissionalEnfermagem implements Serializable {
     @Column(length = 8)    
     private Integer anoFormacao;
     
-    @Column(length = 11, nullable = false)    
+    @Column(length = 16, nullable = false)    
     private String telefone;
     
     @Column (length = 20)

@@ -30,20 +30,14 @@
                 </p:column>
                 <p:column headerText="Denominação do grupo">              
                     #{item.denominacao}
-                </p:column>
- <!--               <p:column headerText="">
-                    #{item.idadeMinima}
-                </p:column>
-                <p:column>
-                    #{item.idadeMaxima}
-                </p:column>-->
-  
+                </p:column>  
             </p:dataTable>
             
             <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaGrupo').show()"
                              update=":dialVisualizaGrupo"/>
-            <p:commandButton value="alterar cadastro" action="alterarcadastrogrupo.xhtml"/>
-            <p:commandButton value="excluir cadastro" action="#{grupoController.delete()}" update=":formApresentaGrupo:tableGrupo :grow :messages" >
+            <p:commandButton value="alterar cadastro" action="grupoalterarcadastro.xhtml"/>
+            <p:commandButton value="excluir cadastro" action="#{grupoController.delete()}" 
+                             update=":formApresentaGrupo:tableGrupo :grow :messages" >
             <p:confirm message="Deseja realmente excluir o cadastro do grupo?"/>
             </p:commandButton>
             

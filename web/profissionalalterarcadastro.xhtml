@@ -32,13 +32,13 @@
                 <p:message for="txtCoren"/>
 
                 <h:outputText value="Ano de Formação"/>
-                <p:inputText id="txtAnoDeFormacao" value="#{profissionalController.selecao.anoFormacao}"
-                             required="true" type="number"  requiredMessage="O campo é obrigatorio"/>
+                <p:inputMask id="txtAnoDeFormacao" value="#{profissionalController.selecao.anoFormacao}"
+                             mask="9999" required="true" size="4" maxlength="4" placeholder="2021"  requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtAnoDeFormacao"/>
 
                 <h:outputText  value="Telefone com DDD"/>
-                <p:inputText id="txtTelefone" value="#{profissionalController.selecao.telefone}"
-                             required="true" type="number" requiredMessage="O campo é obrigatorio"/>
+                <p:inputMask id="txtTelefone" value="#{profissionalController.selecao.telefone}"
+                             mask="(99)9-9999-9999" required="true" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtTelefone"/>
 
             </p:panelGrid>            

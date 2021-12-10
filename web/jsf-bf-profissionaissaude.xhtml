@@ -20,7 +20,7 @@
 
         <b:form id="formProfissionalSaude">
 
-            <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
+            <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/><br/>
             <b:dataTable id="tableProfissionalSaude" value="#{pController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
                 <b:dataTableColumn label="Nome" value="#{item.nome}"/> 
