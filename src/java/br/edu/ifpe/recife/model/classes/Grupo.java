@@ -5,6 +5,7 @@
  */
 package br.edu.ifpe.recife.model.classes;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -17,12 +18,12 @@ import javax.persistence.Id;
  * @author melo
  */
 @Entity
-public class Grupo {
+public class Grupo implements Serializable {
     
     @Id
     @Column(name="id_grupo")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     
     @Column ( length = 150, nullable = false)
     
@@ -34,11 +35,11 @@ public class Grupo {
         
     private String idadeMaxima;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -66,6 +67,9 @@ public class Grupo {
         this.idadeMaxima = idadeMaxima;
     }
     
-    
+    @Override
+    public String toString() {
+        return  denominacao;
+    }
     
 }

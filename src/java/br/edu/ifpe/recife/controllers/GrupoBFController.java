@@ -24,13 +24,12 @@ import javax.faces.context.FacesContext;
 public class GrupoBFController {
     
     private Grupo cadastro;
-    private Grupo selecao;
+    private Grupo selecao;  
     
     @PostConstruct
     public void init(){
         this.cadastro = new Grupo();
-        this.selecao = new Grupo();
-        
+        this.selecao = new Grupo();        
     }
     
     public void insert(){
