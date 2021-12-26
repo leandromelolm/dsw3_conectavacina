@@ -20,11 +20,13 @@
 
         <b:form id="formProfissionalSaude">
 
-            <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/><br/>
+            <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
+            <p/>  
             <b:dataTable id="tableProfissionalSaude" value="#{pController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
                 <b:dataTableColumn label="Nome" value="#{item.nome}"/> 
                 <b:dataTableColumn label="Número do Coren" value="#{item.coren}"/>
+                <b:dataTableColumn label="Email" value="#{item.email}"/>
                 <b:dataTableColumn label="Operações">
                     <b:commandButton icon="search" ajax="true" oncomplete="$('.modalvisualiza').modal()" update=":modalVisualiza">
                         <f:setPropertyActionListener value="#{item}" target="#{pController.selecao}"/>
@@ -74,6 +76,8 @@
                     <b:inputText value='#{pController.cadastro.telefone}'/>
                     <h:outputText value ='Ano Formação'/>
                     <b:inputText value='#{pController.cadastro.anoFormacao}'/>
+                    <h:outputText value ='email'/>
+                    <b:inputText value='#{pController.cadastro.email}'/>
                     <h:outputText value ='Senha'/>
                     <b:inputSecret id="txtPassword" value='#{pController.cadastro.senha}'/>
                     <h:outputText value ='Confirmar Senha'/>
@@ -94,10 +98,13 @@
                     <h:outputText value="#{pController.selecao.nome}"/>
                     <h:outputText value ="Coren"/>
                     <h:outputText value="#{pController.selecao.coren}"/>
+                    <h:outputText value ="Email"/>
+                    <h:outputText value="#{pController.selecao.email}"/>
                     <h:outputText value ='Telefone'/>
                     <h:outputText value="#{pController.selecao.telefone}"/>
                     <h:outputText value ="Ano Formação"/>
                     <h:outputText value="#{pController.selecao.anoFormacao}"/>
+                    
                     <!--<h:outputText value ="Senha"/>
                         <h:outputText id="txtPassword" value="#{pController.selecao.senha}"/>
                         <h:outputText value ="Confirmar Senha"/>

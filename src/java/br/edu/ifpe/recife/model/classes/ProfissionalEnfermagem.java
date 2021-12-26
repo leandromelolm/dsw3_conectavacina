@@ -18,28 +18,30 @@ import javax.persistence.Id;
  */
 @Entity
 public class ProfissionalEnfermagem implements Serializable {
-    
+
     @Id
-    @Column(name="id_profissionalEnfermagem")
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id_profissionalEnfermagem")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column (name="nome", length = 50, nullable = false)    
+
+    @Column(name = "nome", length = 50, nullable = false)
     private String nome;
-    
-    @Column(length = 15, nullable = false, unique=true)    
+
+    @Column(length = 15, nullable = false, unique = true)
     private String coren;
-    
-    @Column(length = 8)    
+
+    @Column(length = 8)
     private Integer anoFormacao;
-    
-    @Column(length = 16, nullable = false)    
+
+    @Column(length = 16, nullable = false)
     private String telefone;
-    
-    @Column (length = 20)
+
+    @Column(length = 50, nullable = false, unique = true)
+    private String email;
+
+    @Column(length = 20, nullable = false)
     private String senha;
 
- 
     public int getId() {
         return id;
     }
@@ -80,12 +82,20 @@ public class ProfissionalEnfermagem implements Serializable {
         this.telefone = telefone;
     }
     
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
-    } 
-    
+    }
+
 }

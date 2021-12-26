@@ -21,6 +21,7 @@
         <b:form id="formGrupo">
 
             <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
+            <p/>  
             <b:dataTable id="tableGrupo" value="#{gController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
                 <b:dataTableColumn label="Denominação" value="#{item.denominacao}"/>                

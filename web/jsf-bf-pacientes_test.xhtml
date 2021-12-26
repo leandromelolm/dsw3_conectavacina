@@ -22,8 +22,7 @@
         <b:form id="formPaciente">
 
             <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
-            <p/>
-            
+            <p/>            
             
             <b:dataTable id="tablePaciente" value="#{pacController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
