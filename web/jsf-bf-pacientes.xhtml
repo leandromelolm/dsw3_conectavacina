@@ -12,6 +12,9 @@
     </h:head>
     
     <h:body>
+        
+        <b:growl id='gro' delay="4000"/>
+        
         <ui:include src="menu.xhtml"/>
         
         <h2>Pacientes | Bootsfaces</h2>
@@ -45,29 +48,58 @@
 
                 </b:panelGrid>
                 
+ 
                 <b:commandLink value="Ver todos os Grupos"/>
                
             </b:panel>
             
+            <b:panel>
+                
+                <b:dataTable id="tablePaciente" value="#{pacController.readAll()}" var="obj">
+                <b:dataTableColumn label="Código" value="#{obj.id}"/>
+                <b:dataTableColumn label="Nome" value="#{obj.nome}"/> 
+                
+                                
+                <b:dataTableColumn label="Nascimento">
+                    <h:outputText value="#{obj.nascimento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                        
+                </b:dataTableColumn>
+                
+                <b:dataTableColumn label="Grupo" value="#{obj.grupo}"/>
+                    
+                   
+                
+             </b:dataTable>
+                
+            </b:panel>
+            
+            
             <b:modal id="modalPaciente" title="Cadastro Paciente" class="modalpaciente">
                 
-                <b:panelGrid columns="2">
+                <b:panelGrid columns="1">
                     
                     <p:outputLabel value ='Nome'/>
                     <b:inputText value='#{nome}'/>
                     
                     <p:outputLabel value ="Nascimento" for="txtDataNascimento" />  
-                    <p:calendar id="txtDataNascimento" value="#{stringnascimento}" locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" />  
+                    <p:calendar id="txtDataNascimento" value="#{stringnascimento}" 
+                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" />  
                    
                     <p:outputLabel value ='Caracteristicas Pessoais'/>
                     <b:inputText value='#{caracteristicasIndividuais}'/>
 
                 </b:panelGrid>
                 
-                <b:commandButton value="cadastrar" action="#{pacController.insert(nome, stringnascimento, caracteristicasIndividuais)}" ajax="false"/>
+                <b:commandButton value="cadastrar" 
+                                 action="#{pacController.insert(nome, stringnascimento, caracteristicasIndividuais)}" 
+                                 ajax="true" update=":formindexpaciente:modalPaciente"
+                                 onclick="$('.modalPaciente').modal('hide')"/>
                 <b:button value="cancelar" dismiss="modal"/>
                 
             </b:modal>
+            
             
         </b:form>    
  

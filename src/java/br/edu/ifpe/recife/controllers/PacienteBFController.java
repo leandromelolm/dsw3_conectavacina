@@ -40,17 +40,10 @@ public class PacienteBFController {
     private Paciente cadastro;
     private Paciente selecao;
     
-//    private Date dateDe;
-//    private Date data;
-    
     private Grupo selecaoGrupo;
-
-    public Grupo getSelecaoGrupo() {
-        return selecaoGrupo;
-    }
-
-    public void setSelecaoGrupo(Grupo selecaoGrupo) {
-        this.selecaoGrupo = selecaoGrupo;
+    
+    public PacienteBFController(){
+        this.cadastro = new Paciente();
     }
     
     @PostConstruct
@@ -75,8 +68,10 @@ public class PacienteBFController {
         
         ManagerDao.getCurrentInstance().insert(p);
         
+        this.cadastro = new Paciente();
+        
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",
                         "Paciente cadastrado com sucesso!")); 
         
     }
@@ -131,14 +126,14 @@ public class PacienteBFController {
 
     public void setSelecao(Paciente selecao) {
         this.selecao = selecao;
-    }    
+    }  
     
-    
-//    public Date getDateDe() {
-//        return dateDe;
-//    }
-// 
-//    public void setDateDe(Date dateDe) {
-//        this.dateDe = dateDe;
-//    }
+    public Grupo getSelecaoGrupo() {
+        return selecaoGrupo;
+    }
+
+    public void setSelecaoGrupo(Grupo selecaoGrupo) {
+        this.selecaoGrupo = selecaoGrupo;
+    }
+
 }

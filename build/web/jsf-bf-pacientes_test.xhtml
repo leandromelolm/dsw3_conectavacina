@@ -25,12 +25,22 @@
             <p/>
             
             
-            
-            
             <b:dataTable id="tablePaciente" value="#{pacController.readAll()}" var="item">
                 <b:dataTableColumn label="Código" value="#{item.id}"/>
                 <b:dataTableColumn label="Nome" value="#{item.nome}"/> 
-                <b:dataTableColumn label="Nascimento" value="#{item.nascimento}"/>
+                
+                                
+                <b:dataTableColumn label="Nascimento" value="#{item.nascimento}" data-type="date"  />
+                
+                <b:dataTableColumn label="Nascimento" data-type="date">
+                    
+                    <p:calendar id="txtDataNascimento" disabled="true"
+                                value="#{item.nascimento}" locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" /> 
+                </b:dataTableColumn>
+                
+                                           
+                
+                
                 <b:dataTableColumn label="Operações">
                     
                     <b:commandButton icon="search" ajax="true" oncomplete="$('.modalvisualiza').modal()" update=":modalVisualiza">
@@ -55,10 +65,16 @@
             <b:modal id="modalAltera" title="Alterar cadastro" class="modalaltera">
 
                 <b:panelGrid columns="2">
-                    <h:outputText value ='Nome'/>
+                    <h:outputText value ='Nome'/>                    
                     <b:inputText value="#{pacController.selecao.nome}"/>
-<!--                    <h:outputText value ='Data de nascimento'/>
-                    <b:inputText value='#{pacController.selecao.nascimento}'/>-->
+                    
+                    
+                    <h:outputText value ='Data de nascimento'/>                    
+                    
+                    <!--<b:inputText value='#{pacController.selecao.nascimento}' />-->
+                    
+                    
+                    
                     <h:outputText value ='Caracteristicas individuais'/>
                     <b:inputText value='#{pacController.selecao.caracteristicasIndividuais}'/>
                     <h:outputText value ='Grupo'/>
@@ -104,27 +120,7 @@
                         </p:selectOneMenu>
                     </ui:repeat>
                     
-                    
-<!--                    <p:selectOneMenu var="item" value="#{pacController.cadastro.grupo}"
-                                             id="selectGrupo"
-                                             filter="true"
-                                             filterMatchMode="startsWith">
-                                <f:selectItem noSelectionOption="true"
-                                              itemLabel="Selecione um registro"/>
-                               
-                                <f:selectItems value="#{pacController.allGrupos()}"
-                                               />
-                                
-                                                               
-                                
-                                <f:selectItems value="#{pacController.allGrupos}"
-                                               var="grup" itemLabel="#{grup.denominacao}"/>
-                                                                   
-                    </p:selectOneMenu>-->
-                    
-                   
-
-
+                  
                 </b:panelGrid>
                 <b:commandButton value="cadastrar" action="#{pacController.insert(confirma)}" ajax="false"/>
                 <!--update=":formPaciente :formModal :gro :messages"/>--> 

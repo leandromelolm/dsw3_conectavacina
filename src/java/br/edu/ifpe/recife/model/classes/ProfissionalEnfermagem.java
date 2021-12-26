@@ -27,7 +27,7 @@ public class ProfissionalEnfermagem implements Serializable {
     @Column (name="nome", length = 50, nullable = false)    
     private String nome;
     
-    @Column(length = 15, nullable = false)    
+    @Column(length = 15, nullable = false, unique=true)    
     private String coren;
     
     @Column(length = 8)    
