@@ -36,6 +36,11 @@ public class loginController {
             return null;
         }       
     }
+    
+    public String logout(){
+        this.logado=null;
+        return "bf-loginprofissiona.xhtml";
+    }
 
     public ProfissionalEnfermagem getLogado() {
         return logado;
