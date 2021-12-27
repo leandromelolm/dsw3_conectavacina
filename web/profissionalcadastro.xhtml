@@ -35,6 +35,10 @@
                 <p:inputMask id="txtTelefone" value="#{profissionalController.cadastro.telefone}"
                              mask="(99)9-9999-9999" required="true"  placeholder="(99)9-9999-9999" requiredMessage="O campo é obrigatorio"/>
                 <p:message for="txtTelefone"/>
+                <h:outputText value="Email"/>
+                <p:inputText id="txtEmail"  value="#{profissionalController.cadastro.email}"
+                             required="true" requiredMessage="O campo nome é obrigatorio"/>
+                <p:message for="txtEmail"/>
                 <h:outputText  value="Senha)"/>
                 <p:password id="txtSenha" value="#{profissionalController.cadastro.senha}"
                              required="true"  requiredMessage="O campo é obrigatorio"/>

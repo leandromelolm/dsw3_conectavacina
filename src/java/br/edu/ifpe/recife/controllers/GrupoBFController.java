@@ -32,6 +32,10 @@ public class GrupoBFController {
         this.selecao = new Grupo();        
     }
     
+    public GrupoBFController(){
+        this.cadastro = new Grupo();
+    }
+    
     public void insert(){
         
         ManagerDao.getCurrentInstance().insert(this.cadastro);        

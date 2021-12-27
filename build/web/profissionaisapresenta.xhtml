@@ -33,12 +33,10 @@
                 <p:column headerText="Coren">
                     #{item.coren}
                 </p:column>
-<!--                <p:column>
-                    #{item.anoFormacao}
-                </p:column>-->
-<!--                <p:column>
-                    #{item.telefone}
-                </p:column>                -->
+                <p:column headerText="Email">
+                    #{item.email}
+                </p:column>
+
             </p:dataTable>
             
             <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaProfissionalSaude').show()"
@@ -69,6 +67,9 @@
                 
                 <h:outputText value="Nome"/>
                 <h:outputText value="#{profissionalController.selecao.nome}"/>
+                
+                <h:outputText value="Email"/>
+                <h:outputText value="#{profissionalController.selecao.email}"/>
                 
                 <h:outputText value="Coren"/>
                 <h:outputText value="#{profissionalController.selecao.coren}"/>

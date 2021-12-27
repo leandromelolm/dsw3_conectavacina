@@ -12,7 +12,7 @@
     </h:head>    
     <h:body>        
         <ui:include src="bf-menuprofissional.xhtml"/>  
-        <h2>Pacientes | Bootsfaces</h2>        
+        <h2>Pacientes | Cadastro </h2>        
         <p:messages id="messages" showDetail="true" closable="true">            
         </p:messages>
         <b:form id="formindexpaciente">        
@@ -27,7 +27,8 @@
                                 <h:outputText value="#{item.idadeMinima}"/>                                
                             </b:panelGrid>                            
                             <b:commandButton value="Cadastra Paciente" oncomplete="$('.modalpaciente').modal()" 
-                                             ajax="true" update=":formindexpaciente:modalPaciente">
+                                             ajax="true">
+                                             <!--update=":formindexpaciente:modalPaciente @form">-->
                                 <f:setPropertyActionListener target="#{pacController.selecaoGrupo}" value="#{item}"/>
                             </b:commandButton>                            
                         </b:panel>                        
@@ -35,6 +36,7 @@
                 </b:panelGrid>
                 <b:commandLink value="Ver todos os Grupos"/>               
             </b:panel>
+        
             <b:panel>
                 <b:dataTable id="tablePaciente" value="#{pacController.readAll()}" var="obj">
                 <b:dataTableColumn label="Código" value="#{obj.id}"/>
@@ -47,7 +49,11 @@
                 <b:dataTableColumn label="Grupo" value="#{obj.grupo}"/>    
              </b:dataTable>
             </b:panel>
+            
+        </b:form> 
+        
             <b:modal id="modalPaciente" title="Cadastro Paciente" class="modalpaciente">
+                <b:form>
                 <b:panelGrid columns="1">
                     <p:outputLabel value ='Nome'/>
                     <b:inputText value='#{nome}'/>
@@ -59,10 +65,15 @@
                 </b:panelGrid>
                 <b:commandButton value="cadastrar" 
                                  action="#{pacController.insert(nome, stringnascimento, caracteristicasIndividuais)}" 
-                                 ajax="true" update=":formindexpaciente:modalPaciente"
-                                 onclick="$('.modalPaciente').modal('hide')"/>
+                                 ajax="true"
+                                 update=":formindexpaciente :modalPaciente"
+                                 onclick="$('.modalpaciente').modal('hide')"/>
+<!--                                 update=":formindexpaciente:modalPaciente @form"
+                                 onclick="$('.modalPaciente').modal('hide')"/>-->
+
                 <b:button value="cancelar" dismiss="modal"/>
+                </b:form>
             </b:modal>
-        </b:form>    
+           
     </h:body>
 </html>

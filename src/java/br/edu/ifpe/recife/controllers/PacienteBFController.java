@@ -52,7 +52,7 @@ public class PacienteBFController {
         this.selecao = new Paciente();   
     }
     
-    public void insert(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
+    public String insert(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
         
         SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US);       
         
@@ -66,14 +66,14 @@ public class PacienteBFController {
         p.setCaracteristicasIndividuais(caracteristicasIndividuais);
         p.setGrupo(this.selecaoGrupo);
         
-        ManagerDao.getCurrentInstance().insert(p);
+        ManagerDao.getCurrentInstance().insert(p);        
+              
         
-        this.cadastro = new Paciente();
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",
                         "Paciente cadastrado com sucesso!")); 
-        
+        return "bf-homeprofissional.xhtml";
     }
     
     public void insert(String confirma){        
