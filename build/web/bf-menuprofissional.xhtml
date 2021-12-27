@@ -8,6 +8,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <b:growl id='gro' delay="4000"/>
         <b:form>
             <c:if test="#{lController.logado==null}">
                 <script>
@@ -16,12 +17,12 @@
             </c:if>
             <b:navBar brand="Home" brand-href="bf-homeprofissional.xhtml">
                 <b:navbarLinks>
-                    <b:navLink value="link1">                        
-                    </b:navLink>
+                    <b:navCommandLink value="Pacientes" action="bf-pacientes.xhtml"/>
+                    <b:navCommandLink value="Grupos" action="bf-grupos.xhtml"/>                        
+                    
                 </b:navbarLinks>
                 <b:navbarLinks pull="right">
-                    <b:navCommandLink value="Informações" action="#"/>
-                    <b:navCommandLink value="Pacientes" action="jsf-bf-pacientes.xhtml"/>
+                    <b:navCommandLink value="Minhas Informações" action="bf-informacoesprofissional.xhtml"/>                    
                     <b:navCommandLink value="sair" action="${lController.logout()}"/>
                 </b:navbarLinks>
             </b:navBar>            

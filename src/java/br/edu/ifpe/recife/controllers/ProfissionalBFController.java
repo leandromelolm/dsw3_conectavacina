@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -66,13 +67,26 @@ public class ProfissionalBFController {
                         "Registro "+this.selecao.getId() + " alterado com sucesso."));    
     }
     
+    public void updateProfissionalLogado(){
+        
+        loginController login = (loginController) ((HttpSession)FacesContext.getCurrentInstance().
+                getExternalContext().getSession(true)).getAttribute("lController");
+    
+        ProfissionalEnfermagem pe = login.getLogado();
+        
+        ManagerDao.getCurrentInstance().update(pe);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("alteração salva! ",
+                        "Registro "+this.selecao.getId() + " alterado com sucesso."));    
+    }
+    
     public void delete(){
     
         ManagerDao.getCurrentInstance().delete(this.selecao);
       
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("registro excluido! ",
-                        "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));        
+                new FacesMessage("Seus dados forma alterados com sucesso!"));        
     }
 
     public ProfissionalEnfermagem getCadastro() {
