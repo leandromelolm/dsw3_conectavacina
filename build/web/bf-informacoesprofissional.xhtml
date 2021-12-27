@@ -8,59 +8,22 @@
         <title>Informações Profissional</title>
     </h:head>
     <h:body>
-        <ui:include src="bf-menuprofissional.xhtml"/>
-        
-        <b:form id="formUserInfo">
-                        
-            <b:commandButton value="alterar senha"/><br/>
-            
-            <b:panel style="width: 500px; left: 15%; position: relative; height:700px ">
-            
+        <ui:include src="bf-menuprofissional.xhtml"/>        
+        <b:form id="formUserInfo">                        
+            <b:commandButton value="alterar senha"/><br/>            
+            <b:panel style="width: 500px; left: 15%; position: relative; height:700px ">            
                 <b:panelGrid columns="1">
-
                     <b:inputText value="#{lController.logado.id}" label="Código" disabled="true"/>
-
                     <b:inputText value="#{lController.logado.nome}" label="Nome" disabled="true"/>
-
                     <b:inputText value="#{lController.logado.coren}" label="Coren" disabled="true"/>
-
                     <b:inputText value="#{lController.logado.anoFormacao}" label="Ano de Formação" disabled="true"/>
-
-                    <b:inputText value="#{lController.logado.telefone}" label="Telefone" disabled="true"/>
-                    
-                    <b:inputText value="#{lController.logado.email}" label="Email" disabled="true"/>
-                    
-                    <b:commandButton value="atualizar informações" oncomplete="$('.modalaltera').modal()" ajax="true"/><br/>
-
+                    <b:inputText value="#{lController.logado.telefone}" label="Telefone" disabled="true"/>                    
+                    <b:inputText value="#{lController.logado.email}" label="Email" disabled="true"/>                    
+                    <b:commandButton value="atualizar informações" oncomplete="$('.modalaltera').modal()" 
+                                     ajax="true"/><br/>
                 </b:panelGrid>
-            
-                
-<!--            <b:panelGrid columns="2"  style="width:50%" >
-                    
-                    <h:outputText value="Código" style="width:50px"/>
-                    <h:outputText value="#{lController.logado.id}" style="width:50px"/>
-                    
-                    <h:outputText value="Nome"/>
-                    <h:outputText value="#{lController.logado.nome}"/>
-                    
-                    <h:outputText value="Coren"/>
-                    <h:outputText value="#{lController.logado.coren}"/>
-                    
-                    <h:outputText value="Ano de Formação"/>
-                    <h:outputText value="#{lController.logado.anoFormacao}"/>
-                    
-                    <h:outputText value="Telefone"/>
-                    <h:outputText value="#{lController.logado.telefone}"/>
-                    
-                    <h:outputText value="Email"/>
-                    <h:outputText value="#{lController.logado.email}"/>                                  
-
-                </b:panelGrid>-->
-                
-            </b:panel>
-            
+            </b:panel>            
             <b:modal id="modalAltera" title="Alterar cadastro" class="modalaltera">
-
                 <b:panelGrid columns="2">
                     <h:outputText value ='Nome'/>
                     <b:inputText value="#{lController.logado.nome}"/>
@@ -76,8 +39,7 @@
                 <b:commandButton value="alterar" action="#{pController.updateProfissionalLogado()}" ajax="false"/>
                 <!--update=":formProfissionalSaude :formModal :gro :messages"/>-->
                 <b:button value="cancelar" dismiss="modal"></b:button>
-            </b:modal>
-            
+            </b:modal>            
         </b:form>
     </h:body>
 </html>

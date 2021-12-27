@@ -9,99 +9,60 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Pacientes</title>
-    </h:head>
-    
+    </h:head>    
     <h:body>        
         <ui:include src="bf-menuprofissional.xhtml"/>  
-        <h2>Pacientes | Bootsfaces</h2>
-        
+        <h2>Pacientes | Bootsfaces</h2>        
         <p:messages id="messages" showDetail="true" closable="true">            
         </p:messages>
-
-        <b:form id="formindexpaciente">
-        
-            <b:panel title="Cadastrar no Grupo">
-                
-                <b:panelGrid columns="4">
-                    
-                    <c:forEach var="item" items="#{gController.readAll()}" >
-                        
-                        <b:panel title="#{item.denominacao}">
-                            
-                            <b:panelGrid columns="1">
-                                
+        <b:form id="formindexpaciente">        
+            <b:panel title="Cadastrar no Grupo">                
+                <b:panelGrid columns="4">                    
+                    <c:forEach var="item" items="#{gController.readAll()}">                        
+                        <b:panel title="#{item.denominacao}">                            
+                            <b:panelGrid columns="1">                                
                                 <h:outputText value="Idade Maxima"/>
                                 <h:outputText value="#{item.idadeMaxima}"/>
                                 <h:outputText value="Idade Mínima"/>
-                                <h:outputText value="#{item.idadeMinima}"/>
-                                
-                            </b:panelGrid>
-                            
-                            <b:commandButton value="Cadastra Paciente" oncomplete="$('.modalpaciente').modal()" ajax="true" update=":formindexpaciente:modalPaciente">
+                                <h:outputText value="#{item.idadeMinima}"/>                                
+                            </b:panelGrid>                            
+                            <b:commandButton value="Cadastra Paciente" oncomplete="$('.modalpaciente').modal()" 
+                                             ajax="true" update=":formindexpaciente:modalPaciente">
                                 <f:setPropertyActionListener target="#{pacController.selecaoGrupo}" value="#{item}"/>
-                            </b:commandButton>
-                            
-                        </b:panel>
-                        
-                    </c:forEach>                   
-
+                            </b:commandButton>                            
+                        </b:panel>                        
+                    </c:forEach>     
                 </b:panelGrid>
-                
- 
-                <b:commandLink value="Ver todos os Grupos"/>
-               
+                <b:commandLink value="Ver todos os Grupos"/>               
             </b:panel>
-            
             <b:panel>
-                
                 <b:dataTable id="tablePaciente" value="#{pacController.readAll()}" var="obj">
                 <b:dataTableColumn label="Código" value="#{obj.id}"/>
                 <b:dataTableColumn label="Nome" value="#{obj.nome}"/> 
-                
-                                
                 <b:dataTableColumn label="Nascimento">
                     <h:outputText value="#{obj.nascimento}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </h:outputText>
-                        
-                </b:dataTableColumn>
-                
-                <b:dataTableColumn label="Grupo" value="#{obj.grupo}"/>
-                    
-                   
-                
+                    </h:outputText>                        
+                </b:dataTableColumn>                
+                <b:dataTableColumn label="Grupo" value="#{obj.grupo}"/>    
              </b:dataTable>
-                
             </b:panel>
-            
-            
             <b:modal id="modalPaciente" title="Cadastro Paciente" class="modalpaciente">
-                
                 <b:panelGrid columns="1">
-                    
                     <p:outputLabel value ='Nome'/>
                     <b:inputText value='#{nome}'/>
-                    
                     <p:outputLabel value ="Nascimento" for="txtDataNascimento" />  
                     <p:calendar id="txtDataNascimento" value="#{stringnascimento}" 
                                 locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" />  
-                   
                     <p:outputLabel value ='Caracteristicas Pessoais'/>
                     <b:inputText value='#{caracteristicasIndividuais}'/>
-
                 </b:panelGrid>
-                
                 <b:commandButton value="cadastrar" 
                                  action="#{pacController.insert(nome, stringnascimento, caracteristicasIndividuais)}" 
                                  ajax="true" update=":formindexpaciente:modalPaciente"
                                  onclick="$('.modalPaciente').modal('hide')"/>
                 <b:button value="cancelar" dismiss="modal"/>
-                
             </b:modal>
-            
-            
         </b:form>    
- 
     </h:body>
-
 </html>
