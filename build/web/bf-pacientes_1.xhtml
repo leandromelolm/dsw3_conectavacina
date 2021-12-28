@@ -15,10 +15,27 @@
         <h2>Pacientes | Cadastro </h2>        
         <p:messages id="messages" showDetail="true" closable="true">            
         </p:messages>
-        <b:form id="formindexpaciente">  
-            
-            <b:commandButton value="Novo registro de usuário" oncomplete="$('.modalpaciente').modal()" ajax="true"/>
-            <p/>
+        <b:form id="formindexpaciente">        
+            <b:panel title="Cadastrar no Grupo">                
+                <b:panelGrid columns="4">                    
+                    <c:forEach var="item" items="#{gController.readAll()}">                        
+                        <b:panel title="#{item.denominacao}">                            
+                            <b:panelGrid columns="1">                                
+                                <h:outputText value="Idade Maxima"/>
+                                <h:outputText value="#{item.idadeMaxima}"/>
+                                <h:outputText value="Idade Mínima"/>
+                                <h:outputText value="#{item.idadeMinima}"/>                                
+                            </b:panelGrid>                            
+                            <b:commandButton value="Cadastra Paciente" oncomplete="$('.modalpaciente').modal()" 
+                                             ajax="true">
+                                             <!--update=":formindexpaciente:modalPaciente @form">-->
+                                <f:setPropertyActionListener target="#{pacController.selecaoGrupo}" value="#{item}"/>
+                            </b:commandButton>                            
+                        </b:panel>                        
+                    </c:forEach>     
+                </b:panelGrid>
+                <b:commandLink value="Ver todos os Grupos"/>               
+            </b:panel>
         
             <b:panel>
                 <b:dataTable id="tablePaciente" value="#{pacController.readAll()}" var="obj">
@@ -45,24 +62,39 @@
                                 locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" />  
                     <p:outputLabel value ='Caracteristicas Pessoais'/>
                     <b:inputText value='#{caracteristicasIndividuais}'/>
+                                        
                     
-                    <p:outputLabel value ="Grupo" for="selectGrupo"/>
-                    <b:selectOneMenu value="#{pacController.selecaoGrupo}"
+<!--                    <p:outputLabel value ="Grupo" for="selectGrupo"/>
+                    <b:selectOneMenu value=""
                                      id="selectGrupo">
                         <f:selectItem noSelectionOption="true"
                                       itemLabel="Selecione um registro"/>                            
                         <f:selectItems value="#{gController.readAll()}"
-                                       var="grup" itemLabel="#{grup.denominacao}"/>                        
-                    </b:selectOneMenu>                     
-                </b:panelGrid>
+                                       var="gg" itemLabel="#{gg.denominacao}"/>
+                    </b:selectOneMenu>-->
+
+                        
+<!--                        <p:outputLabel value ="Grupo" for="selectGrupo"/>
+                        <b:selectOneMenu value=""
+                                         id="selectGrupo">
+                            <ui:repeat value="#{gController.readAll()}" var="g">
+                                <f:selectItem noSelectionOption="true"
+                                              itemLabel="Selecione um registro"/>                            
+                                <f:selectItems value="#{gController.readAll()}"
+                                               var="gg" itemLabel="#{gg.denominacao}"/>
+                            </ui:repeat>
+                        </b:selectOneMenu>-->                    
                     
+                    
+                </b:panelGrid>
                 <b:commandButton value="cadastrar" 
                                  action="#{pacController.insert(nome, stringnascimento, caracteristicasIndividuais)}" 
                                  ajax="true"
                                  update=":formindexpaciente :modalPaciente"
-                                 onclick="$('.modalpaciente').modal('hide')">                                 
-                </b:commandButton>
-                                 
+                                 onclick="$('.modalpaciente').modal('hide')"/>
+<!--                                 update=":formindexpaciente:modalPaciente @form"
+                                 onclick="$('.modalPaciente').modal('hide')"/>-->
+
                 <b:button value="cancelar" dismiss="modal"/>
                 </b:form>
             </b:modal>

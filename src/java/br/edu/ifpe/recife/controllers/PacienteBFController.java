@@ -65,10 +65,11 @@ public class PacienteBFController {
         p.setNome(nome);       
         p.setCaracteristicasIndividuais(caracteristicasIndividuais);
         p.setGrupo(this.selecaoGrupo);
+//        p.setGrupo(g);
         
         ManagerDao.getCurrentInstance().insert(p);        
               
-        
+       
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",

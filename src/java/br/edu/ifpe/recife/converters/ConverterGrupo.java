@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author melo
  */
 //@Named(value = "converterPessoa")
-@FacesConverter(value = "converterCalendar")
+@FacesConverter(value = "converterGrupo")
 @RequestScoped
 public class ConverterGrupo implements Serializable, Converter {
 
