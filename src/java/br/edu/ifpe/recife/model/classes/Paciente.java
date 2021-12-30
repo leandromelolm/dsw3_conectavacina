@@ -46,18 +46,18 @@ public class Paciente implements Serializable{
     private String caracteristicasIndividuais; 
     
     @ManyToOne
-    @JoinColumn (name = "grupo", nullable = true)
+    @JoinColumn (name = "grupo", nullable = false)
     private Grupo grupo;
     
-    // https://www.youtube.com/watch?v=_JPSWt2v008&list=PLcxA6SshISoabC9laeDArv9QVEnw6tzb_&index=9
-    @OneToMany    
+    // https://www.youtube.com/watch?v=_JPSWt2v008&list=PLcxA6SshISoabC9laeDArv9QVEnw6tzb_&index=9 //Aula 09 - Sistema Times de Futebol - Mapeamento de Coleções – Jogadores na classe Time
+    //https://www.youtube.com/watch?v=QYix013uphI&list=PLXEnrSaX5MYCJHrDi2PvETbflH3aC3OOU&index=33 //Web3: aula29, inserindo avaliações
+    @OneToMany
     private List<Aplicacoes> dosesrecebidas;
+//    private List<Aplicacoes> dosesrecebidas = new ArrayList<>();
     
     public Paciente(){
         this.dosesrecebidas = new ArrayList<>();
     }
-                
-    
     
     public int getId() {
         return id;

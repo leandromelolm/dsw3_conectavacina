@@ -14,7 +14,7 @@
         <b:jumbotron style="height: 2px" >
                 Pacientes Cadastrados
         </b:jumbotron>  
-        <b:form>
+        <b:form id="formListPaciente">
             <b:panel>
                 <b:dataTable id="tablePaciente" 
                              value="#{pacController.readAll()}" 
@@ -29,11 +29,46 @@
                 </b:dataTableColumn>                
                 <b:dataTableColumn label="Grupo" value="#{obj.grupo}"/>
                 <b:dataTableColumn label="Operações">
-                    <p:commandButton value="Registrar Vacina" action="bf-registrovacina.xhtml"/>
+                    <p:commandButton value="Registrar aplicação de vacina" oncomplete="$('.modalregistrovacina').modal()" ajax="true">
+                        <f:setPropertyActionListener target="#{avController.selectPaciente}" value="#{obj}"/>
+                    </p:commandButton>
                 </b:dataTableColumn>
              </b:dataTable>
             </b:panel>
         </b:form>
+        <b:modal id="modalRegistroVacina" title="Cadastro Paciente" class="modalregistrovacina">
+            <b:form>
+                <b:panelGrid columns="1">
+                    <p:outputLabel value ="Data aplicação" for="txtDataAplicacao" />  
+                    <p:calendar id="txtDataAplicacao" value="#{txtDataAplicacao}" 
+                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" />
+                    
+                    <p:outputLabel value ='Hora da Aplicação'/>
+                    <b:inputText value='#{txtHora}'  mask="9999"/>
+                    
+                    <p:outputLabel value ='Descrição'/>
+                    <b:inputText value='#{txtDescricao}'/>
+
+                    <p:outputLabel value ="Vacina" for="selectVacina"/>
+                    <b:selectOneMenu value="#{avController.selectVacina}"
+                                     id="selectVacina">
+                        <f:selectItem noSelectionOption="true"
+                                      itemLabel="Selecione um registro"/>                            
+                        <f:selectItems value="#{vController.readAll()}"
+                                       var="vac" itemLabel="#{vac.nome}"/>                        
+                    </b:selectOneMenu>                     
+                </b:panelGrid>
+
+                <b:commandButton value="cadastrar" 
+                                 action="#{avController.insert(txtDataAplicacao, txtHora, txtDescricao)}" 
+                                 ajax="true"
+                                 update=":formListPaciente :modalRegistroVacina"
+                                 onclick="$('.modalregistrovacina').modal('hide')">                                 
+                </b:commandButton>
+
+                <b:button value="cancelar" dismiss="modal"/>
+            </b:form>
+        </b:modal>
     </h:body>
 </html>
 

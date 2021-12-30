@@ -5,6 +5,7 @@
  */
 package br.edu.ifpe.recife.model.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -22,30 +23,37 @@ import javax.persistence.TemporalType;
  * @author melo
  */
 @Entity
-public class Aplicacoes {
+public class Aplicacoes implements Serializable{
     
     @Id
     @Column(name="id_aplicacao")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+    
     @Column(name="data_aplicacao")
     @Temporal(TemporalType.DATE)
     private Date data;
+    
     @Column    
     private int hora;
-    @Column (length = 70)  
+    
+    @Column (length = 200)  
     private String descricao;
-    @JoinColumn 
+    
     @ManyToOne
-    private ProfissionalEnfermagem profissional;
-    @JoinColumn
+    @JoinColumn (name = "profissional", nullable = true)
+    private ProfissionalEnfermagem profissional;    
+   
     @ManyToOne
-    private Vacina vacina;    
+    @JoinColumn (name = "vacina", nullable = true)
+    private Vacina vacina;   
+    
     @ManyToOne
+    @JoinColumn (name = "paciente", nullable = true)
     private Paciente paciente;
     
     public Aplicacoes(){    
-        this.data = new Date();        
+//        this.data = new Date();        
     }
 
     public int getId() {
