@@ -14,11 +14,11 @@
             <b:panel style="width: 500px; left: 15%; position: relative; height:700px ">            
                 <b:panelGrid columns="1">
                     <b:inputText value="#{lController.logado.id}" label="Código" disabled="true"/>
-                    <b:inputText value="#{lController.logado.nome}" label="Nome" disabled="true"/>
-                    <b:inputText value="#{lController.logado.coren}" label="Coren" disabled="true"/>
-                    <b:inputText value="#{lController.logado.anoFormacao}" label="Ano de Formação" disabled="true"/>
-                    <b:inputText value="#{lController.logado.telefone}" label="Telefone" disabled="true"/>                    
-                    <b:inputText value="#{lController.logado.email}" label="Email" disabled="true"/>                    
+                    <b:inputText value="#{lController.logado.nome}" label="Nome" readonly="true"/>
+                    <b:inputText value="#{lController.logado.coren}" label="Coren" readonly="true"/>
+                    <b:inputText value="#{lController.logado.anoFormacao}" label="Ano de Formação" readonly="true"/>
+                    <b:inputText value="#{lController.logado.telefone}" label="Telefone" readonly="true"/>                    
+                    <b:inputText value="#{lController.logado.email}" label="Email" readonly="true"/>                    
                     <b:commandButton value="atualizar informações" oncomplete="$('.modalaltera').modal()" 
                                      ajax="true"/><br/>
                 </b:panelGrid>

@@ -19,7 +19,8 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <!--<welcome-file>faces/index.xhtml</welcome-file>-->
+        <welcome-file>faces/bf-loginprofissional.xhtml</welcome-file>
     </welcome-file-list>
     <context-param>
         <param-name>primefaces.THEME</param-name>

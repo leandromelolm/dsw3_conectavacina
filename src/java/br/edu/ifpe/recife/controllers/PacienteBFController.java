@@ -29,7 +29,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author lmelo
+ * @author leandro melo
  */
 
 @ManagedBean(name="pacController")
@@ -96,6 +96,8 @@ public class PacienteBFController {
     }
     
     public void update(){
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US); 
     
         ManagerDao.getCurrentInstance().update(this.selecao);
         
