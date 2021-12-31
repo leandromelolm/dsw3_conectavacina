@@ -2,24 +2,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:b="http://bootsfaces.net/ui">
     <h:head>
         <title>ConectaVacina| Página Inicial</title>
     </h:head>
     <h:body>
-        
-        <ui:include src="menu.xhtml"/>        
-        
-        <h1>Bem vindo ao Conecta Vacina</h1>
-        
-    </h:body>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem vindo ao Conecta Vacina!</h1>
+            <p class="lead">Aplicação para registro de vacina.</p>
+            <hr class="my-4"/>
+            <p>Projeto da Disciplina Desenvolvimento de sistema Web3</p>
+            <b:form>
+                <p> <b:commandLink value="profissional de saúde, clique aqui" action="bf-loginprofissional.xhtml" class="btn btn-primary btn-lg"/> </p>
+                <p> <b:commandLink value="Administrador, clique aqui" action="admin_home.xhtml" class="btn btn-primary btn-lg"/> </p>
+                <p> <b:commandLink value="Paciente, clique aqui" action="#" class="btn btn-primary btn-lg"/> </p>
+            </b:form>
+        </div>
+    </h:body>    
 </html>
 
 <!--
-
     Data de entrega: 26 de jan. de 2022
-
     CheckList
     [X] Restringir número coren ProfissionalSaude para ÚNICO
     [X] Tela de Login Profissional de Enfermagem
@@ -32,16 +35,12 @@
             hora; (informada pelo profissional logado)
             paciente; (paciente selecionado na página bf-homeprofissional) 
             profissional; (profissional que está logado e fez o registro da vacinação)
-            vacina; (vacina que está cadastrada no banco de dados e foi selecionada no registro da vacinação)
-    
+            vacina; (vacina que está cadastrada no banco de dados e foi selecionada no registro da vacinação)    
     [ ] tabela PACIENTE_APLICACOES: salvar paciente e dose recebida
- 
+    [ ] Regra de neǵocio: cada vacina possui uma quantidade máxima de aplicações,
+        assim, cada paciente só pode ter essa quantidade máxima de aplicações. 
+        Porém, pode ser aplicado mais de um tipo de vacina ao paciente. 
     [ ] Sistema de Vacinação Pronto 
     [ ] Gravar vídeo mostrando sistema funcionando e registro sendo atualizado no banco de dados 
-
-    OBS.:
-    Atentar para a seguinte regra de negócio: cada vacina possui uma quantidade máxima de aplicações, 
-    assim, cada paciente só pode ter essa quantidade máxima de aplicações. 
-    Porém, pode ser aplicado mais de um tipo de vacina ao paciente.
 
 -->

@@ -4,7 +4,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
@@ -12,16 +11,17 @@
     </h:head>    
     <h:body>        
         <ui:include src="bf-menuprofissional.xhtml"/>  
-        <h2>PacienteCadastros | Cadastro </h2>        
+        <a style="font-size:large" href="#" role="button">Pacientes registrados</a>
+
         <p:messages id="messages" showDetail="true" closable="true">            
         </p:messages>
         <b:form id="formindexpaciente">  
 
-            <b:commandButton value="Novo registro de usuário" oncomplete="$('.modalpacientecadastro').modal()" ajax="true"/>
+            <b:commandButton value="Registrar novo Paciente" oncomplete="$('.modalpacientecadastro').modal()" ajax="true"/>
             <p/>
 
             <b:panel>
-                <b:dataTable id="tablePacienteCadastro" value="#{pacController.readAll()}" var="obj">
+                <b:dataTable id="tablePacienteLista" value="#{pacController.readAll()}" var="obj">
                     <b:dataTableColumn label="Código" value="#{obj.id}"/>
                     <b:dataTableColumn label="Nome" value="#{obj.nome}"/> 
                     <b:dataTableColumn label="Nascimento">
@@ -56,8 +56,9 @@
             </b:panel>
 
             <b:modal id="modalAltera" title="Alterar cadastro" class="modalaltera">
+                <!--<b:panelGrid columns="2">-->
+                <b:panelGrid colSpans="4,8" size="xs">
 
-                <b:panelGrid columns="2">
                     <h:outputLabel value ='Nome'/>                    
                     <b:inputText value="#{pacController.selecao.nome}"/>      
 
@@ -65,10 +66,13 @@
                     <p:calendar id="txtDataNascimento" value="#{pacController.selecao.nascimento}" 
                                 locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" /> 
 
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
                     <h:outputLabel value ='Caracteristicas individuais'/>
                     <b:inputText value='#{pacController.selecao.caracteristicasIndividuais}'/>
 
-                    <p:outputLabel value ="Grupo Populacional" for="selectGrupo"/>
+                    <p:outputLabel value ="Grupo"/>
                     <b:selectOneMenu value="#{pacController.selecao.grupo}"
                                      id="selectGrupo">
                         <f:selectItem noSelectionOption="true"
@@ -79,7 +83,7 @@
 
                 </b:panelGrid>
                 <b:commandButton value="alterar" action="#{pacController.update()}" ajax="false"/>
-                <!--update=":formPacienteCadastro :formModal :gro :messages"/>-->
+                <b:button value="cancelar" dismiss="modal"/>                
 
             </b:modal>
 
@@ -87,16 +91,23 @@
 
         <b:modal id="modalPacienteCadastro" title="Cadastro Paciente" class="modalpacientecadastro">
             <b:form>
-                <b:panelGrid columns="1">
+                <!--<b:panelGrid columns="2">-->
+                <b:panelGrid colSpans="4,8" size="xs">
+
                     <p:outputLabel value ='Nome'/>
                     <b:inputText value='#{nome}'/>
+
                     <p:outputLabel value ="Nascimento" for="txtDataNascimento" />  
                     <p:calendar id="txtDataNascimento" value="#{stringnascimento}" 
-                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" />  
+                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" size="10" />  
+
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
                     <p:outputLabel value ='Caracteristicas Pessoais'/>
                     <b:inputText value='#{caracteristicasIndividuais}'/>
 
-                    <p:outputLabel value ="Grupo" for="selectGrupo"/>
+                    <p:outputLabel value ="Grupo"/>
                     <b:selectOneMenu value="#{pacController.selecaoGrupo}"
                                      id="selectGrupo">
                         <f:selectItem noSelectionOption="true"
@@ -112,18 +123,17 @@
                                  update=":formindexpaciente :modalPacienteCadastro"
                                  onclick="$('.modalpacientecadastro').modal('hide')">                                 
                 </b:commandButton>
-
                 <b:button value="cancelar" dismiss="modal"/>
             </b:form>
         </b:modal>
 
         <b:modal id="modalVisualiza" title="Informações" class="modalvisualiza">
-
             <b:form id="formModalVisualiza">
 
-                <b:panelGrid columns="2">
-                    <h:outputText value ="Codigo: "/>
+                <b:panelGrid colSpans="4,8" size="xs">
+                    <h:outputText value ="Codigo:"/>
                     <h:outputText value="#{pacController.selecao.id}"/>
+
                     <h:outputText value ="Nome: "/>
                     <h:outputText value="#{pacController.selecao.nome}"/>
 
@@ -132,11 +142,13 @@
                         <f:converter converterId="converterDate"/>
                     </h:outputText>    
 
-                    <h:outputText value ='Caracteristicas: '/>
+                    <h:outputText value ="Caracteristicas:"/>
                     <h:outputText value="#{pacController.selecao.caracteristicasIndividuais}"/>
-                    <h:outputText value ="Grupo"/>
+
+                    <h:outputText value ="Grupo:"/>                    
                     <h:outputText value="#{pacController.selecao.grupo}"/>
-                    <h:outputText value ="Doses Recebidas"/>
+
+                    <h:outputText value ="Doses Recebidas:"/>
                     <h:outputText value="#{pacController.selecao.aplicacao}"/>
 
                 </b:panelGrid>

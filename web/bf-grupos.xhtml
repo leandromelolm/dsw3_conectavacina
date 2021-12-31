@@ -6,12 +6,12 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
+    <h:head>
         <title>Grupos</title>
     </h:head>
     <h:body>
-        <ui:include src="bf-menuprofissional.xhtml"/>
-        <h2>Grupos | Página Bootsfaces</h2>       
+        <ui:include src="bf-menuprofissional.xhtml"/>        
+        <a style="font-size:large" href="#" role="button">Grupos</a>
 
         <p:messages id="messages" showDetail="true" closable="true">            
         </p:messages>
@@ -67,7 +67,7 @@
                     <b:inputText value="#{gController.cadastro.idadeMaxima}"/>                    
                 </b:panelGrid>
                 <b:commandButton value="cadastrar" action="#{gController.messageInfoInsert()}" ajax="false"/>
-                                  <!--update=":formProfissionalSaude :formModal :gro :messages"/>--> 
+                <!--update=":formProfissionalSaude :formModal :gro :messages"/>--> 
             </b:form>
         </b:modal>
 

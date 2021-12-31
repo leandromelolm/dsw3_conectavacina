@@ -8,7 +8,9 @@ import br.edu.ifpe.recife.model.dao.ManagerDao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -34,12 +36,18 @@ public class AplicacaoVacinaController {
         this.register = new Aplicacoes();
     }
     
+    @PostConstruct
+    public void init(){
+        this.register = new Aplicacoes();
+        this.select= new Aplicacoes();   
+    }
+    
     public String insert(String txtDataAplicacao, String txtHora, String descricao) throws ParseException{
         
         SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US);
-        Date dataVacina = sdf.parse(txtDataAplicacao);
+        Date dataVacina = sdf.parse(txtDataAplicacao);   
         
-        int iHora = Integer.parseInt(txtHora);
+        int iHora = Integer.parseInt(txtHora.replaceAll("[^0-9]+", ""));
         
         Aplicacoes a = new Aplicacoes();        
         
@@ -62,6 +70,13 @@ public class AplicacaoVacinaController {
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
                         selectPaciente.getNome() +" teve a vacina " +this.selectVacina.getNome() + " registrada com sucesso!")); 
         return "bf-registrosvacina.xhtml";
+    }
+    
+    public List<Aplicacoes> readAll(){
+        
+        String query = "select a from Aplicacoes a";
+        
+        return ManagerDao.getCurrentInstance().read(query, Aplicacoes.class);    
     }
 
     public Aplicacoes getRegister() {

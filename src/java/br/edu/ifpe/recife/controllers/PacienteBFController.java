@@ -54,22 +54,18 @@ public class PacienteBFController {
     
     public String insert(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
         
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US);       
-        
-        Paciente p = new Paciente();
-        
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US);   
         Date date = sdf.parse(stringnascimento);
         System.out.print(date);
+        
+        Paciente p = new Paciente();
 
         p.setNascimento(date);
         p.setNome(nome);       
         p.setCaracteristicasIndividuais(caracteristicasIndividuais);
         p.setGrupo(this.selecaoGrupo);
-//        p.setGrupo(g);
         
-        ManagerDao.getCurrentInstance().insert(p);        
-              
-       
+        ManagerDao.getCurrentInstance().insert(p);   
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",
