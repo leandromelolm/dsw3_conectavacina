@@ -26,7 +26,7 @@ public class loginController {
             
             this.logado = auxPS;
             
-            return "bf-homeprofissional.xhtml";
+            return "ps_homeprofissional.xhtml";
             
         }catch(IndexOutOfBoundsException in){
             
@@ -39,7 +39,7 @@ public class loginController {
     
     public String logout(){
         this.logado=null;
-        return "bf-loginprofissiona.xhtml";
+        return "ps_loginprofissiona.xhtml";
     }
 
     public ProfissionalEnfermagem getLogado() {

@@ -64,12 +64,14 @@ public class AplicacaoVacinaController {
         
         a.setProfissional(pe);
         
-        ManagerDao.getCurrentInstance().insert(a);   
+        ManagerDao.getCurrentInstance().insert(a);
+        
+        selectPaciente.adicionarDose(a);
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
                         selectPaciente.getNome() +" teve a vacina " +this.selectVacina.getNome() + " registrada com sucesso!")); 
-        return "bf-registrosvacina.xhtml";
+        return "ps_registrosvacina.xhtml";
     }
     
     public List<Aplicacoes> readAll(){

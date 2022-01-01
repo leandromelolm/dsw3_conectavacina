@@ -49,7 +49,8 @@ public class Aplicacoes implements Serializable{
     private Vacina vacina;   
     
     @ManyToOne
-    @JoinColumn (name = "paciente", nullable = true)
+//    @JoinColumn (name = "paciente", referencedColumnName = "id", nullable = true)
+    @JoinColumn (name = "paciente_id")
     private Paciente paciente;
     
     public Aplicacoes(){    

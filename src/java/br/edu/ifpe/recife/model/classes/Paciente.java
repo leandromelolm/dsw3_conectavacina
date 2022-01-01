@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,23 +42,31 @@ public class Paciente implements Serializable{
     @Column (name = "data_nascimento", nullable = true)    
     @Temporal(TemporalType.DATE)    
     private Date nascimento;
-//    private String nascimento;
     
     @Column (name = "caracteristica_individual", nullable = false)
     private String caracteristicasIndividuais; 
     
     @ManyToOne
-    @JoinColumn (name = "grupo", nullable = false)
+    @JoinColumn (name = "grupo", referencedColumnName = "denominacao", nullable = true) // nullable false = erro ao deletar o paciente  Column 'grupo' cannot be null Error Code: 1048 Call: UPDATE PACIENTE SET grupo = ? WHERE (id = ?) bind => [2 parameters bound]
     private Grupo grupo;
     
     // https://www.youtube.com/watch?v=_JPSWt2v008&list=PLcxA6SshISoabC9laeDArv9QVEnw6tzb_&index=9 //Aula 09 - Sistema Times de Futebol - Mapeamento de Coleções – Jogadores na classe Time
     //https://www.youtube.com/watch?v=QYix013uphI&list=PLXEnrSaX5MYCJHrDi2PvETbflH3aC3OOU&index=33 //Web3: aula29, inserindo avaliações
-    @OneToMany
-    private List<Aplicacoes> dosesrecebidas;
-//    private List<Aplicacoes> dosesrecebidas = new ArrayList<>();
+//    @OneToMany (mappedBy = "paciente", cascade = CascadeType.ALL,
+//            orphanRemoval = true, fetch = FetchType.LAZY)
+    
+    @OneToMany (mappedBy = "paciente")
+    private List<Aplicacoes> dosesrecebidas = new ArrayList<>();
+//    private List<Aplicacoes> dosesrecebidas;
+    
     
     public Paciente(){
-        this.dosesrecebidas = new ArrayList<>();
+//        this.dosesrecebidas = new ArrayList<>();
+    }
+    
+    public void adicionarDose(Aplicacoes obj){
+        obj.setPaciente(this);
+        this.dosesrecebidas.add(obj);
     }
     
     public int getId() {

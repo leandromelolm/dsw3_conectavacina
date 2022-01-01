@@ -12,23 +12,39 @@
         <b:growl id='gro' delay="4000"/>
         
         <b:form id="formLogin">
-            <b:jumbotron>
-                Conecta Vacina | Página Profissional de saúde
+            
+            <b:jumbotron style="background: cornflowerblue; 
+                           border-bottom-left-radius: 5px; 
+                           border-bottom-right-radius:5px">
+                <div align="left"  style="border-left: 50px solid cornflowerblue ">
+                    <p style="font-size: small; font-weight: bold">
+                        <font color="white">Conecta Vacina | Página Profissional de saúde</font>
+                    </p>
+                </div>
             </b:jumbotron>
             
             <p:messages id="messages" showDetail="true" closable="true">            
             </p:messages>
-            
-            <b:panel style="width: 300px; left: 35%; position: relative">
-                <b:panelGrid columns="1" >
+            <div align="center">
+            <b:panel style="width: 300px; position: relative">
+                <div align="left">
+                    
+                <b:panelGrid columns="1">
                     <h:outputText value="Email"/>
                     <h:inputText value="#{email}"/>
                     <h:outputText value="Senha"/>
                     <h:inputSecret value="#{senha}"/>
-                </b:panelGrid> <br/>
-                <b:commandButton value="Entrar" action="#{lController.logar(email, senha)}"/> <br/>
-                <b:commandLink value="Cadastrar" onclick="$('.modalcadastro').modal()"/>
-            </b:panel>            
+                </b:panelGrid> 
+                   <p></p>
+                <p> <b:commandButton value="Entrar" action="#{lController.logar(email, senha)}"/> </p>
+                </div>
+                <div align="right">                      
+                    <p> <b:commandLink  value="Cadastre-se" onclick="$('.modalcadastro').modal()"/> </p>
+                    <p title="Não implementado"> <b:commandLink  value="Esqueceu sua senha?" href="#" /> </p>                    
+                    <p title="Voltar para página index"> <b:commandLink  value="Voltar" href="index.xhtml"/> </p>
+                </div>
+            </b:panel>
+            </div>
         </b:form>
         
         <b:modal id='modalCadastro' title="Cadastro Profissional" class="modalcadastro">
