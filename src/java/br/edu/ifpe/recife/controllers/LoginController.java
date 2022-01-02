@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "lController")
 @SessionScoped
-public class loginController {
+public class LoginController {
     
     private ProfissionalEnfermagem logado;
     

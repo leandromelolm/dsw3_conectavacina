@@ -69,7 +69,7 @@ public class ProfissionalBFController {
     
     public void updateProfissionalLogado(){
         
-        loginController login = (loginController) ((HttpSession)FacesContext.getCurrentInstance().
+        LoginController login = (LoginController) ((HttpSession)FacesContext.getCurrentInstance().
                 getExternalContext().getSession(true)).getAttribute("lController");
     
         ProfissionalEnfermagem pe = login.getLogado();

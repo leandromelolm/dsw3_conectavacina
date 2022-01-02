@@ -57,7 +57,7 @@ public class AplicacaoVacinaController {
         a.setVacina(this.selectVacina);
         a.setPaciente(selectPaciente);
         
-        loginController login = (loginController)((HttpSession)FacesContext.getCurrentInstance().
+        LoginController login = (LoginController)((HttpSession)FacesContext.getCurrentInstance().
                 getExternalContext().getSession(true)).getAttribute("lController");
         
         ProfissionalEnfermagem pe = login.getLogado();
