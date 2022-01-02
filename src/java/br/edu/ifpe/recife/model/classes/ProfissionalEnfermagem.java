@@ -11,12 +11,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author melo
  */
 @Entity
+@Table(name = "tb_profissional")
 public class ProfissionalEnfermagem implements Serializable {
 
     @Id
@@ -27,19 +29,19 @@ public class ProfissionalEnfermagem implements Serializable {
     @Column(name = "nome", length = 50, nullable = false)
     private String nome;
 
-    @Column(length = 15, nullable = false, unique = true)
+    @Column(name = "coren", length = 15, nullable = false, unique = true)
     private String coren;
 
-    @Column(length = 8)
+    @Column(name = "ano_formacao", length = 8)
     private Integer anoFormacao;
 
-    @Column(length = 16, nullable = false)
+    @Column(name = "telefone", length = 16, nullable = false)
     private String telefone;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(name = "email", length = 50, nullable = false, unique = true)
     private String email;
 
-    @Column(length = 20, nullable = false)
+    @Column(name = "senha", length = 20, nullable = false)
     private String senha;
 
     public int getId() {

@@ -5,34 +5,37 @@
  */
 package br.edu.ifpe.recife.model.classes;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author melo
  */
 @Entity
-public class Vacina {
+@Table(name = "tb_vacina")
+public class Vacina implements Serializable {
     
     @Id
     @Column(name="id_vacina")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
     
-    @Column(name="nome_vacina", length = 20, nullable = false)    
+    @Column(name="nome", length = 20, nullable = false)    
     private String nome;
     
-    @Column(length = 20, nullable = false)    
+    @Column(name="fabricante", length = 20, nullable = false)    
     private String fabricante;
     
-    @Column(length = 3, nullable = false)    
+    @Column(name="tempo_entre_aplicacoes", length = 3, nullable = false)    
     private String tempoEntreAplicacoes;
     
-    @Column(length = 3, nullable = false)    
+    @Column(name="quant_doses", length = 3, nullable = false)    
     private Integer quantidadeAplicacoes;
 
     public int getId() {

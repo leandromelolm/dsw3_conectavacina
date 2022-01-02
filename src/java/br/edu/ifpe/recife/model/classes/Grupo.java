@@ -12,12 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author melo
  */
 @Entity
+@Table(name = "tb_grupo")
 public class Grupo implements Serializable {
     
     @Id
@@ -26,12 +28,12 @@ public class Grupo implements Serializable {
     private Integer id;
     
     @Column (name="denominacao", length = 150, nullable = false)    
-    private String denominacao;  
-    @Column ( length = 3, nullable = false)
+    private String denominacao;
     
-    private String idadeMinima;        
-    @Column ( length = 3, nullable = false)
-        
+    @Column (name="idade_min", length = 3, nullable = false)    
+    private String idadeMinima;   
+    
+    @Column (name="idade_max", length = 3, nullable = false)        
     private String idadeMaxima;
 
     public Integer getId() {

@@ -68,6 +68,8 @@ public class AplicacaoVacinaController {
         
         selectPaciente.adicionarDose(a);
         
+        ManagerDao.getCurrentInstance().update(selectPaciente);
+        
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
                         selectPaciente.getNome() +" teve a vacina " +this.selectVacina.getNome() + " registrada com sucesso!")); 

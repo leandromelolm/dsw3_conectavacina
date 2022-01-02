@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
@@ -30,12 +31,14 @@ import jdk.nashorn.internal.runtime.regexp.joni.Regex;
  * @author melo
  */
 @Entity
+@Table(name = "tb_paciente")
 public class Paciente implements Serializable{
     
     @Id
     @Column(name="id")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+    
     @Column (name = "nome_paciente", length = 50, nullable = false)
     private String nome;
     
@@ -43,22 +46,18 @@ public class Paciente implements Serializable{
     @Temporal(TemporalType.DATE)    
     private Date nascimento;
     
-    @Column (name = "caracteristica_individual", nullable = false)
+    @Column (name = "caracteristica_individual", length = 300, nullable = false)
     private String caracteristicasIndividuais; 
     
     @ManyToOne
     @JoinColumn (name = "grupo", referencedColumnName = "denominacao", nullable = true) // nullable false = erro ao deletar o paciente  Column 'grupo' cannot be null Error Code: 1048 Call: UPDATE PACIENTE SET grupo = ? WHERE (id = ?) bind => [2 parameters bound]
     private Grupo grupo;
-    
-    // https://www.youtube.com/watch?v=_JPSWt2v008&list=PLcxA6SshISoabC9laeDArv9QVEnw6tzb_&index=9 //Aula 09 - Sistema Times de Futebol - Mapeamento de Coleções – Jogadores na classe Time
-    //https://www.youtube.com/watch?v=QYix013uphI&list=PLXEnrSaX5MYCJHrDi2PvETbflH3aC3OOU&index=33 //Web3: aula29, inserindo avaliações
-//    @OneToMany (mappedBy = "paciente", cascade = CascadeType.ALL,
-//            orphanRemoval = true, fetch = FetchType.LAZY)
-    
-    @OneToMany (mappedBy = "paciente")
+        
+//    @OneToMany (mappedBy = "paciente")
+    @OneToMany (mappedBy = "paciente", cascade = CascadeType.ALL,
+           orphanRemoval = true, fetch = FetchType.EAGER)
+    //private List<Aplicacoes> dosesrecebidas;
     private List<Aplicacoes> dosesrecebidas = new ArrayList<>();
-//    private List<Aplicacoes> dosesrecebidas;
-    
     
     public Paciente(){
 //        this.dosesrecebidas = new ArrayList<>();
@@ -117,6 +116,13 @@ public class Paciente implements Serializable{
         this.dosesrecebidas = dosesrecebidas;
     }
     
-    
-    
+    @Override
+    public String toString() {
+        return "Paciente{" + "dosesrecebidas=" + dosesrecebidas + '}';
+    }
 }
+
+
+// Mapeamento  @OneToMany
+// https://www.youtube.com/watch?v=_JPSWt2v008&list=PLcxA6SshISoabC9laeDArv9QVEnw6tzb_&index=9 //Aula 09 - Sistema Times de Futebol - Mapeamento de Coleções – Jogadores na classe Time
+//https://www.youtube.com/watch?v=QYix013uphI&list=PLXEnrSaX5MYCJHrDi2PvETbflH3aC3OOU&index=33 //Web3: aula29, inserindo avaliações

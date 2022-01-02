@@ -16,16 +16,16 @@
         <h2>Pacientes | Bootsfaces</h2>
         <b:form id="formindexpaciente">        
             <b:panel title="Cadastrar no Grupo">                
-                <b:panelGrid columns="4">                    
+                <b:panelGrid colSpans="3,3,3,3" size="xs">                    
                     <c:forEach var="item" items="#{gController.readAll()}">                        
-                        <b:panel title="#{item.denominacao}">                            
+                        <b:panel title="#{item.denominacao}">                              
                             <b:panelGrid columns="1">                                
                                 <h:outputText value="Idade Maxima"/>
                                 <h:outputText value="#{item.idadeMaxima}"/>
                                 <h:outputText value="Idade Mínima"/>
                                 <h:outputText value="#{item.idadeMinima}"/>                                
                             </b:panelGrid>                            
-                            <b:commandButton value="Cadastra Paciente" oncomplete="$('.modalpaciente').modal()" 
+                            <b:commandButton value="Cadastra" oncomplete="$('.modalpaciente').modal()" 
                                              ajax="true" update=":formindexpaciente:modalPaciente">
                                 <f:setPropertyActionListener target="#{pacController.selecaoGrupo}" value="#{item}"/>
                             </b:commandButton>                            

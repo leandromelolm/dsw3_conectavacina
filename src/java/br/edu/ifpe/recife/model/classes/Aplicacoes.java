@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,6 +24,7 @@ import javax.persistence.TemporalType;
  * @author melo
  */
 @Entity
+@Table(name = "tb_aplicacao")
 public class Aplicacoes implements Serializable{
     
     @Id
@@ -34,18 +36,18 @@ public class Aplicacoes implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date data;
     
-    @Column    
+    @Column (name = "hora")  
     private int hora;
     
-    @Column (length = 200)  
+    @Column (name = "descricao", length = 200)  
     private String descricao;
     
     @ManyToOne
-    @JoinColumn (name = "profissional", nullable = true)
+    @JoinColumn (name = "profissional_id", nullable = true)
     private ProfissionalEnfermagem profissional;    
    
     @ManyToOne
-    @JoinColumn (name = "vacina", nullable = true)
+    @JoinColumn (name = "vacina_id", nullable = true)
     private Vacina vacina;   
     
     @ManyToOne

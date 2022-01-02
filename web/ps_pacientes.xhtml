@@ -134,7 +134,7 @@
                     <h:outputText value ="Codigo:"/>
                     <h:outputText value="#{pacController.selecao.id}"/>
 
-                    <h:outputText value ="Nome: "/>
+                    <h:outputText value ="Nome:"/>
                     <h:outputText value="#{pacController.selecao.nome}"/>
 
                     <h:outputText value ="Data de Nascimento:"/>
@@ -149,7 +149,9 @@
                     <h:outputText value="#{pacController.selecao.grupo}"/>
 
                     <h:outputText value ="Doses Recebidas:"/>
-                    <h:outputText value="#{pacController.selecao.aplicacao}"/>
+                    <ui:repeat value="#{pacController.selecao.aplicacao}" var="objAplicacao">
+                        [ #{objAplicacao.vacina.nome} - data: #{objAplicacao.data.toGMTString().substring(0,11)} ]
+                    </ui:repeat>
 
                 </b:panelGrid>
                 <b:button value="close" dismiss="modal"/>
