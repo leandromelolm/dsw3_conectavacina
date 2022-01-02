@@ -16,5 +16,56 @@
         <p:messages id="messages" showDetail="true" closable="true">            
         </p:messages>
         
+        <b:form id="formListRegistroVacina">
+            <b:panel>
+                <b:dataTable id="tableRegistroVacina" 
+                             value="#{avController.readAll()}" 
+                             var="obj" 
+                             page-length="20">
+                    <b:dataTableColumn label="Código" value="#{obj.id}" order="desc"/>                    
+                    <b:dataTableColumn label="Nascimento">
+                        <h:outputText value="#{obj.data}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>                        
+                    </b:dataTableColumn>                
+                    <b:dataTableColumn label="Vacina" value="#{obj.vacina.nome}"/>
+                    <b:dataTableColumn label="Paciente" value="#{obj.paciente.nome}"/>
+                    <b:dataTableColumn label="Operações">
+                        <b:commandButton icon="search" ajax="true" oncomplete="$('.modalvisualiza').modal()" update=":modalVisualiza">
+                            <f:setPropertyActionListener value="#{obj}" target="#{avController.select}"/>
+                        </b:commandButton>
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </b:panel>
+        </b:form>
+        <b:modal id="modalVisualiza" title="Informações" class="modalvisualiza">
+            <b:form id="formModalVisualiza">
+
+                <b:panelGrid colSpans="4,8" size="xs">
+                    <h:outputText value ="Codigo:"/>
+                    <h:outputText value="#{avController.select.id}"/>
+                    
+                    <h:outputText value ="Data:"/>
+                    <h:outputText value="#{avController.select.data}">
+                        <f:converter converterId="converterDate"/>
+                    </h:outputText>
+
+                    <h:outputText value ="Hora:"/>
+                    <h:outputText value="#{avController.select.hora}" />
+
+                    <h:outputText value ="Paciente:"/>
+                    <h:outputText value="#{avController.select.paciente.nome}"/>
+
+                    <h:outputText value ="Vacina:"/>                    
+                    <h:outputText value="#{avController.select.vacina.nome}"/>
+
+                    <h:outputText value ="Profissional:"/>
+                    <h:outputText value="#{avController.select.profissional.nome}"/>
+
+                </b:panelGrid>
+                <b:button value="close" dismiss="modal"/>
+            </b:form>
+        </b:modal>
+        
     </h:body>
 </html>
