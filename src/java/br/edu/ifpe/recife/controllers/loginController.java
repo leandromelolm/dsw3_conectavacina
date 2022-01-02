@@ -39,7 +39,7 @@ public class loginController {
     
     public String logout(){
         this.logado=null;
-        return "ps_loginprofissiona.xhtml";
+        return "ps_loginprofissional.xhtml";
     }
 
     public ProfissionalEnfermagem getLogado() {

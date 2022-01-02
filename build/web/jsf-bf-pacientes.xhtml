@@ -57,7 +57,7 @@
                     <b:inputText value='#{caracteristicasIndividuais}'/>
                 </b:panelGrid>
                 <b:commandButton value="cadastrar" 
-                                 action="#{pacController.insert(nome, stringnascimento, caracteristicasIndividuais)}" 
+                                 action="#{pacController.insertRedirect(nome, stringnascimento, caracteristicasIndividuais)}" 
                                  ajax="true" update=":formindexpaciente:modalPaciente"
                                  onclick="$('.modalPaciente').modal('hide')"/>
                 <b:button value="cancelar" dismiss="modal"/>

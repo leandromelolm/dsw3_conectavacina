@@ -11,9 +11,9 @@ import javax.faces.context.FacesContext;
  *
  * @author melo
  */
-@ManagedBean(name = "lController")
+@ManagedBean(name = "loginAdminController")
 @SessionScoped
-public class loginController {
+public class LoginAdminController {
     
     private ProfissionalEnfermagem logado;
     
@@ -26,7 +26,7 @@ public class loginController {
             
             this.logado = auxPS;
             
-            return "ps_homeprofissional.xhtml";
+            return "admin_home.xhtml";
             
         }catch(IndexOutOfBoundsException in){
             
@@ -39,7 +39,7 @@ public class loginController {
     
     public String logout(){
         this.logado=null;
-        return "ps_loginprofissiona.xhtml";
+        return "ps_loginprofissional.xhtml";
     }
 
     public ProfissionalEnfermagem getLogado() {

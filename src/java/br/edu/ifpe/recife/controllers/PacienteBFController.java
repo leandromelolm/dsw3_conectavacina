@@ -8,17 +8,12 @@ package br.edu.ifpe.recife.controllers;
 import br.edu.ifpe.recife.model.classes.Grupo;
 import br.edu.ifpe.recife.model.classes.Paciente;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -82,6 +77,28 @@ public class PacienteBFController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
                         "Paciente cadastrado com sucesso!")); 
+    }
+    
+        public String insertRedirect(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US);   
+        Date date = sdf.parse(stringnascimento);
+        System.out.print(date);
+        
+        Paciente p = new Paciente();
+
+        p.setNascimento(date);
+        p.setNome(nome);       
+        p.setCaracteristicasIndividuais(caracteristicasIndividuais);
+        p.setGrupo(this.selecaoGrupo);
+        
+        ManagerDao.getCurrentInstance().insert(p);   
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",
+                        "Paciente cadastrado com sucesso!")); 
+//        return "jsf-bf-pacientes.xhtml";
+        return "jsf-bf-pacientes?faces-redirect=true";
     }
     
     public List<Paciente> readAll(){

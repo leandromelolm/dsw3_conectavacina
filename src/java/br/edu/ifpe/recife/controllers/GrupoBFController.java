@@ -40,7 +40,7 @@ public class GrupoBFController {
         
         ManagerDao.getCurrentInstance().insert(this.cadastro);        
      
-        this.cadastro = new Grupo();        
+        this.cadastro = new Grupo(); 
     }
     
     public List<Grupo> readAll() {
@@ -68,13 +68,14 @@ public class GrupoBFController {
                         "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));
     }
     
-    public void messageInfoInsert() {
+    public String messageInfoInsert() {
 
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
                         "O " + this.cadastro.getDenominacao()
                         + " foi cadastrado com sucesso!"));
         insert();
+        return "jsf-bf-grupos?faces-redirect=true";
     }
 
     public Grupo getCadastro() {
