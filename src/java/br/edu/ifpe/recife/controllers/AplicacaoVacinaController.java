@@ -73,8 +73,10 @@ public class AplicacaoVacinaController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
                         selectPaciente.getNome() +" teve a vacina " +this.selectVacina.getNome() + " registrada com sucesso!")); 
+        
 //        return "ps_homeprofissional.xhtml";
-        return "ps_homeprofissional?faces-redirect=true";
+        return "ps_homeprofissional?faces-redirect=true"; // NÃO exibe message e growl na página.
+//        return "ps_registrosvacina"; // exibe message e growl na página. No entanto, repete cadastro ao atualizar página
     }
     
     public List<Aplicacoes> readAll(){
