@@ -73,7 +73,8 @@ public class AplicacaoVacinaController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
                         selectPaciente.getNome() +" teve a vacina " +this.selectVacina.getNome() + " registrada com sucesso!")); 
-        return "ps_registrosvacina.xhtml";
+//        return "ps_homeprofissional.xhtml";
+        return "ps_homeprofissional?faces-redirect=true";
     }
     
     public List<Aplicacoes> readAll(){

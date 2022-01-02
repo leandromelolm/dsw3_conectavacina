@@ -36,11 +36,13 @@ public class GrupoBFController {
         this.cadastro = new Grupo();
     }
     
-    public void insert(){
+    public String insert(){
         
         ManagerDao.getCurrentInstance().insert(this.cadastro);        
      
-        this.cadastro = new Grupo(); 
+        this.cadastro = new Grupo();
+        
+        return "ps_grupos?faces-redirect=true";
     }
     
     public List<Grupo> readAll() {
@@ -68,13 +70,16 @@ public class GrupoBFController {
                         "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));
     }
     
-    public String messageInfoInsert() {
+    public String insertAdmin() {
 
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
                         "O " + this.cadastro.getDenominacao()
                         + " foi cadastrado com sucesso!"));
-        insert();
+        
+        ManagerDao.getCurrentInstance().insert(this.cadastro);    
+        this.cadastro = new Grupo(); 
+        
         return "jsf-bf-grupos?faces-redirect=true";
     }
 

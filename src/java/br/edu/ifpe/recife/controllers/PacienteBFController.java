@@ -65,7 +65,8 @@ public class PacienteBFController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",
                         "Paciente cadastrado com sucesso!")); 
-        return "ps_homeprofissional.xhtml";
+//        return "ps_homeprofissional.xhtml";
+        return "ps_pacientes?faces-redirect=true";
     }
     
     public void insert(String confirma){        

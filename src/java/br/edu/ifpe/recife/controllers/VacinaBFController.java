@@ -63,13 +63,14 @@ public class VacinaBFController {
                         "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));        
     }
             
-    public void messageInfo() {
+    public String messageInfo() {
            
          FacesContext.getCurrentInstance().addMessage
         (null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
                "Vacina " +this.cadastro.getNome()+
                        " cadastrada com sucesso!"));
-        insert();        
+        insert();  
+        return "jsf-bf-vacinas?faces-redirect=true";
     }
 
     public Vacina getCadastro() {
