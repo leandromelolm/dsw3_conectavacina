@@ -13,8 +13,12 @@
     <h:body>        
         <b:growl id='gro' delay="4000"/>        
         <ui:include src="menu.xhtml"/>        
-        <h2>Pacientes | Bootsfaces</h2>
-        <b:form id="formindexpaciente">        
+        <h5>Pacientes | Bootsfaces</h5>
+        <b:form id="formindexpaciente"> 
+            
+            <b:commandButton value="Registrar novo Paciente" oncomplete="$('.modalpacientecadastro').modal()" ajax="true"/>
+            <p/>
+            
             <b:panel title="Cadastrar no Grupo">                
                 <b:panelGrid colSpans="3,3,3,3" size="xs">                    
                     <c:forEach var="item" items="#{gController.readAll()}">                        
@@ -62,6 +66,45 @@
                                  onclick="$('.modalPaciente').modal('hide')"/>
                 <b:button value="cancelar" dismiss="modal"/>
             </b:modal>
-        </b:form>    
+        </b:form>
+        
+        <b:modal id="modalPacienteCadastro" title="Cadastro Paciente" class="modalpacientecadastro">
+            <b:form>
+                <!--<b:panelGrid columns="2">-->
+                <b:panelGrid colSpans="4,8" size="xs">
+
+                    <p:outputLabel value ='Nome'/>
+                    <b:inputText value='#{nome}'/>
+
+                    <p:outputLabel value ="Nascimento" for="txtDataNascimento" />  
+                    <p:calendar id="txtDataNascimento" value="#{stringnascimento}" 
+                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" size="10" />  
+
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
+                    <p:outputLabel value ='Caracteristicas Pessoais'/>
+                    <b:inputText value='#{caracteristicasIndividuais}'/>
+
+                    <p:outputLabel value ="Grupo"/>
+                    <b:selectOneMenu value="#{pacController.selecaoGrupo}"
+                                     id="selectGrupo">
+                        <f:selectItem noSelectionOption="true"
+                                      itemLabel="Selecione um registro"/>                            
+                        <f:selectItems value="#{gController.readAll()}"
+                                       var="grup" itemLabel="#{grup.denominacao}"/>                        
+                    </b:selectOneMenu>                     
+                </b:panelGrid>
+
+                <b:commandButton value="cadastrar" 
+                                 action="#{pacController.insertRedirect(nome, stringnascimento, caracteristicasIndividuais)}" 
+                                 ajax="true"
+                                 update=":formindexpaciente :modalPacienteCadastro"
+                                 onclick="$('.modalpacientecadastro').modal('hide')">                                 
+                </b:commandButton>
+                <b:button value="cancelar" dismiss="modal"/>
+            </b:form>
+        </b:modal>
+        
     </h:body>
 </html>
