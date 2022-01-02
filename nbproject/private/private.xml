@@ -3,28 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/model/classes/Grupo.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/ps_loginprofissional.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/ps_homeprofissional.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/GrupoBFController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/index.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/ps_grupos.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/menu.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/ps_registrosvacina.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/GrupoController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/ProfissionalController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/model/classes/Paciente.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/model/classes/Aplicacoes.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/ps_informacoesprofissional.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/ps_menuprofissional.xhtml</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/VacinaController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/PacienteBFController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/loginController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/ProfissionalBFController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/VacinaBFController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/admin_home.xhtml</file>
             <file>file:/home/melo/NetBeansProjects/ConectaVacina/src/java/br/edu/ifpe/recife/controllers/AplicacaoVacinaController.java</file>
-            <file>file:/home/melo/NetBeansProjects/ConectaVacina/web/ps_pacientes.xhtml</file>
         </group>
     </open-files>
 </project-private>

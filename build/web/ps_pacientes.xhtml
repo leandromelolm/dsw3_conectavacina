@@ -148,9 +148,16 @@
                     <h:outputText value ="Grupo:"/>                    
                     <h:outputText value="#{pacController.selecao.grupo}"/>
 
-                    <h:outputText value ="Doses Recebidas:"/>
+                    <p></p>
+                    <h:outputText/>
+
+                    <h:outputText value ="Dose recebida (quant):"/>                    
+                    <h:outputText  value="#{pacController.selecao.aplicacao.size()}"/>
+
+                    <h:outputText value ="Dose recebida (detalhes):"/>
                     <ui:repeat value="#{pacController.selecao.aplicacao}" var="objAplicacao">
-                        [ #{objAplicacao.vacina.nome} - data: #{objAplicacao.data.toGMTString().substring(0,11)} ]
+                        <h:outputText value="#{objAplicacao.paciente.aplicacao.indexOf(objAplicacao)+1} - #{objAplicacao.vacina.nome} | #{objAplicacao.data.toGMTString().substring(0,11)}"/>
+                        <p></p>
                     </ui:repeat>
 
                 </b:panelGrid>
