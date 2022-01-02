@@ -73,10 +73,11 @@ public class AplicacaoVacinaController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
                         selectPaciente.getNome() +" teve a vacina " +this.selectVacina.getNome() + " registrada com sucesso!")); 
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true); // AO redirecionar com o return ps_homeprofissional?faces-redirect=true é necessária  essa linha com getflash() para exibir o GROWL e o MESSAGES na página
         
 //        return "ps_homeprofissional.xhtml";
-        return "ps_homeprofissional?faces-redirect=true"; // NÃO exibe message e growl na página.
-//        return "ps_registrosvacina"; // exibe message e growl na página. No entanto, repete cadastro ao atualizar página
+//        return "ps_registrosvacina"; // Repete cadastro ao atualizar página
+        return "ps_homeprofissional?faces-redirect=true"; //Precisa usar o Flash para exibir o Growl e Messages
     }
     
     public List<Aplicacoes> readAll(){

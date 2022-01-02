@@ -57,7 +57,7 @@
                     <b:inputText value="#{vController.selecao.quantidadeAplicacoes}"/>
                 </b:panelGrid>
                 <b:commandButton value="alterar" action="#{vController.update()}" ajax="false"/>
-                <!--update=":formProfissionalSaude :formModal :gro :messages"/>-->
+                <!--update="formVacina :formModal :gro :messages"/>-->
             </b:modal>
         </b:form>
 
@@ -73,8 +73,8 @@
                     <h:outputText value ="Quantidade de aplicações"/>
                     <b:inputText value="#{vController.cadastro.quantidadeAplicacoes}"/>
                 </b:panelGrid>
-                <b:commandButton value="cadastrar" action="#{vController.messageInfo()}" ajax="false"/>
-                                  <!--update=":formProfissionalSaude :formModal :gro :messages"/>--> 
+                <b:commandButton value="cadastrar" action="#{vController.messageInfo()}" ajax="false"
+                                  update="formVacina :formModal :gro :messages"/> 
             </b:form>
         </b:modal>
 
