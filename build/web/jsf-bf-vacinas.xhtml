@@ -73,7 +73,7 @@
                     <h:outputText value ="Quantidade de aplicações"/>
                     <b:inputText value="#{vController.cadastro.quantidadeAplicacoes}"/>
                 </b:panelGrid>
-                <b:commandButton value="cadastrar" action="#{vController.messageInfo()}" ajax="false"
+                <b:commandButton value="cadastrar" action="#{vController.messageInfoCadastro()}" ajax="false"
                                   update="formVacina :formModal :gro :messages"/> 
             </b:form>
         </b:modal>

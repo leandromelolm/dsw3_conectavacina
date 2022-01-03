@@ -33,7 +33,7 @@ public class VacinaBFController {
     }
     
     public void insert(){
-    
+          
         ManagerDao.getCurrentInstance().insert(this.cadastro);
         
         this.cadastro = new Vacina();
@@ -63,12 +63,13 @@ public class VacinaBFController {
                         "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));        
     }
             
-    public String messageInfo() {
+    public String messageInfoCadastro() {
            
          FacesContext.getCurrentInstance().addMessage
-        (null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+            (null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
                "Vacina " +this.cadastro.getNome()+
                        " cadastrada com sucesso!"));
+         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         insert();  
         return "jsf-bf-vacinas?faces-redirect=true";
     }

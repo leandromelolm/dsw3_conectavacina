@@ -75,7 +75,7 @@ public class AplicacaoVacinaController {
             FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true); // Ao redirecionar com o return ps_homeprofissional?faces-redirect=true é necessária  essa linha com getflash() para exibir o GROWL e o MESSAGES na página
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Não Registro! " +
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Não Registrado! " +
                             "Vacinação ultrapassa limite de dose recomendada pela fabricante!",
                             "A fabricante da vacina " + this.selectVacina.getNome() +
                             " recomenda aplicação de " + a.getVacina().getQuantidadeAplicacoes() + " dose." +
