@@ -62,19 +62,27 @@ public class AplicacaoVacinaController {
         
         ProfissionalEnfermagem pe = login.getLogado();
         
-        a.setProfissional(pe);
-        
-        ManagerDao.getCurrentInstance().insert(a);
-        
-        selectPaciente.adicionarDose(a);
-        
-        ManagerDao.getCurrentInstance().update(selectPaciente);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
-                        selectPaciente.getNome() +" teve a vacina " +this.selectVacina.getNome() + " registrada com sucesso!")); 
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true); // AO redirecionar com o return ps_homeprofissional?faces-redirect=true é necessária  essa linha com getflash() para exibir o GROWL e o MESSAGES na página
-        
+        if (selectPaciente.getAplicacao().size() < a.getVacina().getQuantidadeAplicacoes()) {
+            a.setProfissional(pe);
+            selectPaciente.adicionarDose(a);
+
+            ManagerDao.getCurrentInstance().insert(a);
+            ManagerDao.getCurrentInstance().update(selectPaciente);
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Vacinação Registrada com sucesso! ",
+                            selectPaciente.getNome() + " teve a vacina " + this.selectVacina.getNome() + " registrada com sucesso!"));
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true); // Ao redirecionar com o return ps_homeprofissional?faces-redirect=true é necessária  essa linha com getflash() para exibir o GROWL e o MESSAGES na página
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Não Registro! " +
+                            "Vacinação ultrapassa limite de dose recomendada pela fabricante!",
+                            "A fabricante da vacina " + this.selectVacina.getNome() +
+                            " recomenda aplicação de " + a.getVacina().getQuantidadeAplicacoes() + " dose." +
+                            " Já foi feito o registro de "+ selectPaciente.getAplicacao().size() + 
+                            " dose em " + selectPaciente.getNome()));
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        }        
 //        return "ps_homeprofissional.xhtml";
 //        return "ps_registrosvacina"; // Repete cadastro ao atualizar página
         return "ps_homeprofissional?faces-redirect=true"; //Precisa usar o Flash para exibir o Growl e Messages
