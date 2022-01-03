@@ -10,6 +10,7 @@
         <title>HomeProfissionalEnfermagem</title>
     </h:head>
     <h:body>  
+        <link rel="stylesheet" type="text/css" href="estilo.css" />
         <ui:include src="ps_menuprofissional.xhtml"/>
         <a style="font-size:large" href="#" role="button">Registrar vacinação</a>
         
@@ -31,10 +32,14 @@
                     </b:dataTableColumn>                
                     <b:dataTableColumn label="Grupo" value="#{obj.grupo}"/>
                     <b:dataTableColumn label="Operações">
-                        <p:commandButton value="Registrar aplicação de vacina" oncomplete="$('.modalregistrovacina').modal()" 
+                        <p:commandButton image="seringa" title="Registrar aplicação de vacina"
+                                         oncomplete="$('.modalregistrovacina').modal()" 
                                          ajax="true" update=":modalRegistroVacina">
                             <f:setPropertyActionListener value="#{obj}" target="#{avController.selectPaciente}"/>
                         </p:commandButton>
+                        <b:commandButton icon="search" ajax="true" oncomplete="$('.modalvisualiza').modal()" update=":modalVisualiza">
+                            <f:setPropertyActionListener value="#{obj}" target="#{pacController.selecao}"/>
+                        </b:commandButton>
                     </b:dataTableColumn>
                 </b:dataTable>
             </b:panel>
@@ -80,6 +85,43 @@
                     </b:commandButton>
                     <b:button value="cancelar" dismiss="modal"/>
                 </div>
+            </b:form>
+        </b:modal>
+        <b:modal id="modalVisualiza" title="Informações" class="modalvisualiza">
+            <b:form id="formModalVisualiza">
+
+                <b:panelGrid colSpans="4,8" size="xs">
+                    <h:outputText value ="Codigo:"/>
+                    <h:outputText value="#{pacController.selecao.id}"/>
+
+                    <h:outputText value ="Nome:"/>
+                    <h:outputText value="#{pacController.selecao.nome}"/>
+
+                    <h:outputText value ="Data de Nascimento:"/>
+                    <h:outputText value="#{pacController.selecao.nascimento}">
+                        <f:converter converterId="converterDate"/>
+                    </h:outputText>    
+
+                    <h:outputText value ="Caracteristicas:"/>
+                    <h:outputText value="#{pacController.selecao.caracteristicasIndividuais}"/>
+
+                    <h:outputText value ="Grupo:"/>                    
+                    <h:outputText value="#{pacController.selecao.grupo}"/>
+
+                    <p></p>
+                    <h:outputText/>
+
+                    <h:outputText value ="Dose recebida (quant):"/>                    
+                    <h:outputText  value="#{pacController.selecao.aplicacao.size()}"/>
+
+                    <h:outputText value ="Dose recebida (detalhes):"/>
+                    <ui:repeat value="#{pacController.selecao.aplicacao}" var="objAplicacao">
+                        <h:outputText value="#{objAplicacao.paciente.aplicacao.indexOf(objAplicacao)+1} - #{objAplicacao.vacina.nome} | #{objAplicacao.data.toGMTString().substring(0,11)}"/>
+                        <p></p>
+                    </ui:repeat>
+
+                </b:panelGrid>
+                <b:button value="close" dismiss="modal"/>
             </b:form>
         </b:modal>
     </h:body>
