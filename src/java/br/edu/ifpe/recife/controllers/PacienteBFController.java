@@ -64,7 +64,9 @@ public class PacienteBFController {
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",
-                        "Paciente cadastrado com sucesso!")); 
+                        "Paciente cadastrado com sucesso!"));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        
 //        return "ps_homeprofissional.xhtml";
         return "ps_pacientes?faces-redirect=true";
     }
@@ -78,6 +80,7 @@ public class PacienteBFController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
                         "Paciente cadastrado com sucesso!")); 
+        
     }
     
         public String insertRedirect(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
@@ -97,7 +100,8 @@ public class PacienteBFController {
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Paciente salvo!",
-                        "Paciente cadastrado com sucesso!")); 
+                        "Paciente cadastrado com sucesso!"));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 //        return "jsf-bf-pacientes.xhtml";
         return "jsf-bf-pacientes?faces-redirect=true";
     }

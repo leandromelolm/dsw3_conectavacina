@@ -38,6 +38,12 @@ public class GrupoBFController {
     
     public String insert(){
         
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+                        "O " + this.cadastro.getDenominacao()
+                        + " foi cadastrado com sucesso!"));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        
         ManagerDao.getCurrentInstance().insert(this.cadastro);        
      
         this.cadastro = new Grupo();
@@ -58,7 +64,8 @@ public class GrupoBFController {
         
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("alteração salva! ",
-                        "Registro de Id número " +this.getSelecao().getId() + " alterado com sucesso!"));     
+                        "Registro de Id número " +this.getSelecao().getId() + " alterado com sucesso!"));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
     }
     
     public void delete(){
@@ -68,6 +75,7 @@ public class GrupoBFController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("registro excluido! ",
                         "Registro de Id número " +this.getSelecao().getId() + " deletado com sucesso!"));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
     }
     
     public String insertAdmin() {
@@ -76,6 +84,7 @@ public class GrupoBFController {
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
                         "O " + this.cadastro.getDenominacao()
                         + " foi cadastrado com sucesso!"));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         
         ManagerDao.getCurrentInstance().insert(this.cadastro);    
         this.cadastro = new Grupo(); 
