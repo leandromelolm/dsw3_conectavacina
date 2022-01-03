@@ -26,6 +26,10 @@ public class LoginController {
             
             this.logado = auxPS;
             
+            if(email.equals("admin")){
+                return "admin_home.xhtml";
+            }
+            
             return "ps_homeprofissional.xhtml";
             
         }catch(IndexOutOfBoundsException in){

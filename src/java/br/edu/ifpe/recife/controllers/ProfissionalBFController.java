@@ -38,7 +38,8 @@ public class ProfissionalBFController {
     public void insert(String confirma){
         
         if(!confirma.equals(this.cadastro.getSenha())){
-        FacesContext.getCurrentInstance().addMessage("formModal:txtPassword", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de validação", "A senha não confere"));
+        FacesContext.getCurrentInstance().addMessage("formModal:txtPassword",
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro de validação", "A senha não confere"));
         return;
         }
         

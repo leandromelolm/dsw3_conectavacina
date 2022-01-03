@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>ConectaVacina|Menu</title>
     </h:head>
@@ -10,9 +11,19 @@
         
         <!--<p:growl id="grow" showDetail="true" showSummary="true" redisplay="false" life="4000"/>-->
         
+        <c:if test="#{lController.logado==null}">
+            <script>
+                location.href='ps_loginprofissional.xhtml';
+            </script>                
+        </c:if>
+        
         <h:form id="forMenu">
             <p:menubar style="font-size: small">
-                <p:menuitem value="Página Inicial" url="index.xhtml"/>                
+                <p:submenu label="Home">
+                    <p:menuitem value="Página inicial" url="index.xhtml"/>
+                    <p:menuitem value="Home Profissional" url="ps_homeprofissional.xhtml"/> 
+                    <p:menuitem value="Sair" action="${lController.logout()}"/>
+                </p:submenu>              
                 <p:menuitem title="Profissionais de Saúde" value="Profissionais" url="jsf-bf-profissionaissaude.xhtml"/>
                 <p:menuitem title="Vacinas" value="Vacinas" url="jsf-bf-vacinas.xhtml"/>
                 <p:menuitem title="Grupos" value="Grupos" url="jsf-bf-grupos.xhtml"/>
