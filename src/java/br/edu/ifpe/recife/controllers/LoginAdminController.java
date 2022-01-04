@@ -26,12 +26,19 @@ public class LoginAdminController {
             
             this.logado = auxPS;
             
-            return "admin_home.xhtml";
+            if(email.equals("admin")){
+                return "admin_home.xhtml";
+            }
+            
+            FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Erro de Autenticação", "Essa página é apenas para o administrador"));
+//            return "admin_home.xhtml";
+            return null;
             
         }catch(IndexOutOfBoundsException in){
             
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Erro de Autenticação", "emai e/ou senha estão incorretos"));
+                    "Erro de Autenticação", "email e/ou senha estão incorretos"));
             
             return null;
         }       

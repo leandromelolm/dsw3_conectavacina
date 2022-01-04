@@ -11,7 +11,7 @@
         
         <!--<p:growl id="grow" showDetail="true" showSummary="true" redisplay="false" life="4000"/>-->
         
-        <c:if test="#{lController.logado==null}">
+        <c:if test="#{loginAdminController.logado==null}">
             <script>
                 location.href='ps_loginprofissional.xhtml';
             </script>                
@@ -19,7 +19,7 @@
         
         <h:form id="forMenu">
             <p:menubar style="font-size: small">
-                <p:submenu label="Home">
+                <p:submenu label="Administrador">
                     <p:menuitem value="Página inicial" url="index.xhtml"/>
                     <p:menuitem value="Home Profissional" url="ps_homeprofissional.xhtml"/> 
                     <p:menuitem value="Sair" action="${lController.logout()}"/>
