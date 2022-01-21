@@ -2,6 +2,7 @@ package br.edu.ifpe.recife.controllers;
 
 import br.edu.ifpe.recife.model.classes.ProfissionalEnfermagem;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -13,7 +14,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "lController")
 @SessionScoped
-public class LoginController {
+public class LoginController implements Serializable{
     
     private ProfissionalEnfermagem logado;
     
@@ -27,11 +28,13 @@ public class LoginController {
             this.logado = auxPS;
             
             if(email.equals("admin")){
-                return "admin_home.xhtml";
-            }
-            
+                //return "admin_home.xhtml";
+                //return "admin_home?faces-redirect=true";
+                return "admin_login.xhtml";
+               
+            }            
             return "ps_homeprofissional.xhtml";
-            
+          
         }catch(IndexOutOfBoundsException in){
             
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR,

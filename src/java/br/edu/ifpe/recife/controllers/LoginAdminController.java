@@ -2,6 +2,7 @@ package br.edu.ifpe.recife.controllers;
 
 import br.edu.ifpe.recife.model.classes.ProfissionalEnfermagem;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -13,7 +14,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean(name = "loginAdminController")
 @SessionScoped
-public class LoginAdminController {
+public class LoginAdminController implements Serializable{
     
     private ProfissionalEnfermagem logado;
     
@@ -27,7 +28,7 @@ public class LoginAdminController {
             this.logado = auxPS;
             
             if(email.equals("admin")){
-                return "admin_home.xhtml";
+                return "admin_home.xhtml";                
             }
             
             FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR,

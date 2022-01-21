@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifpe.recife.controllers;
 
 import br.edu.ifpe.recife.model.classes.ProfissionalEnfermagem;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -24,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @ManagedBean(name="pController")
 @SessionScoped
 @ViewScoped
-public class ProfissionalBFController {
+public class ProfissionalBFController implements Serializable{
     
     private ProfissionalEnfermagem cadastro;
     private ProfissionalEnfermagem selecao;   

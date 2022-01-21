@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifpe.recife.controllers;
 
 import br.edu.ifpe.recife.model.classes.Grupo;
 import br.edu.ifpe.recife.model.classes.Paciente;
 import br.edu.ifpe.recife.model.dao.ManagerDao;
+import java.io.Serializable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,7 +26,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name="pacController")
 @SessionScoped
 @ViewScoped
-public class PacienteBFController {
+public class PacienteBFController implements Serializable{
     
     private Paciente cadastro;
     private Paciente selecao;
@@ -67,8 +63,38 @@ public class PacienteBFController {
                         "Paciente cadastrado com sucesso!"));
         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         
+        
 //        return "ps_homeprofissional.xhtml";
         return "ps_pacientes?faces-redirect=true";
+    }
+    
+    public String insertPaginaPaciente(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US);   
+        Date date = sdf.parse(stringnascimento);
+        System.out.print(date);
+        
+        Paciente p = new Paciente();
+
+        p.setNascimento(date);
+        p.setNome(nome);       
+        p.setCaracteristicasIndividuais(caracteristicasIndividuais);
+        p.setGrupo(this.selecaoGrupo);
+        
+        ManagerDao.getCurrentInstance().insert(p);   
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo!",
+                        "Cadastro realizado com sucesso!"));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso!",
+                       p.getNome() + " guarde Seu Identificador: " + p.getId()));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+        
+        return "p_loginpaciente?faces-redirect=true";
+
     }
     
     public void insert(String confirma){        
@@ -83,7 +109,7 @@ public class PacienteBFController {
         
     }
     
-        public String insertRedirect(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
+    public String insertRedirect(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
         
         SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZ yyyy", Locale.US);   
         Date date = sdf.parse(stringnascimento);

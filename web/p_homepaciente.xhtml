@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Home Paciente</title>
+    </h:head>
+    <h:body>
+
+        <b:jumbotron style="background: dodgerblue; 
+                     border-bottom-left-radius: 5px; 
+                     border-bottom-right-radius:5px">
+            <div align="left"  style="border-left: 50px solid cornflowerblue ">
+                <p style="font-size: small; font-weight: bold">
+                    <font color="white">Conecta Vacina | Meu Registro de Vacinação</font>
+                </p>
+            </div>
+        </b:jumbotron>
+
+        <b:form id="formModalVisualiza">
+            <div align="center">
+                <b:panel style="width: 700px; position: relative">
+                    <div align="left">
+                        <b:panelGrid colSpans="4,8" size="xs">
+                            <h:outputText value ="Codigo:"/>
+                            <h:outputText value="#{lPacienteController.logado.id}"/>
+
+                            <h:outputText value ="Nome:"/>
+                            <h:outputText value="#{lPacienteController.logado.nome}"/>
+
+                            <h:outputText value ="Data de Nascimento:"/>
+                            <h:outputText value="#{lPacienteController.logado.nascimento}">
+                                <f:converter converterId="converterDate"/>
+                            </h:outputText>    
+
+                            <h:outputText value ="Caracteristicas:"/>
+                            <h:outputText value="#{lPacienteController.logado.caracteristicasIndividuais}"/>
+
+                            <h:outputText value ="Grupo:"/>                    
+                            <h:outputText value="#{lPacienteController.logado.grupo}"/>
+
+                            <p></p>
+                            <h:outputText/>
+
+                            <h:outputText value ="Dose recebida (quant):"/>                    
+                            <h:outputText  value="#{lPacienteController.logado.aplicacao.size()}"/>
+
+                            <h:outputText value ="Dose recebida (detalhes):"/>
+                            <ui:repeat value="#{lPacienteController.logado.aplicacao}" var="objAplicacao">
+                                <h:outputText value="#{objAplicacao.paciente.aplicacao.indexOf(objAplicacao)+1} - #{objAplicacao.vacina.nome} | #{objAplicacao.data.toGMTString().substring(0,11)}"/>
+                                <p></p>
+                            </ui:repeat>
+
+                        </b:panelGrid>
+                    </div>
+                    <div align="right">
+                        <b:commandButton value="sair" action="${lPacienteController.logout()}"/>
+                    </div>
+                </b:panel>
+            </div>
+        </b:form>
+    </h:body>
+</html>
+
