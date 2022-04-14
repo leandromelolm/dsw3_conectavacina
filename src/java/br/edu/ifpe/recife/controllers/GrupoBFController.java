@@ -48,7 +48,7 @@ public class GrupoBFController {
      
         this.cadastro = new Grupo();
         
-        return "ps_grupos?faces-redirect=true";
+        return "profissional_grupos?faces-redirect=true";
     }
     
     public List<Grupo> readAll() {
@@ -89,7 +89,7 @@ public class GrupoBFController {
         ManagerDao.getCurrentInstance().insert(this.cadastro);    
         this.cadastro = new Grupo(); 
         
-        return "jsf-bf-grupos?faces-redirect=true";
+        return "admin_grupos?faces-redirect=true";
     }
 
     public Grupo getCadastro() {

@@ -12,20 +12,20 @@
         <b:form>
             <c:if test="#{lController.logado==null}">
                 <script>
-                    location.href='ps_loginprofissional.xhtml';
+                    location.href='profissional_login.xhtml';
                 </script>                
             </c:if>
-            <b:navBar brand="Home" brand-href="ps_homeprofissional.xhtml">
+            <b:navBar brand="Home" brand-href="profissional_home.xhtml">
                 <b:navbarLinks>                    
-                    <b:navLink value="Pacientes" href="ps_pacientes.xhtml"></b:navLink>  
-                    <b:navLink value="Grupos" href="ps_grupos.xhtml"></b:navLink>  
-                    <b:navLink value="Vacinações" href="ps_registrosvacina.xhtml"></b:navLink>  
+                    <b:navLink value="Pacientes" href="profissional_pacientes.xhtml"></b:navLink>  
+                    <b:navLink value="Grupos" href="profissional_grupos.xhtml"></b:navLink>  
+                    <b:navLink value="Vacinações" href="profissional_registrosvacina.xhtml"></b:navLink>  
                     <!--<b:navCommandLink value="Pacientes" action="ps_pacientes.xhtml"/>-->                                      
                     <!--<b:navCommandLink value="Grupos" action="ps_grupos.xhtml"/>-->
                     <!--<b:navCommandLink value="Vacinações Registradas" action="ps_registrosvacina.xhtml"/>-->
                 </b:navbarLinks>
                 <b:navbarLinks pull="right">
-                    <b:navCommandLink value="Minhas Informações" action="ps_informacoesprofissional.xhtml"/>                    
+                    <b:navCommandLink value="Minhas Informações" action="profissional_informacoes.xhtml"/>                    
                     <b:navCommandLink value="sair" action="${lController.logout()}"/>
                 </b:navbarLinks>
             </b:navBar>            

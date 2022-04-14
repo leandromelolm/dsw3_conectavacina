@@ -85,7 +85,7 @@ public class AplicacaoVacinaController {
         }        
 //        return "ps_homeprofissional.xhtml";
 //        return "ps_registrosvacina"; // Repete cadastro ao atualizar página
-        return "ps_homeprofissional?faces-redirect=true"; //Precisa usar o Flash para exibir o Growl e Messages
+        return "profissional_home?faces-redirect=true"; //Precisa usar o Flash para exibir o Growl e Messages
     }
     
     public List<Aplicacoes> readAll(){

@@ -48,18 +48,9 @@ public class ProfissionalController {
                         "Profissional de saúde cadastrado com sucesso!")); 
     }
     
-    public String insert(){        
-     
-        ManagerDao.getCurrentInstance().insert(this.cadastro);
-        
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
-                        "Profissional de saúde "+this.cadastro.getNome()+
-                                " cadastrado com sucesso!"));         
-        
+    public void insert(){      
+        ManagerDao.getCurrentInstance().insert(this.cadastro); 
         this.cadastro = new ProfissionalEnfermagem();
-        
-        return "profissionaisapresenta.xhtml";
     }
     
     public List<ProfissionalEnfermagem> readAll(){
@@ -77,7 +68,7 @@ public class ProfissionalController {
                 new FacesMessage("alteração salva! ",
                         "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
         
-        return "profissionaisapresenta.xhtml";        
+        return "primefaces_profissionaisapresenta.xhtml";        
     }
     
     public void delete(){
@@ -103,5 +94,17 @@ public class ProfissionalController {
 
     public void setSelecao(ProfissionalEnfermagem selecao) {
         this.selecao = selecao;
-    }    
+    }
+
+    public String messageInfoInsert() {
+           
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro salvo!",
+                        "Profissional de saúde "+this.cadastro.getNome()+
+                                " cadastrado com sucesso!"));
+
+        insert();
+        return "primefaces_profissionaisapresenta.xhtml";
+    }
+    
 }

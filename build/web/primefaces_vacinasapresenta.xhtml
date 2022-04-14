@@ -45,7 +45,7 @@
             
             <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaVacina').show()"
                              update=":dialVisualizaVacina"/>
-            <p:commandButton value="alterar cadastro" action="vacinaalterar.xhtml"/>
+            <p:commandButton value="alterar cadastro" action="primefaces_vacinaalterar.xhtml"/>
             <p:commandButton value="excluir cadastro" action="#{vacinaController.delete()}" 
                              update=":formApresentaVacina:tableVacina  :grow  :messages">
                 <p:confirm message="Deseja realmente excluir definitivamente o cadastro da vacina selecionada"/>

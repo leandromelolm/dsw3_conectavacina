@@ -116,7 +116,7 @@ public class ProfissionalBFController implements Serializable{
         
         this.cadastro = new ProfissionalEnfermagem();
         
-        return "apresentaprofissionaissaude.xhtml";
+        return "primefaces_profissionaisapresenta.xhtml";
     }
     
     public String updatePrimeface(){
@@ -127,7 +127,7 @@ public class ProfissionalBFController implements Serializable{
                 new FacesMessage("alteração salva! ",
                         "Registro de Id número "+this.selecao.getId() + " alterado com sucesso."));
         
-        return "apresentaprofissionaissaude.xhtml";        
+        return "primefaces_profissionaisapresenta.xhtml";        
     }
     
     public void deletePrimeface(){

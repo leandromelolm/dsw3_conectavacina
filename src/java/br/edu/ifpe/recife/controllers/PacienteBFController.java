@@ -65,7 +65,7 @@ public class PacienteBFController implements Serializable{
         
         
 //        return "ps_homeprofissional.xhtml";
-        return "ps_pacientes?faces-redirect=true";
+        return "profissional_pacientes?faces-redirect=true";
     }
     
     public String insertPaginaPaciente(String nome, String stringnascimento, String caracteristicasIndividuais) throws ParseException  {
@@ -93,7 +93,7 @@ public class PacienteBFController implements Serializable{
                        p.getNome() + " guarde Seu Identificador: " + p.getId()));
         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         
-        return "p_loginpaciente?faces-redirect=true";
+        return "paciente_login?faces-redirect=true";
 
     }
     
@@ -129,7 +129,7 @@ public class PacienteBFController implements Serializable{
                         "Paciente cadastrado com sucesso!"));
         FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 //        return "jsf-bf-pacientes.xhtml";
-        return "jsf-bf-pacientes?faces-redirect=true";
+        return "admin_pacientes?faces-redirect=true";
     }
     
     public List<Paciente> readAll(){

@@ -71,7 +71,7 @@ public class VacinaBFController {
                        " cadastrada com sucesso!"));
          FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         insert();  
-        return "jsf-bf-vacinas?faces-redirect=true";
+        return "admin_vacinas?faces-redirect=true";
     }
 
     public Vacina getCadastro() {

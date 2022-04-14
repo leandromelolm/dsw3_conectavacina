@@ -41,7 +41,7 @@ public class GrupoController {
                         "O "+this.cadastro.getDenominacao()+
                                 " foi cadastrado com sucesso!"));
         this.cadastro = new Grupo();
-        return "gruposapresenta.xhtml";
+        return "primefaces_gruposapresenta.xhtml";
     }
     
         public List<Grupo> readAll(){
@@ -58,7 +58,7 @@ public class GrupoController {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("alteração salva! ",
                         "Registro de Id número " +this.getSelecao().getId() + " alterado com sucesso!"));
-        return "gruposapresenta.xhtml";    
+        return "primefaces_gruposapresenta.xhtml";    
     }
     
     public void delete(){

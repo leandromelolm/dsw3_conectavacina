@@ -28,7 +28,7 @@ public class LoginPacienteController implements Serializable{
             
             this.logado = auxPS;            
                  
-            return "p_homepaciente.xhtml";
+            return "paciente_home.xhtml";
           
         }catch(IndexOutOfBoundsException in){
             
@@ -41,7 +41,7 @@ public class LoginPacienteController implements Serializable{
     
     public String logout(){
         this.logado=null;
-        return "p_loginpaciente.xhtml";
+        return "paciente_login.xhtml";
     }
 
     public Paciente getLogado() {

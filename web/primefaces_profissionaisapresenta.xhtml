@@ -41,7 +41,7 @@
             
             <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaProfissionalSaude').show()"
                              update=":dialVisualizaProfissionalSaude"/>
-            <p:commandButton value="alterar cadastro" action="profissionalalterarcadastro.xhtml"/>
+            <p:commandButton value="alterar cadastro" action="primefaces_profissionalalterarcadastro.xhtml"/>
             <p:commandButton value="excluir cadastro" action="#{profissionalController.delete()}" 
                              update=":formApresentaProfisionalSaude:tableProfissionalSaude  :messages">
                 <p:confirm message="Deseja realmente excluir o cadastro selecionado?" />

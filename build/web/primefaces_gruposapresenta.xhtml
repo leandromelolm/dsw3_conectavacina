@@ -35,7 +35,7 @@
             
             <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaGrupo').show()"
                              update=":dialVisualizaGrupo"/>
-            <p:commandButton value="alterar cadastro" action="grupoalterarcadastro.xhtml"/>
+            <p:commandButton value="alterar cadastro" action="primefaces_grupoalterarcadastro.xhtml"/>
             <p:commandButton value="excluir cadastro" action="#{grupoController.delete()}" 
                              update=":formApresentaGrupo:tableGrupo :grow :messages" >
             <p:confirm message="Deseja realmente excluir o cadastro do grupo?"/>

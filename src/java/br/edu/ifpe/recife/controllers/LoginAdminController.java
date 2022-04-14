@@ -47,7 +47,7 @@ public class LoginAdminController implements Serializable{
     
     public String logout(){
         this.logado=null;
-        return "ps_loginprofissional.xhtml";
+        return "profissional_login.xhtml";
     }
 
     public ProfissionalEnfermagem getLogado() {
