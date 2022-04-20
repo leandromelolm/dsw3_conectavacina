@@ -5,7 +5,8 @@ Projeto realizado na disciplina de desenvolvimento de sistema web
 Projeto consiste em realizar registro de vacinação. O sistema web permite fazer o cadastro de profissional, cadastro de grupo de vacinação, cadastro de vacina e cadastro de paciente, além do registro de vacinação no paciente pelo profissioal de saúde cadastrado.
 
 ## Modelo conceitual
-![Modelo Conceitual](https://github.com/leandromelolm/dsw3_conecta-vacina/blob/main/src/java/Diagrama-Classes-Vacina.jpg)
+![Modelo Conceitual](https://github.com/leandromelolm/dsw3_conectavacina/blob/main/conectavacina/src/java/Diagrama-Classes-Vacina.jpg)
+
 
 ## Tecnologias utilizadas
 - MySQL 5.7
