@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>ConectaVacina|Apresentação de Grupos</title>
+    </h:head>
+    <h:body>
+        
+        <ui:include src="menu.xhtml"/>
+        
+        <h2>Apresentação de grupos cadastrados</h2> 
+        
+        <p:growl id="grow" showDetail="true" showSummary="true" redisplay="false" life="4000"/>
+        
+        <p:messages id="messages" showDetail="true" closable="true"/>            
+                
+        <h:form id="formApresentaGrupo">
+            
+            <p:dataTable id="tableGrupo" var="item" value="#{grupoController.readAll()}" paginator="true" rows="10"
+                         selectionMode="single" selection="#{grupoController.selecao}" rowKey="#{item.id}">
+                <f:facet name="header">
+                    Grupos cadastrados
+                </f:facet>
+                <p:column headerText="Id">
+                    #{item.id}
+                </p:column>
+                <p:column headerText="Denominação do grupo">              
+                    #{item.denominacao}
+                </p:column>  
+            </p:dataTable>
+            
+            <p:commandButton value="visualizar detalhes" oncomplete="PF('widDialVisualizaGrupo').show()"
+                             update=":dialVisualizaGrupo"/>
+            <p:commandButton value="alterar cadastro" action="primefaces_grupoalterarcadastro.xhtml"/>
+            <p:commandButton value="excluir cadastro" action="#{grupoController.delete()}" 
+                             update=":formApresentaGrupo:tableGrupo :grow :messages" >
+            <p:confirm message="Deseja realmente excluir o cadastro do grupo?"/>
+            </p:commandButton>
+            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="não" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            </p:confirmDialog>
+            
+        </h:form>
+        
+        <p:dialog id="dialVisualizaGrupo" visible="false" resizable="false" closable="false" modal="true"
+                  closeOnEscape="true"  widgetVar="widDialVisualizaGrupo">
+            <p:panelGrid columns="2">
+                
+                <f:facet name="header">
+                   Grupo cadastrada
+                </f:facet>
+                
+                <h:outputText value="Id"/>
+                <h:outputText value="#{grupoController.selecao.id}"/>
+                
+                <h:outputText value="Denominação"/>
+                <h:outputText value="#{grupoController.selecao.denominacao}"/>
+                
+                <h:outputText value="Idade Mímima"/>
+                <h:outputText value="#{grupoController.selecao.idadeMinima}"/>
+                
+                <h:outputText value="Idade Máxima"/>
+                <h:outputText value="#{grupoController.selecao.idadeMaxima}"/>
+                
+            </p:panelGrid>
+            
+            <f:facet name="footer">
+                <h:form>
+                    <p:commandButton value="close" oncomplete="PF('widDialVisualizaGrupo').hide()"/>
+                </h:form>
+            </f:facet>
+            
+        </p:dialog>        
+        
+    </h:body>
+</html>
+

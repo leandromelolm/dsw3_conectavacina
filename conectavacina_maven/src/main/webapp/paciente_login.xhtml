@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+         <title>Login</title>
+    </h:head>
+    <h:body>
+        
+        <b:growl id='gro' delay="4000"/>
+        
+        <b:form id="formLogin">
+            
+            <b:jumbotron style="background: dodgerblue; 
+                           border-bottom-left-radius: 5px; 
+                           border-bottom-right-radius:5px">
+                <div align="left"  style="border-left: 50px solid cornflowerblue ">
+                    <p style="font-size: small; font-weight: bold">
+                        <font color="white">Conecta Vacina | Página Paciente</font>
+                    </p>
+                </div>
+            </b:jumbotron>
+            
+            <p:messages id="messages" showDetail="true" closable="true">            
+            </p:messages>
+            
+            <div align="center">
+            <b:panel style="width: 300px; position: relative">
+                <div align="left">
+                    
+                <b:panelGrid columns="1">
+                    <h:outputText value="Código de identificação"/>
+                    <h:inputText value="#{id}"/>
+                    <h:outputText value="Nome Completo"/>
+                    <h:inputText value="#{nome}"/>
+                </b:panelGrid> 
+                   <p></p>
+                <p> <b:commandButton value="Entrar" action="#{lPacienteController.logar(id, nome)}"/> </p>
+                </div>
+                <div align="right">                      
+                    <p> <b:commandLink  value="Cadastre-se" oncomplete="$('.modalpacientecadastro').modal()" ajax="true"/> </p>
+                    <p title="Não implementado"> <b:commandLink  value="Esqueceu sua senha?" href="#" /> </p>                    
+                    <p title="Voltar para página index"> <b:commandLink  value="Voltar" href="index.xhtml"/> </p>
+                </div>
+            </b:panel>
+            </div>
+        </b:form>
+        
+        <b:modal id="modalPacienteCadastro" title="Cadastro Paciente" class="modalpacientecadastro">
+            <b:form>
+                <!--<b:panelGrid columns="2">-->
+                <b:panelGrid colSpans="4,8" size="xs">
+
+                    <p:outputLabel value ='Nome'/>
+                    <b:inputText value='#{nome}'/>
+
+                    <p:outputLabel value ="Nascimento" for="txtDataNascimento" />  
+                    <p:calendar id="txtDataNascimento" value="#{stringnascimento}" 
+                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" size="10" />  
+
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
+                    <p:outputLabel value ='Caracteristicas Pessoais'/>
+                    <b:inputText value='#{caracteristicasIndividuais}'/>
+
+                    <p:outputLabel value ="Grupo"/>
+                    <b:selectOneMenu value="#{pacController.selecaoGrupo}"
+                                     id="selectGrupo">
+                        <f:selectItem noSelectionOption="true"
+                                      itemLabel="Selecione um registro"/>                            
+                        <f:selectItems value="#{gController.readAll()}"
+                                       var="grup" itemLabel="#{grup.denominacao}"/>                        
+                    </b:selectOneMenu>                     
+                </b:panelGrid>
+
+                <b:commandButton value="cadastrar" 
+                                                                 
+                                 action="#{pacController.insertPaginaPaciente(nome, stringnascimento, caracteristicasIndividuais)}"
+                                 onclick="$('.modalpacientecadastro').modal('hide')"
+                                 update=":formLogin :modalPacienteCadastro"                                 
+                                 ajax="true"
+                                 >                                 
+                </b:commandButton>
+                <b:button value="cancelar" dismiss="modal"/>
+            </b:form>
+        </b:modal>
+        
+    </h:body>
+</html>
+
+ <!---->

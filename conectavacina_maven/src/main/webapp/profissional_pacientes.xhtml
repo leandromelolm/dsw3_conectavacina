@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>PacienteCadastros</title>
+    </h:head>    
+    <h:body>        
+        <ui:include src="profissional_menu.xhtml"/> 
+        <a style="font-size:large" href="#" role="button">Pacientes registrados</a>
+
+        <p:messages id="messages" showDetail="true" closable="true">            
+        </p:messages>
+        <b:form id="formindexpaciente">  
+
+            <b:commandButton value="Registrar novo Paciente" oncomplete="$('.modalpacientecadastro').modal()" ajax="true"/>
+            <p/>
+
+            <b:panel>
+                <b:dataTable id="tablePacienteLista" value="#{pacController.readAll()}" var="obj">
+                    <b:dataTableColumn label="Código" value="#{obj.id}"/>
+                    <b:dataTableColumn label="Nome" value="#{obj.nome}"/> 
+                    <b:dataTableColumn label="Nascimento">
+                        <h:outputText value="#{obj.nascimento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>                        
+                    </b:dataTableColumn>                
+                    <b:dataTableColumn label="Grupo" value="#{obj.grupo}"/>
+
+                    <b:dataTableColumn label="Operações">
+
+                        <b:commandButton icon="search" ajax="true" oncomplete="$('.modalvisualiza').modal()" update=":modalVisualiza">
+                            <f:setPropertyActionListener value="#{obj}" target="#{pacController.selecao}"/>
+                        </b:commandButton>
+                        <b:commandButton icon="pencil" ajax="true" oncomplete="$('.modalaltera').modal()" update="formindexpaciente:modalAltera">
+                            <f:setPropertyActionListener value="#{obj}" target="#{pacController.selecao}"/>
+                        </b:commandButton>
+                        <b:commandButton icon="trash" ajax="true" oncomplete="$('.modaldeleta').modal()" update="@form">
+                            <f:setPropertyActionListener value="#{obj}" target="#{pacController.selecao}"/>
+                        </b:commandButton>
+
+                    </b:dataTableColumn>
+
+                </b:dataTable>
+
+                <b:modal id="modalDeleta" title="Operação" class="modaldeleta">
+                    <h:outputText value="Deseja realmente deletar usuário #{pacController.selecao.nome}, código #{pacController.selecao.id}"/><br/>
+                    <b:commandButton value="sim" action="#{pacController.delete()}" ajax="false"/>
+                    <b:button value="não" dismiss="modal"/>
+                </b:modal>
+
+            </b:panel>
+
+            <b:modal id="modalAltera" title="Alterar cadastro" class="modalaltera">
+                <!--<b:panelGrid columns="2">-->
+                <b:panelGrid colSpans="4,8" size="xs">
+
+                    <h:outputLabel value ='Nome'/>                    
+                    <b:inputText value="#{pacController.selecao.nome}"/>      
+
+                    <p:outputLabel value ="Nascimento" for="txtDataNascimento" />  
+                    <p:calendar id="txtDataNascimento" value="#{pacController.selecao.nascimento}" 
+                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" /> 
+
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
+                    <h:outputLabel value ='Caracteristicas individuais'/>
+                    <b:inputText value='#{pacController.selecao.caracteristicasIndividuais}'/>
+
+                    <p:outputLabel value ="Grupo"/>
+                    <b:selectOneMenu value="#{pacController.selecao.grupo}"
+                                     id="selectGrupo">
+                        <f:selectItem noSelectionOption="true"
+                                      itemLabel="Selecione um registro"/>                            
+                        <f:selectItems value="#{gController.readAll()}"
+                                       var="grup" itemLabel="#{grup.denominacao}"/>                        
+                    </b:selectOneMenu>                    
+
+                </b:panelGrid>
+                <b:commandButton value="alterar" action="#{pacController.update()}" ajax="false"/>
+                <b:button value="cancelar" dismiss="modal"/>                
+
+            </b:modal>
+
+        </b:form> 
+
+        <b:modal id="modalPacienteCadastro" title="Cadastro Paciente" class="modalpacientecadastro">
+            <b:form>
+                <!--<b:panelGrid columns="2">-->
+                <b:panelGrid colSpans="4,8" size="xs">
+
+                    <p:outputLabel value ='Nome'/>
+                    <b:inputText value='#{nome}'/>
+
+                    <p:outputLabel value ="Nascimento" for="txtDataNascimento" />  
+                    <p:calendar id="txtDataNascimento" value="#{stringnascimento}" 
+                                locale="en" navigator="true" pattern="dd/MM/yyyy" mask="true" size="10" />  
+
+                    <p:outputLabel/>
+                    <p:outputLabel/>
+
+                    <p:outputLabel value ='Caracteristicas Pessoais'/>
+                    <b:inputText value='#{caracteristicasIndividuais}'/>
+
+                    <p:outputLabel value ="Grupo"/>
+                    <b:selectOneMenu value="#{pacController.selecaoGrupo}"
+                                     id="selectGrupo">
+                        <f:selectItem noSelectionOption="true"
+                                      itemLabel="Selecione um registro"/>                            
+                        <f:selectItems value="#{gController.readAll()}"
+                                       var="grup" itemLabel="#{grup.denominacao}"/>                        
+                    </b:selectOneMenu>                     
+                </b:panelGrid>
+
+                <b:commandButton value="cadastrar" 
+                                 action="#{pacController.insert(nome, stringnascimento, caracteristicasIndividuais)}" 
+                                 ajax="true"
+                                 update=":formindexpaciente :modalPacienteCadastro"
+                                 onclick="$('.modalpacientecadastro').modal('hide')">                                 
+                </b:commandButton>
+                <b:button value="cancelar" dismiss="modal"/>
+            </b:form>
+        </b:modal>
+
+        <b:modal id="modalVisualiza" title="Informações" class="modalvisualiza">
+            <b:form id="formModalVisualiza">
+
+                <b:panelGrid colSpans="4,8" size="xs">
+                    <h:outputText value ="Codigo:"/>
+                    <h:outputText value="#{pacController.selecao.id}"/>
+
+                    <h:outputText value ="Nome:"/>
+                    <h:outputText value="#{pacController.selecao.nome}"/>
+
+                    <h:outputText value ="Data de Nascimento:"/>
+                    <h:outputText value="#{pacController.selecao.nascimento}">
+                        <f:converter converterId="converterDate"/>
+                    </h:outputText>    
+
+                    <h:outputText value ="Caracteristicas:"/>
+                    <h:outputText value="#{pacController.selecao.caracteristicasIndividuais}"/>
+
+                    <h:outputText value ="Grupo:"/>                    
+                    <h:outputText value="#{pacController.selecao.grupo}"/>
+
+                    <p></p>
+                    <h:outputText/>
+
+                    <h:outputText value ="Dose recebida (quant):"/>                    
+                    <h:outputText  value="#{pacController.selecao.aplicacao.size()}"/>
+
+                    <h:outputText value ="Dose recebida (detalhes):"/>
+                    <ui:repeat value="#{pacController.selecao.aplicacao}" var="objAplicacao">
+                        <h:outputText value="#{objAplicacao.paciente.aplicacao.indexOf(objAplicacao)+1} - #{objAplicacao.vacina.nome} | #{objAplicacao.data.toGMTString().substring(0,11)}"/>
+                        <p></p>
+                    </ui:repeat>
+
+                </b:panelGrid>
+                <b:button value="close" dismiss="modal"/>
+            </b:form>
+        </b:modal>
+
+    </h:body>
+</html>

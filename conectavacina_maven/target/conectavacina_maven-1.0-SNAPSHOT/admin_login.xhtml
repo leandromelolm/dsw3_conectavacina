@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>LoginAdmin</title>
+    </h:head>
+    <h:body>
+        
+        <b:growl id='gro' delay="4000"/>
+        
+        <b:form id="formLogin">
+            
+            <b:jumbotron style="background: black; 
+                           border-bottom-left-radius: 5px; 
+                           border-bottom-right-radius:5px">
+                <div align="left"  style="border-left: 50px solid black ">
+                    <p style="font-size: small; font-weight: bold">
+                        <font color="white">Conecta Vacina | ADMINISTRADOR </font>
+                    </p>
+                </div>
+            </b:jumbotron>
+            
+            <p:messages id="messages" showDetail="true" closable="true">            
+            </p:messages>
+            <div align="center">
+            <b:panel style="width: 300px; position: relative">
+                <div align="left">
+                    
+                <b:panelGrid columns="1">
+                    <h:outputText value="Email"/>
+                    <h:inputText value="#{email}"/>
+                    <h:outputText value="Senha"/>
+                    <h:inputSecret value="#{senha}"/>
+                </b:panelGrid> 
+                   <p></p>
+                   <p> <b:commandButton value="Entrar" action="#{loginAdminController.logar(email, senha)}"/> </p>
+                </div>
+                <div align="right">                      
+                    <p> <b:commandLink  value="Cadastre-se" onclick="$('.modalcadastro').modal()"/> </p>
+                    <p title="Não implementado"> <b:commandLink  value="Esqueceu sua senha?" href="#" /> </p>                    
+                    <p title="Voltar para página index"> <b:commandLink  value="Voltar" href="index.xhtml"/> </p>
+                </div>
+            </b:panel>
+            </div>
+        </b:form>
+        
+        <b:modal id='modalCadastro' title="Cadastro Profissional" class="modalcadastro">
+
+            <b:form id="formModal">
+                <b:panelGrid columns="2">
+                    <h:outputText value ='Nome'/>
+                    <b:inputText value='#{pController.cadastro.nome}'/>
+                    <h:outputText value ='Coren'/>
+                    <b:inputText value='#{pController.cadastro.coren}'/>
+                    <h:outputText value ='Telefone'/>
+                    <b:inputText value='#{pController.cadastro.telefone}'/>
+                    <h:outputText value ='Ano Formação'/>
+                    <b:inputText value='#{pController.cadastro.anoFormacao}'/>
+                    <h:outputText value ='email'/>
+                    <b:inputText value='#{pController.cadastro.email}'/>
+                    <h:outputText value ='Senha'/>
+                    <b:inputSecret id="txtPassword" value='#{pController.cadastro.senha}'/>
+                    <h:outputText value ='Confirmar Senha'/>
+                    <b:inputSecret value='#{confirma}'/>
+                </b:panelGrid>
+                <b:commandButton value="cadastrar" action="#{pController.insert(confirma)}" ajax="false"/>
+                                  <!--update=":formProfissionalSaude :formModal :gro :messages"/>--> 
+            </b:form>
+        </b:modal>
+        
+    </h:body>
+</html>

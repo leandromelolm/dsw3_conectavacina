@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Vacinas</title>
+    </h:head>
+    <h:body>
+        <ui:include src="admin_menu.xhtml"/>
+        <h5>Vacinas | Página Bootsfaces</h5>
+
+        <b:growl id='gro' delay="4000"/>
+
+        <p:messages id="messages" showDetail="true" closable="true">            
+        </p:messages>
+
+        <b:form id="formVacina">
+
+            <b:commandButton value="Novo registro" oncomplete="$('.modalcadastro').modal()" ajax="true"/>
+            <p/>  
+            <b:dataTable id="tableVacina" value="#{vController.readAll()}" var="item">
+                <b:dataTableColumn label="Código" value="#{item.id}"/>
+                <b:dataTableColumn label="Nome" value="#{item.nome}"/> 
+                <b:dataTableColumn label="Fabricante" value="#{item.fabricante}"/>
+                <b:dataTableColumn label="Operações">
+                    <b:commandButton icon="search" ajax="true" oncomplete="$('.modalvisualiza').modal()" update=":modalVisualiza">
+                        <f:setPropertyActionListener value="#{item}" target="#{vController.selecao}"/>
+                    </b:commandButton>
+                    <b:commandButton icon="pencil" ajax="true" oncomplete="$('.modalaltera').modal()" update="formVacina:modalAltera">
+                        <f:setPropertyActionListener value="#{item}" target="#{vController.selecao}"/>
+                    </b:commandButton>
+                    <b:commandButton icon="trash" ajax="true" oncomplete="$('.modaldeleta').modal()" update="@form">
+                        <f:setPropertyActionListener value="#{item}" target="#{vController.selecao}"/>
+                    </b:commandButton>
+                </b:dataTableColumn>
+            </b:dataTable>
+
+            <b:modal id="modalDeleta" title="Operação" class="modaldeleta">
+                <h:outputText value="Deseja realmente deletar vacina #{vController.selecao.nome}, código #{vController.selecao.id}"/><br/>
+                <b:commandButton value="sim" action="#{vController.delete()}" ajax="false"/>
+                <b:button value="não" dismiss="modal"/>
+            </b:modal>
+
+            <b:modal id="modalAltera" title="Alterar cadastro" class="modalaltera">
+                <b:panelGrid columns="2">
+                    <h:outputText value ="Nome:"/>
+                    <b:inputText value="#{vController.selecao.nome}"/>
+                    <h:outputText value ="Fabricante:"/>
+                    <b:inputText value="#{vController.selecao.fabricante}"/>
+                    <h:outputText value ="Tempo entre aplicações (em dias):"/>
+                    <b:inputText value="#{vController.selecao.tempoEntreAplicacoes}"/>
+                    <h:outputText value ="Quantidade de aplicações:"/>
+                    <b:inputText value="#{vController.selecao.quantidadeAplicacoes}"/>
+                </b:panelGrid>
+                <b:commandButton value="alterar" action="#{vController.update()}" ajax="false"/>
+                <!--update="formVacina :formModal :gro :messages"/>-->
+            </b:modal>
+        </b:form>
+
+        <b:modal id='modalCadastro' title="Cadastro de Vacina" class="modalcadastro">
+            <b:form id="formModal">
+                <b:panelGrid columns="2">
+                    <h:outputText value ="Nome"/>
+                    <b:inputText value="#{vController.cadastro.nome}"/>
+                    <h:outputText value ="Fabricante"/>
+                    <b:inputText value="#{vController.cadastro.fabricante}"/>
+                    <h:outputText value ="Tempo entre aplicações (em dias)"/>
+                    <b:inputText value="#{vController.cadastro.tempoEntreAplicacoes}"/>
+                    <h:outputText value ="Quantidade de aplicações"/>
+                    <b:inputText value="#{vController.cadastro.quantidadeAplicacoes}"/>
+                </b:panelGrid>
+                <b:commandButton value="cadastrar" action="#{vController.messageInfoCadastro()}" ajax="false"
+                                  update="formVacina :formModal :gro :messages"/> 
+            </b:form>
+        </b:modal>
+
+        <b:modal id="modalVisualiza" title="Informações" class="modalvisualiza">
+            <b:form id="formModalVisualiza">
+                <b:panelGrid columns="2">
+                    <h:outputText value ="Codigo"/>
+                    <h:outputText value="#{vController.selecao.id}"/>
+                    <h:outputText value ="Nome"/>
+                    <h:outputText value="#{vController.selecao.nome}"/>
+                    <h:outputText value ="fabricante"/>
+                    <h:outputText value="#{vController.selecao.fabricante}"/>
+                    <h:outputText value ="Tempo entre aplicações"/>
+                    <h:outputText value="#{vController.selecao.tempoEntreAplicacoes}"/>
+                    <h:outputText value ="Quantidade de aplicações"/>
+                    <h:outputText value="#{vController.selecao.quantidadeAplicacoes}"/>
+                </b:panelGrid>
+                <b:button value="close" dismiss="modal"/>
+            </b:form>
+        </b:modal>
+
+    </h:body>
+
+</html>
+

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>ConectaVacina|AlterarCadastroGrupo</title>
+    </h:head>
+
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+
+        <h2>Alterar cadastro de Grupo</h2>   
+
+        <p:messages id="messages" showDetail="true" closable="true">            
+        </p:messages>    
+
+        <h:form id="formCadastro">
+            <p:panelGrid columns="3">
+
+                <h:outputText value="Identificador:"/>
+                <p:inputText id="txtId" value="#{grupoController.selecao.id}"
+                             disabled="true"/>
+                <h:outputText/>
+
+                <h:outputText value="Denominação do Grupo:"/>
+                <p:inputText id="txtDenominacao" value="#{grupoController.selecao.denominacao}"
+                             required="true" requiredMessage="O campo é requerido"/>
+                <p:message for="txtDenominacao"/>
+
+                <h:outputText value="idade Minima: "/>
+                <p:inputText id="txtIdadeMinima" value="#{grupoController.selecao.idadeMinima}"
+                             required="true" requiredMessage="O campo é requerido"/>
+                <p:message for="txtIdadeMinima"/>
+
+                <h:outputText value="idade Maxima: "/>
+                <p:inputText id="txtIdadeMaxima" value="#{grupoController.selecao.idadeMaxima}"
+                             required="true" requiredMessage="O campo é requerido"/>
+                <p:message for="txtIdadeMaxima"/>
+
+            </p:panelGrid>
+
+            <p:commandButton value="Alterar cadastro" action="#{grupoController.update()}" update="formCadastro">
+                <p:confirm message="Deseja alterar o cadastro o grupo?"/>
+            </p:commandButton>
+
+        </h:form>
+
+        <h:form>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="sim" styleClass="ui-confirmdialog-yes"/>
+                <p:commandButton value="não" styleClass="ui-confirmdialog-no ui-button-flat"/>
+            </p:confirmDialog>
+        </h:form>
+
+    </h:body>
+</html>
+
